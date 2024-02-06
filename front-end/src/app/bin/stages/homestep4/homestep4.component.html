@@ -1,0 +1,225 @@
+<app-navbar [extended]="false" class="sticky-top"></app-navbar>
+
+<p-toast></p-toast>
+
+<p-scrollTop></p-scrollTop>
+
+<!-- <div class="container-fluid" style="background-color: #ededed;">
+    <a href="" class="invisible">👻</a>
+    <div class="container mt-5">
+        <h3 class="border-text font-b">¡Hola! Hablemos de ti...</h3>
+        <h6>Formulario de registro para nuevos vendedores</h6>
+    </div>
+    <div class="container bg-white border-start border-top border-end ps-5 pt-4 pe-5 pb-2 mt-4">
+    </div>
+</div>
+
+<div class="container border-end border-start border-bottom ps-5 pb-4 pe-5 pt-2">
+    <form [formGroup]="formCurrentStage" (submit)="onSubmit()">
+        <h5 class="font-b border-text">Información personal:</h5>
+        <div class="container-fluid p-0">
+            <span class="p-float-label w-100 mt-4">
+                <input pInputText id="name" type="text" class="w-100 rounded-0" formControlName="name"/>
+                <label htmlFor="email">¿Cual es tu nombre completo?</label>
+            </span>
+            <p class="mb-0 mt-1" style="font-size: 12px; opacity: .7;">No sobrenombres, no tu nombre de usuario.</p>
+        </div>
+        <div class="container-fluid p-0">
+            <div class="row">
+                <div class="col">
+                    <h5 class="mt-4 font-b">¿Cual es tu edad?</h5>
+                    <input type="number" class="mt-2 w-100 rounded-0" pInputText pKeyFilter="int" max="100" min="18" value="18" formControlName="age"/>
+                </div>
+                <div class="col">
+                    <h5 class="mt-4 font-b">¿Cual es tu genero?</h5>
+                    <p-multiSelect [options]="genre"  optionLabel="name" [selectionLimit]="1" [style]="{'width':'100%', 'margin-top': '.43rem'}" [showHeader]="false" formControlName="genre"></p-multiSelect>
+                    <p class="mb-0 mt-1" style="font-size: 12px; opacity: .7;">Según figure la identificación.</p>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid p-0">
+            <h5 class="mt-3 font-b">¿Cual es tu fecha de nacimiento?</h5>
+            <div class="row">
+                <div class="col">
+                    <h6 class="font-b">Año:</h6>
+                    <p-multiSelect formControlName="ybirth" optionLabel="name" [options]="ages" [selectionLimit]="1" [style]="{'width':'100%', 'margin-top': '.43rem', 'border-radius': '0px'}" [showHeader]="false" formControlName="ybirth"></p-multiSelect>
+                </div>
+                <div class="col">
+                    <h6 class="font-b">Mes:</h6>
+                    <p-multiSelect formControlName="mbirth" optionLabel="name" [options]="months" [selectionLimit]="1" [style]="{'width':'100%', 'margin-top': '.43rem', 'border-radius': '0px'}" [showHeader]="false" formControlName="mbirth"></p-multiSelect>
+                </div>
+                <div class="col">
+                    <h6 class="font-b">Dia:</h6>
+                    <input formControlName="dbirth" type="number" class="mt-2 w-100 rounded-0" pInputText pKeyFilter="int" max="31" min="1" value="1" formControlName="dbirth"/>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid p-0">
+            <div class="row">
+                <div class="col">
+                    <span class="p-float-label w-100 mt-4">
+                        <input pInputText id="crp" type="text" class="w-100 rounded-0" formControlName="crp" maxlength="18"/>
+                        <label htmlFor="email">¿Cual es tu CURP?</label>
+                    </span>
+                    <p class="mb-0 mt-1" style="font-size: 12px; opacity: .7;">Si no la tienes a la mano, solicítala en linea <a target="_blank" href="https://www.gob.mx/curp/">aquí.</a>.</p>
+                </div>
+                <div class="col">
+                    <span class="p-float-label w-100 mt-4">
+                        <input pInputText id="rc" type="text" class="w-100 rounded-0" formControlName="rc" maxlength="13"/>
+                        <label htmlFor="email">¿Cual es tu RFC?</label>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid p-0">
+            <h5 class="mt-4 font-b">Agrega tu identificación personal por ambas partes:</h5>
+            <p-fileUpload mode="advanced" chooseStyleClass="p-button-help rounded-0" chooseLabel="Cargar" [maxFileSize]="3e+6" [showCancelButton]="false" removeStyleClass="p-button-help" [showUploadButton]="false" name="demo[]" [multiple]="true" accept="image/*" (onSelect)="countFileSelected($event)" (onRemove)="deleteFileSelected($event)">
+            </p-fileUpload>
+            <p class="mb-0 mt-1" style="font-size: 12px; opacity: .7;">Intenta que las fotografías sean visibles y los datos claros. Nada de esta información sera compartida.**</p>
+        </div>
+
+        <h5 class="border-text mt-5 font-b">Sobre HomeServices®:</h5>
+        <div class="container-fluid p-0">
+            <h5 class="mt-3 font-b">¿Cuales son tus mejores habilidades?</h5>
+            <textarea formControlName="hsA" rows="3" cols="30" pInputTextarea style="width: 100%; border-radius: 0;" formControlName="hsA"></textarea>
+            <p class="mb-0 mt-1" style="font-size: 12px; opacity: .7;">Intenta ser lo mejor detallado.</p>
+        </div>
+
+        <div class="container-fluid p-0">
+            <div class="row">
+                <div class="col">
+                    <h5 class="mt-3 font-b">¿Cuanta experiencia laboral posees?</h5>
+                    <p-multiSelect formControlName="hsB" [options]="exp" optionLabel="name" [selectionLimit]="1" [style]="{'width':'100%', 'margin-top': '.43rem', 'border-radius': '0px'}" [showHeader]="false"></p-multiSelect>
+                </div>
+                <div class="col">
+                    <h5 class="mt-3 font-b">¿Cual es tu disponibilidad laboral?</h5>
+                    <p-multiSelect formControlName="hsC" [options]="times" optionLabel="name" [selectionLimit]="1" [style]="{'width':'100%', 'margin-top': '.43rem', 'border-radius': '0px'}" [showHeader]="false"></p-multiSelect>
+                    <p class="mb-0 mt-1" style="font-size: 12px; opacity: .7;">HomeServices® ofrece la posibilidad de pausar publicaciones para no afectar tu disponibilidad.</p>
+                </div>
+            </div>
+        </div>
+        
+        <hr>
+
+        <div class="row">
+            <div class="col">
+                <div class="d-flex justify-content-center mt-2">
+                    <div class="row p-0">
+                        <div class="col-auto">
+                            <input formControlName="required" class="form-check-input ms-0 border-dark-subtle" type="checkbox">
+                        </div>
+                        <div class="col d-flex align-items-center">
+                            <p class="mb-0 m-0" style="font-size: 12px; color: gray">Acepto los términos y condiciones de trabajadores en HomeServices®️ y Aurora Studios Mexico S.A. de C.V.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <button [disabled]="!formCurrentStage.valid || this._fileA_length === 0" type="submit" class="btn btn-purple mb-3 mt-2 w-100" style="padding: .9rem;"><i class="bi bi-receipt"></i> Enviar solicitud a revision</button>
+                <p class="opacity-50" style="font-size: small;">Las revisiones pueden tardar entre 24 a 72 hrs dependiendo de la demanda del servicio.</p>
+            </div>
+        </div>
+    </form>
+
+    <hr class="invisible">
+    
+    <p class="opacity-50 mb-0" style="font-size: x-small;">*Aurora Studios Mexico nunca compartirá tu información, después de recibir el formulario tu información no sera utilizada hasta no tener una razón.</p>
+    <p class="opacity-50" style="font-size: x-small;">**El usuario debe enviar todos los datos estrictamente impecables, de lo contrario Aurora Studios Mexico puede denegar el acceso al portal de vendedores.</p>
+</div> -->
+
+<div class="mt-5 d-flex justify-content-center">
+    <div class="dropped-shadow-tiny w-75 overflow-visible">
+        <div class="row">
+            <div class="col" style="width: 50%;">
+                <form [formGroup]="formCurrentStage">
+                    <p-tabView [(activeIndex)]="activeTab">
+                        <p-tabPanel header="Información personal" [disabled]="disabled1">
+                            <p style="font-size: small; text-align: justify; user-select: none;">Rellena los datos con información precisa según figure su identificador oficial para comenzar con el proceso de aceptación del Portal de Vendedores, en caso de haber información errónea o falsa deberás esperar 2 meses para poder enviar una nueva solicitud.</p>
+
+                            <div class="container-fluid p-0">
+                                <span class="p-float-label w-100 mt-4">
+                                    <input pInputText id="name" type="text" class="w-100 rounded-0 text-uppercase" formControlName="name"/>
+                                    <label htmlFor="email">Nombre completo</label>
+                                </span>
+                                <p class="mb-0 mt-1" style="font-size: 12px; opacity: .7;">No sobrenombres, no tu nombre de usuario.</p>
+                            </div>
+                            <div class="container-fluid p-0">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="mt-4 font-b">Edad</h5>
+                                        <input type="number" class="mt-2 w-100 rounded-0" pInputText pKeyFilter="int" max="100" min="18" value="18" formControlName="age"/>
+                                    </div>
+                                    <div class="col">
+                                        <h5 class="mt-4 font-b">Genero</h5>
+                                        <p-multiSelect [options]="genre" optionLabel="name" [selectionLimit]="1" [style]="{'width':'100%', 'margin-top': '.43rem', 'border-radius': '0px'}" [showHeader]="false" formControlName="genre"></p-multiSelect>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container-fluid p-0">
+                                <div class="row">
+                                    <div class="col">
+                                        <span class="p-float-label w-100 mt-4">
+                                            <input pInputText id="crp" type="text" class="w-100 rounded-0" formControlName="crp" maxlength="18"/>
+                                            <label htmlFor="email">CURP</label>
+                                        </span>
+                                        <p class="mb-0 mt-1" style="font-size: 12px; opacity: .7;">¿No tienes tu CURP? Solicítala en linea <a target="_blank" href="https://www.gob.mx/curp/">aquí.</a>.</p>
+                                    </div>
+                                    <div class="col">
+                                        <span class="p-float-label w-100 mt-4">
+                                            <input pInputText id="rc" type="text" class="w-100 rounded-0" formControlName="rc" maxlength="13"/>
+                                            <label htmlFor="email">RFC</label>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container-fluid p-0">
+                                <h5 class="mt-4 font-b">Fecha de nacimiento</h5>
+                                <div class="row">
+                                    <div class="col">
+                                        <h6 class="font-b">Año:</h6>
+                                        <p-multiSelect formControlName="ybirth" optionLabel="name" [options]="ages" [selectionLimit]="1" [style]="{'width':'100%', 'margin-top': '.43rem', 'border-radius': '0px'}" [showHeader]="false" formControlName="ybirth"></p-multiSelect>
+                                    </div>
+                                    <div class="col">
+                                        <h6 class="font-b">Mes:</h6>
+                                        <p-multiSelect formControlName="mbirth" optionLabel="name" [options]="months" [selectionLimit]="1" [style]="{'width':'100%', 'margin-top': '.43rem', 'border-radius': '0px'}" [showHeader]="false" formControlName="mbirth"></p-multiSelect>
+                                    </div>
+                                    <div class="col">
+                                        <h6 class="font-b">Dia:</h6>
+                                        <input formControlName="dbirth" type="number" class="mt-2 w-100 rounded-0" pInputText pKeyFilter="int" max="31" min="1" value="1" formControlName="dbirth"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="mt-4">
+                            <div class="d-flex justify-content-end">
+                                <button type="button" class="btn btn-purple p-3 rounded-0">Siguiente <i class="bi-arrow-right"></i></button>
+                            </div>
+                        </p-tabPanel>
+                        <p-tabPanel header="Contratos" [disabled]="disabled2">
+                            
+                        </p-tabPanel>
+                        <p-tabPanel header="Archivos" [disabled]="disabled3">
+                            
+                        </p-tabPanel>
+                        <p-tabPanel header="HomeServices®" [disabled]="disabled4">
+                            <p>
+                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
+                                ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
+                            </p>
+                        </p-tabPanel>
+                    </p-tabView>
+                </form>
+            </div>
+            <div class="col p-5 d-flex justify-content-center align-items-center text-center" style="width: 50%;">
+                <div class="row d-flex justify-content-center text-center">
+                    <img src="../../../../assets/svg/hs_form.svg" alt="Form SVG" style="width: auto; height: 45vh;">
+                    <h6 class="mt-4 opacity-50">
+                        {{texts}}
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

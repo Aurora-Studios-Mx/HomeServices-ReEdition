@@ -1,0 +1,48 @@
+<app-navbar-tiny class="sticky-top"></app-navbar-tiny>
+
+<p-toast></p-toast>
+
+<div style="height: 100%; width: 100%;">
+    <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 700px;">
+        <div class="container-fluid p-5">
+            <div class="text-start">
+                <h2 class="font-b">¡Bienvenido de nuevo!</h2>
+                <h6 class="opacity-50 mb-0 font-b">Ingresa tus credenciales.</h6>
+            </div>
+            <hr class="invisible">
+            <form [formGroup]="formLogin" (ngSubmit)="compare('AURORA')">
+                <div class="row mb-3">
+                    <span class="p-float-label w-100">
+                        <input pInputText id="email" type="email" class="w-100 rounded-0" formControlName="email" />
+                        <label htmlFor="email" class="ms-3">Correo electrónico</label>
+                    </span>
+                    <span class="p-float-label w-100 mt-4">
+                        <input pInputText class="w-100 rounded-0" type="password" id="password" formControlName="password"/>
+                        <label htmlFor="password" class="ms-3">Contraseña</label>
+                    </span>
+                </div>
+                <div class="row">
+                    <div class="col text-center">
+                        <button type="submit" class="btn btn-purple p-2 w-100 rounded-0" [disabled]="!formLogin.valid">
+                            <i class="bi bi-person"></i>
+                            Iniciar sesión
+                        </button>
+                        <a routerLink="" class="text-decoration-none mt-2" style="opacity: .7; color: #1f1f1f; font-size: small;">Olvide mis datos</a>
+                    </div>
+                    <div class="col">
+                        <a routerLink="/start" type="button" class="btn btn-dark-2 rounded-0 p-2 w-100">
+                            No tengo cuenta
+                        </a>
+                    </div>
+                </div>
+            </form>
+            <div class="hr-container" style="position: relative; text-align: center; margin: 20px 0;">
+                <hr style="border: none; border-top: 1px solid #000;">
+                <div class="circle">o</div>
+            </div>
+            <div class="row p-0 d-flex justify-content-center">
+                <asl-google-signin-button class="d-flex justify-content-center" type="standard" text="signin_with" size="large" width="400" theme="outline"></asl-google-signin-button>
+            </div>
+        </div>
+    </div>
+</div>

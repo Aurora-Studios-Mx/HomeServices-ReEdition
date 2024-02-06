@@ -1,0 +1,221 @@
+<app-navbar class="sticky-top"></app-navbar>
+
+<p-toast></p-toast>
+
+<div class="row w-100">
+    <div class="col" >
+        <div class="alert alert-danger border-0 bg-transparent rounded-0" *ngIf="messageVisible" role="alert">
+            <strong>¡Cuidado!</strong> {{alertA}}
+        </div>
+    </div>
+    <div class="col-auto d-flex justify-content-center align-items-center">
+        <a (click)="securityPopupHandle()" class="btn btn-outline-dark border-0 rounded-0" pTooltip="Adicionales" role="button">
+            <i class="bi bi-gear"></i>
+        </a>
+    </div>
+</div>
+
+
+<div class="container-fluid d-flex justify-content-center mt-5">
+    <div class="row text-center">
+        <p-avatar label="{{nameLetter}}" shape="circle" styleClass="mr-2" [style]="{'width':'150px', 'height':'150px', 'background-color': '#000', 'color': '#fff', 'font-size': '45px'}" *ngIf="!isURLPic"></p-avatar>
+        <p-avatar image="{{URLimage}}" shape="circle" styleClass="mr-2" [style]="{'width':'150px', 'height':'150px', 'background-color': '#fff'}" class="rounded-2" *ngIf="isURLPic"></p-avatar>
+        <h2 class="text-break font-b">
+            {{name}}
+            <span *ngIf="verify === 2" pTooltip="Este presta-servicios esta verificado por HomeServices®"><i class="bi bi-patch-check text-success"></i></span>
+            <br>
+            <span class="opacity-50" style="font-size: 18px;">#{{UUIDactive[0]}}{{UUIDactive[1]}}{{UUIDactive[2]}}{{UUIDactive[3]}}{{UUIDactive[4]}}</span>
+        </h2>
+    </div>
+</div>
+<!-- 
+<div class="container-fluid d-flex justify-content-center mb-3">
+    <div class="row">
+        <div class="col-2" *ngIf="verify === 2">
+            <h4 class="mt-1"><i class="bi bi-patch-check text-success"></i></h4>
+        </div>
+        <div class="col-auto d-flex align-items-center">
+            <h6 [ngClass]="getStylesMessage(verify)">{{getMessage(verify)}}</h6>
+        </div>
+    </div>
+</div> -->
+
+<div class="container-fluid d-flex justify-content-center mt-3">
+    <div class="row w-auto ms-4">
+        <div class="col opacity-75 text-center">
+            <p-rating [readonly]="true" [cancel]="false" [(ngModel)]="reputationValue"></p-rating>
+            <h6>Reputación</h6>
+        </div>
+        <div class="col-auto border-start d-flex align-items-center">
+            <h6 class="opacity-75">{{message}}</h6>
+        </div>
+        <div class="col-auto border-start opacity-75 text-center">
+            <h5>{{sells}}</h5>
+            <h6> ventas totales</h6>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid p-5 mt-4">
+    <h4 class="font-b border-text">Servicios publicados de {{name}}</h4>
+    <hr class="invisible">
+
+    <div class="mt-5" *ngIf="services.length == 0">
+        <div class="d-flex justify-content-center">
+            <img src="../../../../assets/svg/hs_search_1.svg" alt="Searching..." style="width: auto; height: 30vh;">
+        </div>
+        <div class="d-flex justify-content-center mt-4 mb-0" style="opacity: .5;">
+            <p class="mb-2">No hay servicios para mostrar.</p>
+        </div>
+    </div>
+
+    <div class="items" *ngIf="services.length > 0">
+
+        @for (item of services; track item) {
+            <div class="card sfx">
+                <img class="card-img-top" src="" alt="Image"/>
+                <div class="card-body">
+                    <h4 class="card-title">{{item.data2}}</h4>
+                    <p class="card-text fade-out">{{item.data3}}</p>
+                    <div class="row">
+                        <div class="col">
+                            <button type="button" class="btn btn-purple w-100 rounded-0">
+                                <i class="bi bi-cart"></i>
+                                Comprar ahora - {{item.data4 | currency: 'MXN'}}
+                            </button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-dark-2 w-100 rounded-0">
+                                <i class="bi bi-card-text"></i>
+                                Ver publicación
+                            </button>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        
+    </div>
+</div>
+
+<!-- <div class="container-fluid" style="background-color: #ededed;">
+    <a href="" class="invisible">👻</a>
+    <div class="container" style="margin-top: 5rem;">
+        <div class="row p-0">
+            <div class="col-5 p-1">
+                <div class="row p-0">
+                    <div class="row">
+                        <div class="col-auto">
+                            <p-avatar label="{{nameLetter}}" styleClass="mr-2" [style]="{'width':'110px', 'height':'110px', 'background-color': 'lightblue'}" *ngIf="!isURLPic"></p-avatar>
+                            <p-avatar image="{{URLimage}}" styleClass="mr-2" [style]="{'width':'110px', 'height':'110px', 'background-color': 'lightblue'}" class="rounded-2" *ngIf="isURLPic"></p-avatar>
+                        </div>
+                        <div class="col d-flex align-items-center">
+                            <h2 class="text-break">
+                                {{name}}
+                            </h2>
+                        </div>
+                    </div>
+                    <h6 class="mt-3 opacity-75">{{message}}</h6>
+                </div>
+            </div>
+            <div class="col ms-5 border-start rounded-2 border-end border-top border-2 d-flex justify-content-center">
+                <div class="row p-3 h-100 bg-white" style="width: 110%;">
+                    <div class="col text-center">
+                        <h1 class="mb-0 mt-3"><i class="bi bi-cart-check" pBadge severity="{{buys}}"></i></h1>
+                        <h6 class="border-text">Ventas {{convertStringfy(buysSeverity, 0)}}</h6>
+                        <p class="opacity-50" style="font-size: 13px;">Los compradores validan los servicios como {{convertStringfy(buysSeverity, 1)}}.</p>
+                    </div>
+                    <div class="col text-center">
+                        <h1 class="mb-0 mt-3"><i class="bi bi-person-raised-hand" pBadge severity="{{attencion}}"></i></h1>
+                        <h6 class="border-text">{{convertStringfy2(reputationValueAttention, 0)}} atención</h6>
+                        <p class="opacity-50" style="font-size: 13px;">Los compradores dicen que su atención es {{convertStringfy2(reputationValueAttention, 1)}}.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid p-0">
+    <div class="row w-100">
+        <div class="col-4 ps-5">
+            <div class="row mt-5">
+                <div class="col">
+                    <h6 class="mb-0">Reputación personal:</h6>
+                </div>
+                <div class="col">
+                    <p-rating [readonly]="true" [cancel]="false" [(ngModel)]="reputationValue"></p-rating>
+                </div>
+            </div>
+            <hr class="w-25">
+            <p>{{sells}} ventas totales este año.</p>
+            <div class="row">
+                <div class="col-1" *ngIf="verify === 2">
+                    <h4 class="mt-1"><i class="bi bi-patch-check text-success"></i></h4>
+                </div>
+                <div class="col d-flex align-items-center">
+                    <div class="row">
+                        <h6 [ngClass]="getStylesMessage(verify)">{{getMessage(verify)}}</h6>
+                        <p class="opacity-75">Es uno de los mejores en este sitio.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col border-start">
+            <div class="container-fluid mt-5">
+                <div *ngIf="services.length === 0">
+                    <div class="d-flex justify-content-center" style="opacity: .5;">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/unukghxb.json"
+                            trigger="loop"
+                            delay="2000"
+                            colors="primary:#121331,secondary:#a95eff"
+                            style="width:70px;height:70px">
+                        </lord-icon>
+                    </div>
+                    <div class="d-flex justify-content-center mt-4 mb-0" style="opacity: .5;">
+                        <p class="mb-2">Parece que no ha publicado algún servicio, quizá no es vendedor?</p>
+                    </div>
+                </div>
+
+                <div *ngIf="services.length > 0">
+                    <div class="row mb-3">
+                        <div class="col">
+                            <h2>Publicados por {{name}}:</h2>
+                        </div>
+                        <div class="col d-flex align-items-end justify-content-end">
+                            <p style="font-size: x-small;" class="mb-0 opacity-50">Para los creadores, modificar o eliminar deberá usarse el Portal de Vendedores</p>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row border p-3 rounded-2 mt-3" *ngFor="let packet of services">
+                            <div class="col d-flex align-items-center">
+                                <div class="row">
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <h3 style="max-width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                            {{packet.data2}}
+                                        </h3>
+                                    </div>
+                                    <div class="fade-out">
+                                        <p>{{packet.data3}}</p>
+                                    </div>
+                                    <p class="mb-0 opacity-50">Fecha de publicación: {{formatDate(packet.data6)}}</p>
+                                </div>
+                            </div>
+                            <div class="col-4 d-flex align-items-center justify-content-center text-center">
+                                <div class="row w-100">
+                                    <h4>{{packet.data4 | currency: 'MXN'}} / {{packet.data5}}</h4>
+                                    <button type="button" class="btn btn-outline-purple p-2 w-100 mt-2" routerLink="/services/{{packet.data0}}"><i class="bi bi-card-list"></i> Ver publicación</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<app-footer></app-footer>

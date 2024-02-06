@@ -1,0 +1,198 @@
+
+<app-navbar-tiny class="sticky-top"></app-navbar-tiny>
+
+<p-toast></p-toast>
+
+<div style="height: 100%; width: 100%;">
+    <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 700px;">
+        <div class="container-fluid p-5">
+            <div class="text-start">
+                <h2 class="font-b">Crear nueva cuenta en HomeServices®️</h2>
+            </div>
+            <hr class="invisible">
+            <form [formGroup]="formLogin" (ngSubmit)="openModal(verify)">
+                <div class="row mb-3">
+                    <span class="p-float-label w-100">
+                        <input pInputText id="name" type="text" class="w-100 rounded-0" formControlName="name"/>
+                        <label htmlFor="name" class="ms-3">Tu nombre</label>
+                    </span>
+                    <span class="p-float-label w-100 mt-4">
+                        <input pInputText id="email" type="email" class="w-100 rounded-0" formControlName="email" />
+                        <label htmlFor="email" class="ms-3">Correo electrónico</label>
+                    </span>
+                    <span class="p-float-label w-100 mt-4">
+                        <input pInputText class="w-100 rounded-0" type="password" id="password" formControlName="password"/>
+                        <label htmlFor="password" class="ms-3">Contraseña</label>
+                    </span>
+                </div>
+                <div class="row text-center">
+                    <div class="col text-center">
+                        <button type="submit" class="btn btn-purple p-2 w-100 rounded-0" [disabled]="!formLogin.valid">
+                            <i class="bi bi-person"></i>
+                            Crear cuenta
+                        </button>
+                    </div>
+                    <div class="col">
+                        <a routerLink="/login" type="button" class="btn btn-dark-2 rounded-0 p-2 w-100">
+                            Tengo cuenta
+                        </a>
+                    </div>
+                    <p class="mt-2" style="font-size: x-small; color: #1f1f1f; opacity: .5;">
+                        Este sitio esta protegido por reCAPTCHA por su <a style="color: #1f1f1f;" href="https://policies.google.com/privacy">Política de privacidad</a> y <a style="color: #1f1f1f;" href="https://policies.google.com/terms">Términos de servicio</a>
+                    </p>
+                </div>
+            </form>
+            <div class="hr-container" style="position: relative; text-align: center; margin: 20px 0;">
+                <hr style="border: none; border-top: 1px solid #000;">
+                <div class="circle">o</div>
+            </div>
+            <div class="row p-0 d-flex justify-content-center">
+                <asl-google-signin-button class="d-flex justify-content-center" type="standard" text="signin_with" size="large" width="400" theme="outline"></asl-google-signin-button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <app-navbar-tiny class="sticky-top"></app-navbar-tiny>
+
+<p-toast [life]="7000"></p-toast>
+
+<div class="container w-75 p-4">
+    <div class="row">
+        <div class="col-5 p-5">
+            <h3 class="font-b">Crea una nueva cuenta HomeServices®️ o con tus servicios favoritos.</h3>            
+        </div>
+        <div class="col">
+            <div class="container-fluid border p-5 border-1 rounded-3">
+                <form [formGroup]="formLogin">
+                    <div class="row mb-3">
+                        <div class="row p-0">
+                            <div class="col-auto">
+                                <p><i class="bi bi-person"></i> Nombre de usuario:</p>
+                            </div>
+                            <div class="col d-flex justify-content-end text-danger">
+                                <div *ngIf="formLogin.controls['name'].invalid && (formLogin.controls['name'].dirty || formLogin.controls['name'].touched)">
+                                    <div *ngIf="formLogin.controls['name'].errors?.['required']">
+                                        Campo obligatorio
+                                    </div>
+                                    <div *ngIf="formLogin.controls['name'].errors?.['pattern']">
+                                        Nombre invalido
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <input pInputText type="name" id="name" formControlName="name"/>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="row p-0">
+                            <div class="col-auto">
+                                <p><i class="bi bi-envelope"></i> E-mail:</p>
+                            </div>
+                            <div class="col d-flex justify-content-end text-danger">
+                                <div *ngIf="formLogin.controls['email'].invalid && (formLogin.controls['email'].dirty || formLogin.controls['email'].touched)">
+                                    <div *ngIf="formLogin.controls['email'].errors?.['required']">
+                                        Campo obligatorio
+                                    </div>
+                                    <div *ngIf="formLogin.controls['email'].errors?.['pattern']">
+                                        Dirección invalida
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <input pInputText type="email" id="email" formControlName="email"/>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="row p-0">
+                            <div class="col-auto">
+                                <p><i class="bi bi-key"></i> Contraseña:</p>
+                            </div>
+                            <div class="col d-flex justify-content-end text-danger">
+                                <div *ngIf="formLogin.get('password')?.invalid && (formLogin.get('password')?.dirty || formLogin.get('password')?.touched)">
+                                    <div *ngIf="formLogin.get('password')?.hasError('required')">
+                                        Campo obligatorio
+                                    </div>
+                                    <div *ngIf="formLogin.get('password')?.hasError('minlength')" style="font-size: 12px;">
+                                        Contraseña demasiado corta (mínimo 6 caracteres)
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <input pInputText type="password" id="password" formControlName="password"/>
+                    </div>
+                    <div class="container-fluid p-0 mb-4 mt-3">
+                        <div class="row p-0">
+                            <div class="col-auto">
+                                <input pTooltip="Desmarcado, la sesión termina al cerrar la pestaña o navegador." tooltipPosition="top" class="form-check-input ms-0 border-dark-subtle" formControlName="session" name="session" type="checkbox">
+                            </div>
+                            <div class="col d-flex align-items-center">
+                                <p class="mb-0 m-0" style="font-size: 12px; color: gray">¿Mantener sesión activa?</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row p-0 mb-3 mt-3">
+                        <div class="col-auto me-2 p-0">
+                            <p-button pRipple [disabled]="!formLogin.valid" label="Crear cuenta" styleClass="rounded-2 p-button-help" type="submit" (onClick)="openModal(verify)"></p-button>
+                        </div>
+                        <div class="col-auto p-0">
+                            <p-button label="Tengo cuenta" (onClick)="siAccount()" styleClass="p-button-text p-button-help rounded-2"></p-button>
+                        </div>
+                        <div class="col d-flex justify-content-end me-2 p-0">
+                            <p-button label="Volver" styleClass="p-button-text p-button-help rounded-2" icon="bi bi-arrow-left" (onClick)="back()"></p-button>
+                        </div>
+                    </div>
+                </form>
+                <div class="hr-container" style="position: relative; text-align: center; margin: 20px 0;">
+                    <hr style="border: none; border-top: 1px solid #000;">
+                    <div class="circle">o</div>
+                </div>
+                <div class="row p-0 d-flex justify-content-center">
+                    <asl-google-signin-button class="d-flex justify-content-center w-100" type="standard" text="signup_with" size="large" width="400" theme="outline"></asl-google-signin-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container w-75 p-0" style="font-size: 12px; color: gray;">
+    <div class="row mt-4">
+        <div class="col mb-3">
+            Aurora Studios Mexico S.A. de C.V.
+        </div>
+        <div class="col d-flex justify-content-end mb-3">
+            Protegido por reCAPTCHA con <a class="text-decoration-none" style="margin-left: .2rem; margin-right: .2rem;" href="https://policies.google.com/terms?hl=en-GB">Términos y condiciones</a> de <i class="bi bi-google ms-1"></i>
+        </div>
+    </div>
+</div> -->
+
+<ng-template #verify>
+    <div class="modal-header">
+        <h5 class="modal-title" id="modalVerify">HomeServices®️ - Términos y condiciones</h5>
+        <button type="button" class="btn-close close pull-right" (click)="closeModal()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body p-4">
+        <div class="container-fluid mb-2" style="height: 20rem; overflow-y: scroll; overflow-x: hidden;">
+            <app-terms class="mt-3" [isModule]="true"></app-terms>
+        </div>
+        <div class="container-fluid p-0 mb-4 d-flex justify-content-center">
+            <div class="row p-0">
+                <div class="col-auto">
+                    <input class="form-check-input ms-0 border-dark-subtle" type="checkbox" [(ngModel)]="TermsCheck">
+                </div>
+                <div class="col d-flex align-items-center">
+                    <p class="mb-0 m-0" style="font-size: 12px; color: gray">Acepto los términos y condiciones de HomeServices®️ y Aurora Studios Mexico S.A. de C.V.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col d-flex justify-content-start">
+                <re-captcha (resolved)="onResolved($event)" (errored)="onErrorRecap()" badge="bottomright"></re-captcha>
+            </div>
+            <div class="col d-flex justify-content-end align-items-center">
+                <p-button pRipple [disabled]="RecapCheck == false || TermsCheck == false" label="Finalizar" styleClass="p-button-help rounded-0" type="submit" (onClick)="sendData_AURORA()"></p-button>
+            </div>
+        </div>
+    </div>
+</ng-template>

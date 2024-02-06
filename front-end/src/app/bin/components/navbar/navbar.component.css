@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300&display=swap');
+@font-face {
+    font-family: 'Product Sans';
+    src: url('../../../../assets/productsansregular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.font-a{
+    font-family: 'Source Sans 3', sans-serif;
+}
+
+.font-b{
+    font-family: 'Product Sans', sans-serif;
+}
+
+.active{
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: 2px;
+    border-color: #a95eff;   
+    border-style: solid;
+    color: #933bf8 !important;
+}
+
+.canvas-item{
+    transition: all .2s;
+    text-align: start;
+}
+
+.canvas-item:hover{
+    background-color: #303030;
+    color: white;
+}
+
+.canvas-item:active{
+    color: gray
+}
+
+.red{
+    transition: background-color .2s, color .2s;
+    text-align: start;
+}
+
+.red:hover{
+    background-color:rgb(231, 80, 80);
+    color: white;
+}
+
+.blue{
+    transition: background-color .2s, color .2s;
+    text-align: start;
+}
+
+.blue:hover{
+    background-color:rgb(105, 137, 207);
+}
+
+.border-text{
+    display: inline-block;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: 2px;
+    border-image-source: linear-gradient(-30deg, lightblue 0%, rgb(213, 157, 255)100%);   
+    border-style: solid;
+    padding-bottom: 7px;
+}
+
+.ntf-btn{
+    color: #1f1f1f;
+}
+
+.ntf-btn:hover{
+    color: #933bf8;
+}
+
+.custom-list-group {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    padding-left: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.custom-list-group-item {
+    position: relative;
+    display: block;
+    padding: .75rem 1.25rem;
+    background-color: #fff;
+}
+
+.custom-list-group-item.active {
+    z-index: 2;
+    color: #fff;
+    background-color: #933bf8;
+    border-color: #933bf8;
+}
+
+.nsfx:hover{
+    color: #933bf8;
+}

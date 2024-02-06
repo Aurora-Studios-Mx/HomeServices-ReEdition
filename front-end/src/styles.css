@@ -1,0 +1,160 @@
+/* You can add global styles to this file, and also import other style files */
+html, body{
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+.dropped-shadow{
+    box-shadow: rgba(63, 63, 63, 0.5) 0px 3px 8px; overflow: hidden;
+}
+.dropped-shadow-tiny{
+    box-shadow: rgba(63, 63, 63, 0.2) 0px 3px 8px; overflow: hidden;
+}
+
+::selection {
+    background-color: lightblue;
+    color: black; /* Cambia el color del texto seleccionado si es necesario */
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+}
+
+::-webkit-scrollbar-track{
+    background: #fff;
+}
+
+::-webkit-scrollbar-thumb{
+    background: #a95eff;
+    border-radius: 20px;
+    border: 3px solid #fff;
+}
+
+.bg-blur{
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+.btn-outline-purple{
+    border-color: #a95eff;
+    color: #a95eff;
+}
+
+.btn-outline-purple:hover{
+    border-color: transparent;
+    background-color: #a95eff;
+    color: white;
+}
+
+.btn-outline-purple:active{
+    border-color: transparent;
+    background-color: #a95eff;
+    color: white;
+}
+
+.btn-outline-purple:disabled{
+    border-color: #c28dff;
+    color: #c28dff;
+}
+
+.btn-outline-purple-var-2{
+    border-color: white;
+    background-color: transparent;
+}
+
+.btn-outline-purple-var-2:hover{
+    border-color: #a95eff;
+    background-color: white;
+    color: #a95eff;
+}
+
+.btn-purple{
+    background-color: #933bf8;
+    color: white;
+}
+
+.btn-purple:hover{
+    background-color: #a95eff;
+    color: white;
+}
+
+.btn-purple:active{
+    background-color: #a95eff;
+    color: white;
+}
+
+.btn-purple:disabled{
+    background-color: rgb(200, 152, 255);
+    color: white;
+}
+
+.waveform {
+    --uib-size: 40px;
+    --uib-speed: 1s;
+    --uib-color: black;
+    --uib-line-weight: 3.5px;
+  
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    width: var(--uib-size);
+    height: calc(var(--uib-size) * 0.9);
+}
+  
+.waveform__bar {
+    width: var(--uib-line-weight);
+    height: 100%;
+    background-color: var(--uib-color);
+}
+  
+.waveform__bar:nth-child(1) {
+    animation: grow var(--uib-speed) ease-in-out
+    calc(var(--uib-speed) * -0.45) infinite;
+}
+  
+.waveform__bar:nth-child(2) {
+    animation: grow var(--uib-speed) ease-in-out
+    calc(var(--uib-speed) * -0.3) infinite;
+}
+  
+.waveform__bar:nth-child(3) {
+    animation: grow var(--uib-speed) ease-in-out
+      calc(var(--uib-speed) * -0.15) infinite;
+}
+  
+.waveform__bar:nth-child(4) {
+    animation: grow var(--uib-speed) ease-in-out infinite;
+}
+  
+@keyframes grow {
+    0%,
+    100% {
+        transform: scaleY(0.3);
+    }
+  
+    50% {
+        transform: scaleY(1);
+    }
+}
+
+.btn-dark-2{
+    background-color: #1f1f1f;
+    color: white;
+}
+
+.btn-dark-2:hover{
+    background-color: #353535;
+    color: white;
+}
+
+.btn-dark-2:active{
+    background-color: #353535;
+    color: white;
+}
+
+.btn-dark-2:disabled{
+    background-color: #353535;
+    color: white;
+}

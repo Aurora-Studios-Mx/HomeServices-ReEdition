@@ -1,0 +1,156 @@
+    <app-verification-badge></app-verification-badge>
+
+<ng-template #customListTemplate let-matches="matches" let-query="query" let-typeaheadTemplateMethods>
+    <ul class="custom-list-group">
+        <li class="custom-list-group-item"
+            *ngFor="let match of matches"
+            [class.active]="typeaheadTemplateMethods.isActive(match)"
+            (click)="typeaheadTemplateMethods.selectMatch(match, $event)"
+            (mouseenter)="typeaheadTemplateMethods.selectActive(match)">
+            {{ match.item }}
+        </li>
+    </ul>
+</ng-template>
+
+<nav [ngClass]="somebodyClass" style="overflow: visible; background-color: white;" *ngIf="!blured">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            <img src="../../../../assets/icon.png" alt="HomeServices®️ Logo" style="height: 40px; width: auto;">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex gap-4">
+                <li class="nav-item" *ngIf="extended">
+                    <a class="nav-link active nsfx" aria-current="page" href="/">Inicio</a>
+                </li>
+                <li class="nav-item" *ngIf="extended">
+                    <a class="nav-link nsfx" aria-current="page" href="/">Categorías</a>
+                </li>
+                <li class="nav-item" *ngIf="extended">
+                    <a class="nav-link nsfx" aria-current="page" href="/">Top</a>
+                </li>
+                <li class="nav-item" *ngIf="extended">
+                    <a class="nav-link nsfx" aria-current="page" href="/">Favoritos</a>
+                </li>
+                <li class="nav-item" *ngIf="extended">
+                    <a class="nav-link nsfx" aria-current="page" href="/">Comunidad</a>
+                </li>
+                <li class="nav-item" *ngIf="extended">
+                    <a class="nav-link nsfx" aria-current="page" href="/">Soporte y asistencia</a>
+                </li>
+            </ul>
+            <a class="btn ntf-btn border-0 me-2" pTooltip="Mis notificaciones" tooltipPosition="bottom" type="submit" (click)="show()" *ngIf="extended && isCurrentSign">
+                <i class="bi bi-bell fs-5"></i>
+            </a>
+            <div *ngIf="!isCurrentSign">
+                <a class="btn btn-outline-dark ms-2 rounded-0" type="submit" routerLink="/login">
+                    Iniciar sesión
+                </a>
+            </div>
+            <div *ngIf="drop">
+                <button (click)="sidebarVisible = true" *ngIf="isCurrentSign" type="button" class="btn btn-dark rounded-0" pTooltip="Desplegar slider" tooltipPosition="bottom" tooltipStyleClass="tooltip">
+                    <!-- <p-avatar label="{{nameLetter}}" styleClass="mr-2 mb-0 mt-1 mb-1 me-2" [style]="{ 'background-color': '#943afb', color: '#ffffff' }" *ngIf="!isURLPic"></p-avatar>
+                    <p-avatar image="{{URLimage}}" styleClass="mr-2 mb-0 mt-1 me-2" [style]="{ 'background-color': '#febd69', color: '#ffffff' }" *ngIf="isURLPic"></p-avatar>
+                    {{userName}} -->
+                    <i class="bi bi-list text-white"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<nav class="navbar navbar-expand-lg p-2 user-select-none z-1" style="overflow: visible;" *ngIf="blured">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            <img src="../../../../assets/icon.png" alt="HomeServices®️ Logo" style="height: 40px; width: auto;">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex gap-4">
+            </ul>
+            <div *ngIf="drop">
+                <button (click)="sidebarVisible = true" *ngIf="isCurrentSign" type="button" class="btn btn-dark rounded-0" pTooltip="Desplegar slider" tooltipPosition="bottom" tooltipStyleClass="tooltip">
+                    <!-- <p-avatar label="{{nameLetter}}" styleClass="mr-2 mb-0 mt-1 mb-1 me-2" [style]="{ 'background-color': '#943afb', color: '#ffffff' }" *ngIf="!isURLPic"></p-avatar>
+                    <p-avatar image="{{URLimage}}" styleClass="mr-2 mb-0 mt-1 me-2" [style]="{ 'background-color': '#febd69', color: '#ffffff' }" *ngIf="isURLPic"></p-avatar>
+                    {{userName}} -->
+                    <i class="bi bi-list text-white"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- <nav class="navbar navbar-expand-lg p-2 user-select-none z-1" style="overflow: visible; background-color: white">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <a class="navbar-brand" href="/">
+                <img src="../../../../assets/logowhite.png" alt="HomeServices®️ Logo" style="height: 40px; width: auto;">
+            </a>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex gap-4 w-100 justify-content-center">
+                <li class="nav-item" *ngIf="extended">
+                    <a class="nav-link active nsfx" aria-current="page" href="/">Inicio</a>
+                </li>
+                <li class="nav-item" *ngIf="extended">
+                    <a class="nav-link nsfx" aria-current="page" href="/">Categorías</a>
+                </li>
+                <li class="nav-item" *ngIf="extended">
+                    <a class="nav-link nsfx" aria-current="page" href="/">Top</a>
+                </li>
+                <li class="nav-item" *ngIf="extended">
+                    <a class="nav-link nsfx" aria-current="page" href="/">Favoritos</a>
+                </li>
+                <li class="nav-item" *ngIf="extended">
+                    <a class="nav-link nsfx" aria-current="page" href="/">Comunidad</a>
+                </li>
+                <li class="nav-item" *ngIf="extended">
+                    <a class="nav-link nsfx" aria-current="page" href="/">Soporte y asistencia</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav> -->
+
+<nav class="navbar navbar-expand-lg p-2 dropped-shadow-tiny user-select-none z-0" style="overflow: visible; background-color: white" *ngIf="extended">
+    <div class="container-fluid p-0">
+        <div class="container-fluid d-flex align-items-center">
+            <h6 class="opacity-75 font-b">Hola! {{welcomeMsg}}</h6>
+        </div>
+        <div class="container-fluid d-flex justify-content-end">
+            <form class="d-flex" role="search" style="width: 25rem;" *ngIf="extended">
+                <div class="input-group">
+                    <input class="form-control ms-2 rounded-0" type="search" placeholder="¿Que servicio necesitas?" aria-label="Search" [typeahead]="suggests" [optionsListTemplate]="customListTemplate" [isAnimated]="true" [(ngModel)]="searchValue" name="searchValue">
+                    <button class="btn btn-dark-2 rounded-0" type="button" (click)="tpSearch()">
+                        <i class="bi bi-search fs-5"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+
+
+
+
+
+<p-sidebar [(visible)]="sidebarVisible" [modal]="false" position="right" [blockScroll]="true">
+    <ng-template pTemplate="header">
+        <h5>Mi cuenta</h5>
+    </ng-template>
+    <ng-template pTemplate="content">
+        <div class="user-select-none">
+            <button class="btn canvas-item rounded-0 w-100 mb-1" type="button" routerLink="/profile/{{userProfile}}"><i class="bi bi-person"></i> Ir a mi perfil</button>
+            <button class="btn canvas-item rounded-0 w-100 mb-1" type="button" routerLink="/myaccount/s/owned"><i class="bi bi-cart-check"></i> Servicios contratados</button>
+            <button class="btn canvas-item rounded-0 w-100 mb-1" type="button"><i class="bi bi-gem"></i> HomeServices® Prime</button>
+            <button *ngIf="isSeller" class="btn canvas-item rounded-0 w-100 mb-1" type="button" (click)="transportWeb()"><i class="bi bi-person-raised-hand"></i> Mis ventas</button>
+            <button *ngIf="isShopper" class="btn canvas-item rounded-0 w-100 mb-1" type="button" routerLink="/sellers"><i class="bi bi-basket"></i> Convertirme en vendedor</button>
+            <button *ngIf="isOrganizer" class="btn canvas-item rounded-0 w-100 mb-1" type="button"><i class="bi bi-building"></i> Organizaciones</button>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button class="btn rounded-0 w-100 red mb-1" type="button" (click)="deleteCurrentSesion()"><i class="bi bi-door-open"></i> Cerrar sesión</button>
+    </ng-template>
+</p-sidebar>

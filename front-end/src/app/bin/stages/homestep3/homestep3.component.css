@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300&display=swap');
+@font-face {
+    font-family: 'Product Sans';
+    src: url('../../../../assets/productsansregular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.border-text{
+    display: inline-block;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: 2px;
+    border-color: #c592ff;   
+    border-style: solid;
+    padding-bottom: 7px;
+}
+
+.font-a{
+    font-family: 'Source Sans 3', sans-serif;
+}
+
+.font-b{
+    font-family: 'Product Sans', sans-serif;
+}
+
+.sfx{
+    transition: all 0.2s ease-in-out;
+    opacity: .6;
+}
+
+.sfx:hover{
+    opacity: 1;
+}
+
+.sfx2{
+    transition: all 0.2s ease-in-out;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    opacity: .4;
+}
+
+.sfx2:hover{
+    -webkit-filter: grayscale(0%);
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.sfx-text{
+    background: linear-gradient(171deg, rgba(173,216,230,1) 0%, rgba(213,157,255,1) 34%, rgba(173,216,230,1) 62%, rgba(213,157,255,1) 100%);
+    background-size: 400% 400%;
+    background-attachment: fixed;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: text-gradient 15s ease-in-out infinite;
+}
+
+@keyframes text-gradient {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}

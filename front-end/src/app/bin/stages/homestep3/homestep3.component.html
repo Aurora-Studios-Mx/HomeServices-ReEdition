@@ -1,0 +1,139 @@
+<app-navbar [drop]="false" [extended]="false" [blured]="true" class="position-fixed w-100 sticky-top"></app-navbar>
+
+<p-toast [life]="7000"></p-toast>
+
+<div class="info d-flex align-items-center dropped-shadow" style="background: url('../../../../assets/backgroundA.png'); height:100vh;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 text-center user-select-none">
+                <h1 class="font-b" style="color: #fefefe; font-size: 58px;">Portal de vendedores de <span class="sfx-text">HomeServices®️</span></h1>
+                <p style="color: #fefefe;">Tu éxito es nuestro éxito, es por eso que te conectamos con clientes para garantizar tu crecimiento de ventas en los servicios que mejor sabes hacer.</p>
+                <button type="button" class="btn btn-dark rounded-0 p-3" (click)="transportWeb()">Convertirme en vendedor <i class="bi-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="container-fluid p-0 primarysize theme-b rounded-3 position-relative user-select-none">
+    <img src="../../../../assets/sellers_header.png" alt="Background Image" width="100%">
+    <div class="row d-flex p-0 position-absolute justify-content-center bottom-0 ms-5 w-50" style="margin-bottom: 4rem;">
+        <h1 class="font-b" style="color: #1f1f1f; font-size: 68px;">Portal de vendedores en <span style="background: linear-gradient(-30deg, lightblue 0%, rgb(213, 157, 255)100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">HomeServices®️</span></h1>
+        <p>Tu éxito es nuestro éxito, es por eso que te conectamos con clientes para garantizar tu crecimiento de ventas en los servicios que mejor sabes hacer.</p>
+        <button type="button" class="btn btn-dark p-3" (click)="transportWeb()">Convertirme en vendedor <i class="bi-arrow-right"></i></button>
+    </div>
+</div> -->
+<!-- 
+<div class="d-flex align-items-center" style="user-select: none; background: url(../../../../assets/sellers_header.png); height:400px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7">
+                <h1 class="font-b" style="color: #1f1f1f; font-size: 68px;">Portal de vendedores en <span style="background: linear-gradient(-30deg, lightblue 0%, rgb(213, 157, 255)100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">HomeServices®️</span></h1>
+                <p>Tu éxito es nuestro éxito, es por eso que te conectamos con clientes para garantizar tu crecimiento de ventas en los servicios que mejor sabes hacer.</p>
+                <button type="button" class="btn btn-dark p-3">Convertirme en vendedor <i class="bi-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="container w-100 p-0 user-select-none" style="margin-top: 6rem;">
+    <div class="row">
+        <div class="col d-flex align-items-center">
+            <div class="row">
+                <h1 class="font-b">¿Que es el Portal de Vendedores?</h1>
+                <p class="m-0">
+                    El portal de vendedores de HomeServices® creada por Aurora Studios es una plataforma integral que permite a los vendedores conectar con clientes potenciales, gestionar sus leads y cerrar ventas. Con sus herramientas de marketing, CRM y ventas, el portal ayuda a los vendedores a ser más eficientes y productivos, lo que les permite crecer su negocio y aumentar sus ingresos.
+                </p>
+            </div>
+        </div>
+        <div class="col-5 d-flex align-items-center justify-content-center">
+            <img src="../../../../assets/svg/hs_questions.svg" alt="Questions SVG" style="width: auto; height: 40vh;">
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 9rem;">
+        <div class="col-5 d-flex align-items-center justify-content-center">
+            <img src="../../../../assets/svg/hs_info.svg" alt="Info SVG" style="width: auto; height: 40vh;">
+        </div>
+        <div class="col d-flex align-items-center">
+            <div class="row">
+                <h1 class="font-b">¿Como funciona el Portal de Vendedores?</h1>
+                <p class="m-0">
+                    Es simple. Solo necesitamos datos personales y fiscales para validar que serás un vendedor responsable y evitar incidentes con tus compradores. Además, esto nos permitirá brindarte algunas herramientas que te ayudarán a operar de manera segura y eficiente, como por ejemplo: Facturación electrónica, certificación de seguridad, etc.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- <div class="text-center">
+        <h1 class="font-b border-text">Preguntas frecuentes:</h1>
+        <div class="d-flex gap-3 flex-wrap mt-3 justify-content-center">
+            <p-card class="w-25 sfx" header="¿Que es?">
+            </p-card>
+            <p-card class="w-25 sfx" header="¿Como funciona?">
+                <p class="m-0">
+                    Es simple. Solo necesitamos datos personales y fiscales para validar que seras un vendedor responsable y evitar incidentes con tus compradores, ademas, esto nos permitirá brindarte algunas herramientas, como por ejemplo: Facturación electrónica, certificación de seguridad, etc..
+                </p>
+            </p-card>
+            <p-card class="w-25 sfx" header="¿Que servicios puedo ofrecer?">
+                <p class="m-0">
+                    Puedes ofrecer cualquier servicio que consigas hacer correctamente, desde servicios de limpieza, hasta servicios de reparación de electrodomésticos, no hay limites, siempre y cuando se mantenga en los reglamentos de venta en HomeServices®.
+                </p>
+            </p-card>
+        </div>
+    </div> -->
+</div>
+
+<div class="container" style="margin-top: 9rem;">
+    <h1 class="font-b">Conoce a nuestros socios bancarios:</h1>
+    <div class="d-flex gap-5 mt-4 justify-content-center align-items-center">
+        <img class="sfx2" src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg" style="width: auto; height: 70px;" alt="Stripe Logo" pTooltip="HomeServices® conecta con Stripe para procesar pagos a través de tarjetas bancarias." tooltipPosition="top">
+        <img class="sfx2" src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Google_Pay_Logo.svg" style="width:auto; height: 60px; " alt="GPay Logo" pTooltip="Stripe conecta a HomeServices® con Google Payments para permitir la transferencia de fondos a través de Google." tooltipPosition="top">
+        <img class="sfx2" src="../../../../assets/pngwing.com.png" style="width: auto; height: 60px;" alt="PayPal Logo" pTooltip="HomeServices® conecta con PayPal para procesar pagos mas seguros a través de 'invoices' generados por los vendedores." tooltipPosition="top">
+        <img class="sfx2" src="../../../../assets/mercadopago_icon.png" style="width: auto; height: 50px;" alt="MP Logo" pTooltip="HomeServices® conecta con Mercado Pago para procesar pagos mas seguros a través de su banca en linea, controle y administre mas fácil sus pagos." tooltipPosition="top">
+        <img class="sfx2" src="../../../../assets/oxxo_pay.png" style="width: auto; height: 50px;" alt="OXXO Logo" pTooltip="Mercado Pago conecta a HomeServices® con OXXO Pay para procesar pagos en tiendas físicas, ademas, actuando Mercado Pago como un intermediario mas entre tu pago y tu servicio." tooltipPosition="top">
+    </div>
+</div>
+
+<div class="container w-100 p-0 user-select-none" style="margin-top: 10rem;">
+    <div class="row w-100">
+        <div class="col" style="width: 5rem;">
+            <h6 class="opacity-75">Gráfica de empleos (formal | informal) %:</h6>
+            <p-chart [responsive]="true" type="line" [data]="data" [options]="options"></p-chart>
+            <p class="mt-3" style="font-size: small; opacity: .6;">Fuente: INEGI (Mexico)</p>
+        </div>
+        <div class="col d-flex align-items-center">
+            <div class="row w-100">
+                <h4 class="w-auto">Nuestra meta:</h4>
+                <p style="opacity: .7; text-align: justify;">
+                    Con el portal de vendedores de HomeServices®, nuestro principal propósito es mejorar las estadísticas en el empleo informal, que frecuentemente está en aumento. Por eso, HomeServices® se presenta con un sistema de herramientas, facilidades y simplicidad de acciones en el ámbito competitivo.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container w-100 p-0 user-select-none" style="margin-top: 6rem; margin-bottom: 9rem;">
+    <div class="row" style="margin-top: 9rem;">
+        <div class="col d-flex align-items-center" style="width: 50%;">
+            <div class="row">
+                <h6 class="font-b m-0" style="color: #1f1f1f; font-size: 40px;">¿Que esperas? Únete al portal de vendedores en <span class="sfx-text">HomeServices®️</span></h6>
+                <button type="button" class="btn btn-dark p-3 mt-3 rounded-0" (click)="transportWeb()">Convertirme en vendedor <i class="bi-arrow-right"></i></button>
+            </div>
+        </div>
+        <div class="col d-flex align-items-center justify-content-center">
+            <img src="../../../../assets/svg/hs_hello.svg" alt="Info SVG" style="width: auto; height: 30vh;">
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="container-fluid p-0 primarysize theme-b rounded-3 position-relative user-select-none" style="margin-top: 9rem;">
+    <img src="../../../../assets/custom_header_1.png" alt="Background Image" width="100%">
+    <div class="row d-flex p-0 position-absolute justify-content-center bottom-0 ms-5 w-50" style="margin-bottom: 8rem;">
+        <h1 class="font-b" style="color: #1f1f1f; font-size: 48px;">¿Que esperas? Únete al portal de vendedores en <span class="sfx-text">HomeServices®️</span></h1>
+        <h6>Creemos juntos experiencias laborales únicas.</h6>
+        <button type="button" class="btn btn-dark p-3 ms-4 mt-3 rounded-0" (click)="transportWeb()">Convertirme en vendedor <i class="bi-arrow-right"></i></button>
+    </div>
+</div> -->
+
+<app-footer></app-footer>
