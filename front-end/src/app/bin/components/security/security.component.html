@@ -1,16 +1,37 @@
-<div class="container-fluid p-0">
-    <h4 class="font-b">Seguridad</h4>
-    <hr class="w-25">
-    <p style="font-size: small;">Vincule Google Authentication App a HomeServices® para habilitar la verificación en dos pasos.</p>
-    <button type="button" class="btn btn-dark p-2 rounded-0">
-        <i class="bi bi-google fs-5"></i>
-        Habilitar verificación en dos pasos
-    </button>
-    <h4 class="mt-4 font-b">Cuenta</h4>
-    <hr class="w-25">
-    <p style="font-size: small;">Solicitar eliminación de la cuenta actual</p>
-    <button type="button" class="btn btn-danger p-2 rounded-0">
-        <i class="bi bi-x-circle fs-5"></i>
-        Eliminar cuenta
-    </button>
+<div class="container-fluid p-0 text-center">
+    <div class="h-100 d-none">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    <div *ngIf="statement === 0">
+        <h4 class="font-b"><i class="bi bi-lock"></i> Seguridad</h4>
+        <p style="font-size: small;">Vincule Google Authentication App a HomeServices® para habilitar la verificación en dos pasos.</p>
+        <button type="button" class="btn btn-outline-dark p-2 rounded-0">
+            <i class="bi bi-google fs-5"></i>
+            Habilitar verificación en dos pasos
+        </button>
+        <h4 class="mt-4 font-b"><i class="bi bi-person"></i> Cuenta</h4>
+        <p style="font-size: small;">Solicitar eliminación de la cuenta actual</p>
+        <button type="button" class="btn btn-outline-danger p-2 rounded-0">
+            <i class="bi bi-x-circle fs-5"></i>
+            Eliminar cuenta
+        </button>
+    </div>
+    <div *ngIf="statement === 1">
+        <h4 class="font-b"><i class="bi bi-qr-code-scan"></i> Escanea el código QR e ingresa el código de verificación</h4>
+        <img src="data:image/png;base64,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" alt="QR Code Scan">
+        <div class="input-group mb-3 mt-3">
+            <input class="form-control ms-2 rounded-0" type="text" maxlength="6" pKeyFilter="int" placeholder="Código de verificación" aria-label="Search" name="searchValue">
+            <button class="btn btn-purple rounded-0" type="button">
+                <i class="bi bi-check fs-5"></i>
+            </button>
+        </div>
+        <h6 class="font-b opacity-75">Instrucciones:</h6>
+        <p class="font-b mb-0 opacity-75" style="font-size: small;">1.- Descarga la aplicación "Google Authenticator" en Android o iOS.</p>
+        <p class="font-b mb-0 opacity-75" style="font-size: small;">2.- Inicia sesión con tu cuenta de Google y pulsa el botón "+" y posteriormente "Scan a QR Code"</p>
+        <p class="font-b mb-0 opacity-75" style="font-size: small;">3.- Escanea el código QR superior y listo</p>
+        
+        
+    </div>
 </div>

@@ -247,7 +247,7 @@ export class ProfileComponent implements OnInit{
   securityPopupHandle(): void {
     this.ref = this.dialogService.open(SecurityComponent, {
       header: 'Configuraciones adicionales',
-      width: '60%',
+      width: '30%',
       // height: '100%',
       baseZIndex: 10000
     })

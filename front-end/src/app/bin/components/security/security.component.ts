@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 
 @Component({
@@ -7,6 +7,13 @@ import { MessageService } from 'primeng/api';
   styleUrl: './security.component.css',
   providers: [MessageService]
 })
-export class SecurityComponent {
+export class SecurityComponent implements OnInit{
 
+  protected statement: number = 0;
+
+  constructor(){}
+
+  ngOnInit(): void {
+    
+  }
 }
