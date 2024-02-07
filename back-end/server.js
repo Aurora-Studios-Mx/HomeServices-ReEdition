@@ -4,6 +4,9 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 
+//Clear
+console.clear();
+
 //.env
 require('dotenv').config({ path: './.env'})
 const origins = ['http://localhost:10'];
@@ -65,7 +68,9 @@ app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({extended: true, limit: '50mb'}));
 
 //Set Morgan Dev for development
-app.use(morgan('dev'));
+const { studioLoggerHandle } = require('./bin/utility/middlewares');
+// app.use(morgan('dev'));
+app.use(studioLoggerHandle)
 
 //Use router
 app.use(mainRouter);
