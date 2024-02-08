@@ -85,5 +85,7 @@ app.use(commentaryRouter);
 app.use(tfaRouter);
 
 server.listen(port, host, () => {
-    console.log(`[INFO] HS-Backend services up! 🚀`);
+    console.log('-------------------------------------------')
+    console.log(`| [*] Express: HS-Backend services up! 🚀 |`);
+    console.log('-------------------------------------------')
 });

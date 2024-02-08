@@ -127,9 +127,8 @@ export class VerificationBadgeComponent implements OnInit{
   ngOnInit(): void {
     this._uuid = this.whatUUID();
 
-    this.sendVerify();
-
     if(this._uuid !== ''){
+      this.sendVerify();
       for(let i = 0; i < this._uuid.length; i++){
         if(i <= 6){
           this.showUUID += this._uuid[i];

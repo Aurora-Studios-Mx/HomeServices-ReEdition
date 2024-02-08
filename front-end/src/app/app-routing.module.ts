@@ -47,6 +47,7 @@ const routes: Routes = [
   {path: 'welcome', component: WelcomeComponent},
   {path: 'myaccount/seller/dashboard', component: SellersPortalComponent},
   {path: 'search', component: SearchComponent},
+  {path: 'verification', component: NotifysComponent},
 
   //Redirects for payments
   {path: 'api/v1/payments/stripe/:activity', component: StripeComponent},

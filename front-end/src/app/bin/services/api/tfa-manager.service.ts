@@ -19,4 +19,8 @@ export class TfaManagerService {
   public verify(packet: any): Observable<any>{
     return this._http.post<any>(this.API_URL + '/api/v2/post/2fa/verify', packet);
   }
+
+  public verify_login(packet: any): Observable<any>{
+    return this._http.post<any>(this.API_URL + '/api/v2/post/2fa/verify/login', packet);
+  }
 }

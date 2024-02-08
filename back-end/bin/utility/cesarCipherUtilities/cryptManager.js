@@ -70,7 +70,7 @@ const cipherCesar = {
 
 const moduleExports = {
     start: function(reason){
-        console.log(`[INFO] Starting cryptManager utility module in ${reason}`)
+        console.log(`[*] Starting cryptManager utility module in ${reason}`)
 
         return {
             encrypt: cipherCesar.encrypt,

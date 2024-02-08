@@ -1,5 +1,5 @@
 <div class="container-fluid p-0 text-center">
-    <div class="h-100 d-none">
+    <div class="h-100" *ngIf="statement === 2">
         <div class="spinner-border" role="status">
             <span class="visually-hidden">Loading...</span>
         </div>
@@ -7,26 +7,28 @@
     <div *ngIf="statement === 0">
         <h4 class="font-b"><i class="bi bi-lock"></i> Seguridad</h4>
         <p style="font-size: small;">Vincule Google Authentication App a HomeServices® para habilitar la verificación en dos pasos.</p>
-        <button type="button" class="btn btn-outline-dark p-2 rounded-0" (click)="createSecretKey()">
+        <button type="button" class="btn btn-outline-dark rounded-0" (click)="createSecretKey()">
             <i class="bi bi-google fs-5"></i>
             Habilitar verificación en dos pasos
         </button>
         <h4 class="mt-4 font-b"><i class="bi bi-person"></i> Cuenta</h4>
         <p style="font-size: small;">Solicitar eliminación de la cuenta actual</p>
-        <button type="button" class="btn btn-outline-danger p-2 rounded-0">
+        <button type="button" class="btn btn-outline-danger rounded-0">
             <i class="bi bi-x-circle fs-5"></i>
             Eliminar cuenta
         </button>
     </div>
     <div *ngIf="statement === 1">
         <h4 class="font-b"><i class="bi bi-qr-code-scan"></i> Escanea el código QR e ingresa el código de verificación</h4>
-        <img src="" alt="QR Code Scan">
-        <div class="input-group mb-3 mt-3">
-            <input class="form-control ms-2 rounded-0" type="text" maxlength="6" pKeyFilter="int" placeholder="Código de verificación" aria-label="Search" name="searchValue">
-            <button class="btn btn-purple rounded-0" type="button">
-                <i class="bi bi-check fs-5"></i>
-            </button>
-        </div>
+        <img src="{{QR_SCAN}}" alt="QR Code Scan">
+        <form [formGroup]="TFA_FORM" (ngSubmit)="verifyToken()">
+            <div class="input-group mb-3 mt-3">
+                <input class="form-control ms-2 rounded-0" type="text" maxlength="6" pKeyFilter="int" placeholder="Código de verificación" formControlName="token" name="token">
+                <button class="btn btn-purple rounded-0" type="submit" [disabled]="!TFA_FORM.valid">
+                    <i class="bi bi-check fs-5"></i>
+                </button>
+            </div>
+        </form>
         <h6 class="font-b opacity-75">Instrucciones:</h6>
         <p class="font-b mb-0 opacity-75" style="font-size: small;">1.- Descarga la aplicación "Google Authenticator" en Android o iOS.</p>
         <p class="font-b mb-0 opacity-75" style="font-size: small;">2.- Inicia sesión con tu cuenta de Google y pulsa el botón "+" y posteriormente "Scan a QR Code"</p>

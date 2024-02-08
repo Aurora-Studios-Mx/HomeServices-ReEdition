@@ -51,7 +51,7 @@ async function resolveChallenge(cypher){
 
 module.exports = {
     start: function(reason){
-        console.log(`[INFO] Starting crypto helper utility in ${reason}.`)
+        console.log(`[*] Starting crypto helper utility in ${reason}.`)
 
         return { 
             createNewChallenge: createNewChallenge,

@@ -66,8 +66,11 @@ export class NavbarComponent implements OnInit{
     if(localStorage.getItem('uu0x0')){
       return localStorage.getItem('uu0x0')!;
     }
-    else{
+    else if(sessionStorage.getItem('uu0x0')){
       return sessionStorage.getItem('uu0x0')!; 
+    }
+    else{
+      return 'undefined';
     }
   }
 
@@ -120,16 +123,19 @@ export class NavbarComponent implements OnInit{
       this.suggests = [];
     }
     
-    this.getLengthNotifications();
+    const activeAccount = this.whatUUID();
 
-    interval(25000).subscribe(() => {
-      this.notifications = 0;
+    if(activeAccount !== 'undefined'){
       this.getLengthNotifications();
-    });
+
+      interval(25000).subscribe(() => {
+        this.notifications = 0;
+        this.getLengthNotifications();
+      });
+    }
 
     this._logService.isSessionLogged().subscribe(log => {
       this.isCurrentSign = log;
-      
       if(this.isCurrentSign === true){
         this.userProfile = this.whatUUID();
 

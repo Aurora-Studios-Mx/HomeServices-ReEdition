@@ -1,1 +1,15 @@
-<p>notifys works!</p>
+<app-navbar-tiny></app-navbar-tiny>
+
+<div class="container w-50 mt-5 text-center">
+    <img src="../../../../assets/svg/hs_tfa.svg" alt="2FA SVG" style="width: auto; height: 30vh;">
+    <h2 class="font-b mt-4"><i class="bi bi-google"></i> Ingresa código de verificación</h2>
+    <p class="font-b mb-0" style="font-size: small;">La cuenta a la que intentas acceder tiene activa la autenticación por dos pasos, consulte su aplicación de Google Authentication para obtener el código de verificación.</p>
+    <form [formGroup]="TFA_FORM" (ngSubmit)="verifyToken()" class="d-flex justify-content-center">
+        <div class="input-group mb-3 mt-3 w-50">
+            <input class="form-control ms-2 rounded-0" type="text" maxlength="6" autocomplete="off" pKeyFilter="int" placeholder="Código de verificación" formControlName="token" name="token">
+            <button class="btn btn-purple rounded-0" type="submit" [disabled]="!TFA_FORM.valid">
+                Verificar
+            </button>
+        </div>
+    </form>
+</div>

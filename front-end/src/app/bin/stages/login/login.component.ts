@@ -90,8 +90,8 @@ export class LoginComponent implements OnInit{
       clickToClose: false,
       svgColor: '#a95eff',
       className: 'font-b',
-      // backgroundColor: '#fff',
-      // messageColor: '#000'
+      backgroundColor: '#fff',
+      messageColor: '#000'
     })
 
     this.userAPI.compareCredentials(json).subscribe(
@@ -107,11 +107,21 @@ export class LoginComponent implements OnInit{
             this.router.navigate(["/welcome"]);
           }
           else{          
-            localStorage.setItem('uu0x0', result.uuid)
-            localStorage.setItem('ac0x1', 'true')
-            localStorage.setItem('_token', result.token)
-            
-            this.router.navigate(["/"]);
+            if(result.tfa === false){
+              localStorage.setItem('uu0x0', result.uuid)
+              localStorage.setItem('ac0x1', 'true')
+              localStorage.setItem('_token', result.token)
+              
+              this.router.navigate(["/"]);
+            }
+            else{              
+              this.router.navigate(["/verification"], {
+                queryParams: {
+                  uuid: result.uuid,
+                  token: result.token
+                }
+              });
+            }
           }
         }
         else{

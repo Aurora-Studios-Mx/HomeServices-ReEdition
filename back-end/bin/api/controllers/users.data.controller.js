@@ -186,6 +186,36 @@ async function createUserCredentials_2(req, res){
     }
 }
 
+async function Verify2FA(uuid){
+    return new Promise(async (res, rej) => {
+        let cn;
+        
+        try{
+            cn = await Connection();
+
+            const sql = `SELECT secret0x1 FROM tfa0x WHERE owner0x0 = ?`;
+            const values = [uuid];
+
+            const [rows] = await cn.query(sql, values);
+
+            if(rows.length > 0){
+                res(true);
+            }
+            else{
+                res(false)
+            }
+        }
+        catch (e){
+            rej('Error while trying verify 2FA active: ' + e);
+        }
+        finally{
+            if(cn){
+                cn.end();
+            }
+        }
+    })
+}
+
 //Function: Compare user credentials and return token
 async function compareUserCredentials(req, res) {
     let cn;
@@ -219,18 +249,37 @@ async function compareUserCredentials(req, res) {
                 if (compareEmail && comparePass) {
                     const userData = rows[i];
                     const token = await createToken(userData);
+                    const TFAValidators = await Verify2FA(userData.uuid0x0);
 
-                    res.status(200).json({
-                        result:
-                            'Bienvenido(a) de vuelta ' +
-                            (await Cipher.resolveChallenge(
-                                rows[i].fullname0x4.toString('utf-8')
-                            )),
-                        isnew: rows[i].new0x9,
-                        uuid: userData.uuid0x0,
-                        token: token,
-                        allowed: true,
-                    });
+                    if(TFAValidators === true){
+                        res.status(200).json({
+                            result:
+                                'Bienvenido(a) de vuelta ' +
+                                (await Cipher.resolveChallenge(
+                                    rows[i].fullname0x4.toString('utf-8')
+                                )),
+                            isnew: rows[i].new0x9,
+                            uuid: userData.uuid0x0,
+                            token: token,
+                            allowed: true,
+                            tfa: true
+                        });
+                    }
+                    else{
+                        res.status(200).json({
+                            result:
+                                'Bienvenido(a) de vuelta ' +
+                                (await Cipher.resolveChallenge(
+                                    rows[i].fullname0x4.toString('utf-8')
+                                )),
+                            isnew: rows[i].new0x9,
+                            uuid: userData.uuid0x0,
+                            token: token,
+                            allowed: true,
+                            tfa: false
+                        });
+                    }
+
                     responseSent = true;
                     break;
                 } else if (compareEmail && !comparePass) {
