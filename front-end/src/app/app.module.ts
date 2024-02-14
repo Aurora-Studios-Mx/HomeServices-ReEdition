@@ -65,6 +65,7 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { SliderModule } from 'primeng/slider';
 import { TimelineModule } from 'primeng/timeline';
 import { TabViewModule } from 'primeng/tabview';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 
 //Components imports
 import { AppRoutingModule } from './app-routing.module';
@@ -242,7 +243,8 @@ export function MSALInstanceFactory(): IPublicClientApplication {
     TimelineModule,
     TabViewModule,
     ImageCropperModule,
-    NgxPhotoEditorModule
+    NgxPhotoEditorModule,
+    ConfirmPopupModule
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

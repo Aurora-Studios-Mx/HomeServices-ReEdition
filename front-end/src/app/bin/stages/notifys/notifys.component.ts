@@ -32,9 +32,12 @@ export class NotifysComponent implements OnInit{
     })
 
     if(this.TFA_FORM.get('token')?.value.length < 6){
-      Notiflix.Notify.failure('[ERROR 0x13] Invalid token.', {
+      Notiflix.Notify.failure('[ERROR 0x13] Código incompleto.', {
         position: 'center-bottom'
       });
+
+      Notiflix.Loading.remove();
+
       return;
     }
 
@@ -46,7 +49,7 @@ export class NotifysComponent implements OnInit{
     this.TFA_SETUP.verify_login(packet).subscribe((data) => {
 
       if(data.taskCompleted === false){
-        Notiflix.Notify.failure('[ERROR 0x11] Failed to verify token.', {
+        Notiflix.Notify.failure('[ERROR 0x11] El código es invalido.', {
           position: 'center-bottom'
         });
 
@@ -62,7 +65,7 @@ export class NotifysComponent implements OnInit{
         this.rt.navigate(["/"]);
       }
     }, (error) => {
-      Notiflix.Notify.failure('[ERROR 0x14] Failed to verify token.', {
+      Notiflix.Notify.failure('[ERROR 0x14] Hubo un problema mientras validábamos el código de verificación.', {
         position: 'center-bottom'
       });
     });

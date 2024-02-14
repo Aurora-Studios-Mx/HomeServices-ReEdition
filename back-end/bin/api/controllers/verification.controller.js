@@ -13,6 +13,10 @@ const Cipher = require('../../utility/cesarCipherUtilities/cryptHelper').start('
 //Bcrypt
 const bcrypt = require('bcrypt')
 
+//Fiscals Managers
+const X01 = require('curp')
+const X02 = require('validate-rfc')
+
 //Utility function
 function generateNumbers(){
     return new Promise((resolve, reject) => {
@@ -254,8 +258,30 @@ async function insertCode(req, res){
     }
 }
 
+function verificationInformation(req, res){
+    const body = req.body;
+
+    const ValidatorA = X01.validar(body.c0x);
+    const ValidatorB = X02(body.r0x)
+
+    if(ValidatorA === true){
+        if(ValidatorB.isValid === true){
+            res.status(200).json({result: true})
+        }
+        else{
+            res.status(200).json({result: false, message: 'El RFC no coincide con los datos proporcionados.'})
+            return;
+        }
+    }
+    else{
+        res.status(200).json({result: false, message: 'La CURP no coincide con los datos proporcionados.'})
+        return;
+    }
+}
+
 module.exports = {
     newCode: sendNewMail,
     evaluateEmail: evaluateEmail,
-    insertCode: insertCode
+    insertCode: insertCode,
+    verificationInformation: verificationInformation
 }

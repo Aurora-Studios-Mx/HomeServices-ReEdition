@@ -215,7 +215,7 @@ export class Homestep2Component implements OnInit{
       n0x: this._name,
       desc0x: this._description,
       pr0x: this._cash,
-      ttp0x: this._cash_b_show,
+      ttp0x: 'Hora',
       prb0x: this._cashC,
       e0x: this._explicit[0].code
     }
@@ -224,64 +224,55 @@ export class Homestep2Component implements OnInit{
   }
 
   onSubmit(){
-    if(this._category_show === '' || this._category_show === undefined){
-      this.NG_MSG.add({severity: 'error', summary: 'Campos vacíos', detail: 'Parece que no haz seleccionado una categoría. Vamos ¡hay muchas de ellas!'});
+    if(this._name === undefined || this._name.length === 0){
+      this.NG_MSG.add({severity: 'error', summary: 'Campos vacíos', detail: 'Necesitas agregar un nombre a tu servicio.'});
       return;
     }
-
-    if(this._name === undefined || this._name.length === 0){
-      this.NG_MSG.add({severity: 'error', summary: 'Campos vacíos', detail: '¿Tu servicio no tiene nombre? ¿Como sabremos como llamarlo?'});
+    
+    if(this._category_show === '' || this._category_show === undefined){
+      this.NG_MSG.add({severity: 'error', summary: 'Campos vacíos', detail: 'Escoge una categoría para tu servicio.'});
       return;
     }
 
     if(this._description === undefined || this._description.length === 0){
-      this.NG_MSG.add({severity: 'error', summary: 'Campos vacíos', detail: 'Olvidaste describir tu servicio. ¡Eso es importante!'});
+      this.NG_MSG.add({severity: 'error', summary: 'Campos vacíos', detail: 'Usa una descripción para tu servicio, es necesaria.'});
       return;
     }
 
     if(this._cash === 0){
-      if(this._cash_free_ad === false){
-        this.NG_MSG.add({severity: 'error', summary: 'Campos vacíos o...¿no?', detail: '¡Espera! No haz establecido un costo o...si quieres establecer un servicio gratuito puedes continuar.'});
-        this._cash_free_ad = true;
-        return;
-      }
-    }
-    else{
-      if(this._cash > 99999){
-        this.NG_MSG.add({severity: 'info', summary: '¿Servicio infinito?', detail: 'A no ser que ofrezcas un servicio infinito o super especial, no puede valer exageradamente.'});
-        return;
-      }
-    }
-
-    if(this._cash_b_show === undefined || this._cash_b_show.length === 0){
-      if(this._cash_free_ad === true && this._cash_free_ad_2 === false){
-        this.NG_MSG.add({severity: 'info', summary: 'Campos vacíos', detail: 'Si estas seguro de tener un servicio gratuito, selecciona el tiempo de tu pago como único.'});
-        this._cash_free_ad_2 = true;
-        return;
-      }
-      else{
-        this.NG_MSG.add({severity: 'error', summary: 'Campos vacíos', detail: '¡Oh vamos! Todos necesitaran saber como es tu costo por tiempo de trabajo.'});
-        return;
-      }
-    }
-
-    if(this._cash === 0 && this._cash_b_show != 'Pago único'){
-      this.NG_MSG.add({severity: 'info', summary: 'Servicio gratis', detail: 'Si es gratis, olvidaste poner el tiempo de pago en único.'});
+      this.NG_MSG.add({severity: 'error', summary: 'Campos vacíos', detail: 'Agrega un costo para tu trabajo.'});
       return;
     }
 
+    // if(this._cash_b_show === undefined || this._cash_b_show.length === 0){
+    //   if(this._cash_free_ad === true && this._cash_free_ad_2 === false){
+    //     this.NG_MSG.add({severity: 'info', summary: 'Campos vacíos', detail: 'Si estas seguro de tener un servicio gratuito, selecciona el tiempo de tu pago como único.'});
+    //     this._cash_free_ad_2 = true;
+    //     return;
+    //   }
+    //   else{
+    //     this.NG_MSG.add({severity: 'error', summary: 'Campos vacíos', detail: '¡Oh vamos! Todos necesitaran saber como es tu costo por tiempo de trabajo.'});
+    //     return;
+    //   }
+    // }
+
+    // if(this._cash === 0 && this._cash_b_show != 'Pago único'){
+    //   this.NG_MSG.add({severity: 'info', summary: 'Servicio gratis', detail: 'Si es gratis, olvidaste poner el tiempo de pago en único.'});
+    //   return;
+    // }
+
     if(this._fileA_length < 2){
-      this.NG_MSG.add({severity: 'info', summary: 'Campos vacíos', detail: 'Debes subir como mínimo 2 fotos ¡todos necesitan saber que eres confiable!.'});
+      this.NG_MSG.add({severity: 'info', summary: 'Campos vacíos', detail: 'Debes subir como mínimo 2 fotos.'});
       return;
     }
 
     if(this.checkTerms == false){
-      this.NG_MSG.add({severity: 'info', summary: 'Términos ignorados:(', detail: 'Olvidaste marcar los términos de venta, ¡están sobre el botón!'});
+      this.NG_MSG.add({severity: 'info', summary: 'Olvidaste los términos', detail: 'Necesitas aceptar los términos y condiciones para continuar.'});
       return;
     }
 
     if(this._explicitSelected === ''){
-      this.NG_MSG.add({severity: 'info', summary: 'Filtros explícitos faltantes', detail: 'Olvidaste indicarnos sobre el filtro explicito, ¡están al final!'});
+      this.NG_MSG.add({severity: 'info', summary: 'Filtros explícitos faltantes', detail: 'Olvidaste indicar sobre el filtro explicito.'});
       return;
     }
 

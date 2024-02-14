@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import * as Notiflix from 'notiflix';
@@ -7,7 +7,6 @@ import { OnchangeService } from '../../services/pics/onchange.service';
 import { UsersgestorService } from '../../services/api/usersgestor.service';
 import { Router } from '@angular/router';
 import { getYear } from 'date-fns';
-import { interval } from 'rxjs';
 
 interface image {
   blob: any
@@ -17,7 +16,7 @@ interface image {
   selector: 'app-homestep4',
   templateUrl: './homestep4.component.html',
   styleUrls: ['./homestep4.component.css'],
-  providers: [MessageService]
+  providers: [MessageService, ConfirmationService]
 })
 export class Homestep4Component implements OnInit{
 
@@ -95,7 +94,13 @@ export class Homestep4Component implements OnInit{
   protected disabled4: boolean = true;
   protected activeTab: number = 0;
 
+  protected CValidators: boolean = false;
+  protected C_2Validators: boolean = false;
+  protected RValidators: boolean = false;
+  protected R_2Validators: boolean = false;
+
   protected texts: string = '';
+  protected validated: boolean = false;
 
   changeTexts(){
     let texts: any[] = [
@@ -133,9 +138,11 @@ export class Homestep4Component implements OnInit{
     }
   }
 
-  constructor( private _builder: FormBuilder, private NG_MSG: MessageService, private title: Title, private _compiler: OnchangeService, private _users: UsersgestorService, private _router: Router) {
+  constructor(private confirmationService: ConfirmationService, private _builder: FormBuilder, private NG_MSG: MessageService, private title: Title, private _compiler: OnchangeService, private _users: UsersgestorService, private _router: Router) {
     this.formCurrentStage = this._builder.group({
       name: ['', [Validators.required]],
+      name2: ['', [Validators.required]],
+      name3: ['', [Validators.required]],
       age: [18, [Validators.required, Validators.pattern('^[0-9]*$'), Validators.max(50), Validators.min(18)]],
       genre: ['', [Validators.required]],
       ybirth: ['', [Validators.required]],
@@ -174,6 +181,24 @@ export class Homestep4Component implements OnInit{
 
     this.title.setTitle('Formulario de registro | HomeServices®️')
   }
+
+  confirm(event: Event) {
+    this.confirmationService.confirm({
+      target: event.target || undefined,
+      message: '¿Toda la información es correcta? Recuerde leer la instrucción inicial antes de pasar al siguiente paso.',
+      acceptButtonStyleClass: 'p-button-help rounded-0',
+      rejectButtonStyleClass: 'p-button-help p-button-text rounded-0',
+      icon: 'bi bi-exclamation-triangle',
+      accept: () => {
+        
+      },
+      reject: () => {
+        
+      }
+    });
+  }
+
+  async ValidateCURPandRFC(){}
 
   async uploadImages() {
     if(this._fileA_length > 2){
@@ -236,7 +261,7 @@ export class Homestep4Component implements OnInit{
       })
   
       const packet = {
-        n0x: this.formCurrentStage.value.name,
+        n0x: this.formCurrentStage.value.name + ' ' + this.formCurrentStage.value.name2 + ' ' + this.formCurrentStage.value.name3,
         a0x: this.formCurrentStage.value.age,
         g0x: this.formCurrentStage.value.genre[0].code,
         d0x: this.formCurrentStage.value.dbirth + '/' + this.formCurrentStage.value.mbirth[0].code + '/' + this.formCurrentStage.value.ybirth[0].code,
