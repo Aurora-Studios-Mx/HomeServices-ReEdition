@@ -1,76 +1,132 @@
 <app-navbar-tiny class="sticky-sm-top"></app-navbar-tiny>
 
-<p-toast [life]="7000"></p-toast>
+<p-toast></p-toast>
 
-<div class="container-fluid font-b" style="background-color: #ededed;">
-    <a class="invisible">👻</a>
-    <div class="container bg-white border-start border-top border-end ps-4 pt-5 pe-5 pb-4" style="margin-top: 3rem;">
+<div class="position-fixed w-100 h-100 overflow-scroll" style="background-color: #ededed;">
+    <div class="container mt-4 user-select-none">
         <div class="row">
-            <div class="col d-flex justify-content-center">
-                <div class="container-fluid text-center">
-                    <h3>{{nameString}}</h3>
-                    <h6 class="border-text">Ofrecido por: {{ofterString}}</h6>
+            <div class="col">
+                <div class="container-fluid mt-4 p-3 bg-white border">
+                    <h4 class="font-b mt-2">Rellena para continuar:</h4>
+                    <hr>
+                    <app-paymentsteps [price]="(priceA * multiple) + priceB + priceC" [uuid]="id" [shopper]="shopper" [owner]="ownerBySend" [multiple]="multiple"></app-paymentsteps>
                 </div>
             </div>
             <div class="col">
-                <h3 class="border-text mb-0 ms-4"><i class="bi-person-vcard"></i> Completa para completar la compra </h3>
+                <div class="container-fluid mt-4 p-3 bg-white border">
+                    <h4 class="font-b mt-2">Resumen:</h4>
+                    <hr style="opacity: .15;">
+                    <div class="row mb-2">
+                        <div class="col-auto">
+                            <p class="mb-0 font-b">Costo por servicio(s):</p>
+                            <p class="mb-0" style="font-size: small; opacity: .6;">Servicio: {{nameString}}</p>
+                        </div>
+                        <div class="col text-end">
+                            {{priceA * multiple | currency: 'MXN'}}
+                        </div>
+                    </div>
+                    <div class="row mb-2" *ngIf="priceB > 0">
+                        <div class="col">
+                            <p class="mb-0 font-b">Costo adicional por traslado:</p>
+                        </div> 
+                        <div class="col text-end">
+                            {{priceB | currency: 'MXN'}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p class="mb-0 font-b">Comisión de servicio:</p>
+                            <p class="mb-0" style="font-size: small; opacity: .6;">HomeServices® cobra una comisión por uso del servicio.</p>
+                        </div>
+                        <div class="col-auto text-end">
+                            {{priceC | currency: 'MXN'}}
+                        </div>
+                    </div>
+                    <hr style="opacity: .15;">
+                    <div class="row">
+                        <div class="col d-flex align-items-center">
+                            <h5 class="m-0 p-0 font-b">Subtotal:</h5>
+                        </div>
+                        <div class="col d-flex align-items-center justify-content-end">
+                            <h4 class="font-b m-0 p-0">{{(priceA * multiple) + priceB + priceC | currency: 'MXN'}}</h4>
+                        </div>
+                    </div>
+                    <div class="container-fluid text-center mt-4">
+                        <p class="opacity-75 font-a" style="font-size: small;">El subtotal no incluye los impuestos correspondientes a servicios ajenos. *</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-  
-<div class="container border-end border-start border-bottom ps-4 pb-4 pe-4">
-    <div class="row mb-5">
-        <div class="col">
-            <div class="container-fluid mt-4">
-                <h3>Resumen de la compra:</h3>
-                <hr style="opacity: .15;">
-                <div class="row mb-2">
-                    <div class="col-auto">
-                        <p class="mb-0">Costo por servicio(s):</p>
-                        <p class="mb-0" style="font-size: small; opacity: .6;" *ngIf="multiple > 1">Costo unitario: {{priceA | currency: 'MXN'}}</p>
-                    </div>
-                    <div class="col text-end">
-                        {{priceA * multiple | currency: 'MXN'}}
+    
+    <!-- <div class="container-fluid font-b" style="background-color: #ededed;">
+        <a class="invisible">👻</a>
+        <div class="container bg-white border-start border-top border-end ps-4 pt-5 pe-5 pb-4" style="margin-top: 3rem;">
+            <div class="row">
+                <div class="col d-flex justify-content-center">
+                    <div class="container-fluid text-center">
+                        <h3>{{nameString}}</h3>
+                        <h6 class="border-text">Ofrecido por: {{ofterString}}</h6>
                     </div>
                 </div>
-                <div class="row mb-2" *ngIf="priceB > 0">
-                    <div class="col">
-                        <p class="mb-0">Costo adicional por traslado:</p>
-                    </div> 
-                    <div class="col text-end">
-                        {{priceB | currency: 'MXN'}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <p class="mb-0">Comisión de servicio:</p>
-                        <p class="mb-0" style="font-size: small; opacity: .6;">HomeServices® cobra una comisión por uso del servicio.</p>
-                    </div>
-                    <div class="col-auto text-end">
-                        {{priceC | currency: 'MXN'}}
-                    </div>
-                </div>
-                <hr style="opacity: .15;">
-                <div class="row">
-                    <div class="col d-flex align-items-center">
-                        <h4 class="m-0 p-0">Subtotal:</h4>
-                    </div>
-                    <div class="col d-flex align-items-center justify-content-end">
-                        <h3>{{(priceA * multiple) + priceB + priceC | currency: 'MXN'}}</h3>
-                    </div>
-                </div>
-                <div class="container-fluid text-center mt-4">
-                    <p class="opacity-75" style="font-size: small;">El subtotal no incluye los impuestos correspondientes a servicios ajenos. *</p>
+                <div class="col">
+                    <h3 class="border-text mb-0 ms-4"><i class="bi-person-vcard"></i> Completa para completar la compra </h3>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <app-paymentsteps [price]="(priceA * multiple) + priceB + priceC" [uuid]="id" [shopper]="shopper" [owner]="ownerBySend" [multiple]="multiple"></app-paymentsteps>
-        </div>
     </div>
-    <hr style="opacity: .15;">
-    <p class="opacity-50 mb-0" style="font-size: 12px;">*Algunos asociados a HomeServices®️ pueden tener ciertos impuestos extra en las transacciones.</p>
+      
+    <div class="container border-end border-start border-bottom ps-4 pb-4 pe-4">
+        <div class="row mb-5">
+            <div class="col">
+                <div class="container-fluid mt-4">
+                    <h3>Resumen de la compra:</h3>
+                    <hr style="opacity: .15;">
+                    <div class="row mb-2">
+                        <div class="col-auto">
+                            <p class="mb-0">Costo por servicio(s):</p>
+                            <p class="mb-0" style="font-size: small; opacity: .6;" *ngIf="multiple > 1">Costo unitario: {{priceA | currency: 'MXN'}}</p>
+                        </div>
+                        <div class="col text-end">
+                            {{priceA * multiple | currency: 'MXN'}}
+                        </div>
+                    </div>
+                    <div class="row mb-2" *ngIf="priceB > 0">
+                        <div class="col">
+                            <p class="mb-0">Costo adicional por traslado:</p>
+                        </div> 
+                        <div class="col text-end">
+                            {{priceB | currency: 'MXN'}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p class="mb-0">Comisión de servicio:</p>
+                            <p class="mb-0" style="font-size: small; opacity: .6;">HomeServices® cobra una comisión por uso del servicio.</p>
+                        </div>
+                        <div class="col-auto text-end">
+                            {{priceC | currency: 'MXN'}}
+                        </div>
+                    </div>
+                    <hr style="opacity: .15;">
+                    <div class="row">
+                        <div class="col d-flex align-items-center">
+                            <h4 class="m-0 p-0">Subtotal:</h4>
+                        </div>
+                        <div class="col d-flex align-items-center justify-content-end">
+                            <h3>{{(priceA * multiple) + priceB + priceC | currency: 'MXN'}}</h3>
+                        </div>
+                    </div>
+                    <div class="container-fluid text-center mt-4">
+                        <p class="opacity-75" style="font-size: small;">El subtotal no incluye los impuestos correspondientes a servicios ajenos. *</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <app-paymentsteps [price]="(priceA * multiple) + priceB + priceC" [uuid]="id" [shopper]="shopper" [owner]="ownerBySend" [multiple]="multiple"></app-paymentsteps>
+            </div>
+        </div>
+        <hr style="opacity: .15;">
+        <p class="opacity-50 mb-0" style="font-size: 12px;">*Algunos asociados a HomeServices®️ pueden tener ciertos impuestos extra en las transacciones.</p>
+    </div> -->
 </div>
-
-<app-footer></app-footer>

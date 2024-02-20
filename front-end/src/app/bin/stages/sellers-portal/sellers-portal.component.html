@@ -7,17 +7,17 @@
         <div class="col-2 position-fixed">
             <div class="user-select-none mt-4">
                 <h6 class="ms-2">Tus servicios:</h6>
-                <button class="btn canvas-item rounded-3 w-100 mb-3" type="button" (click)="openCreateNewService()"><i class="bi bi-plus-circle"></i> Crear nuevo servicio</button>
+                <button class="btn canvas-item rounded-0 w-100 mb-3" type="button" (click)="openCreateNewService()"><i class="bi bi-plus-circle"></i> Crear nuevo servicio</button>
                 <!-- <button class="btn canvas-item rounded-3 w-100 mb-3" type="button"><i class="bi bi-journal-text"></i> </button> -->
                 <!-- <h6 class="ms-2 border-text">Tu historial:</h6>
                 <button class="btn canvas-item rounded-3 w-100 mb-1" type="button" routerLink="/myaccount/s/owned"><i class="bi bi-chat-dots"></i> Ver todos los comentarios</button>
                 <button class="btn canvas-item rounded-3 w-100 mb-3" type="button" routerLink="/myaccount/s/owned"><i class="bi bi-star"></i> Ver mis reseñas</button>
-                <button class="btn canvas-item rounded-3 w-100 mb-3" type="button"><i class="bi bi-gem"></i> HomeServices® Prime</button>
+                <button class="btn canvas-item rounded-3 w-100 mb-3" type="button"><i class="bi bi-gem"></i> HomeServices® Prime</button> -->
                 <h6 class="ms-2 border-text">Utilidades:</h6>
-                <button class="btn canvas-item rounded-3 w-100 mb-1" type="button"><i class="bi bi-journal-text"></i> Crear factura de venta</button>
-                <button class="btn canvas-item rounded-3 w-100 mb-3" type="button" routerLink="/myaccount/sell"><i class="bi bi-person-raised-hand"></i> Soporte y asistencia</button> -->
+                <!-- <button class="btn canvas-item rounded-0 w-100 mb-1" type="button"><i class="bi bi-journal-text"></i> Crear factura de venta</button> -->
+                <button class="btn canvas-item rounded-0 w-100 mb-3" type="button" routerLink="/myaccount/sell"><i class="bi bi-person-raised-hand"></i> Soporte y asistencia</button>
             </div>
-        </div>-
+        </div>
         <div class="col-2"></div>
         <div class="col p-4">
             <div class="d-flex gap-2">
@@ -53,13 +53,13 @@
             </div>
 
             <div *ngIf="somebody">
-                <div class="container-fluid p-0 bg-white mt-4 p-3 rounded-2 border">
+                <div class="container-fluid p-0 bg-white mt-4 p-3 border">
                     <div class="row">
                         <div class="col">
                             <h5 class="mt-1"><i class="bi bi-cart" style="color: #a95eff;"></i> Tus servicios:</h5>
                         </div>
                         <div class="col d-flex justify-content-end align-items-center">
-                            <a href="">Ver todos</a>
+                            <!-- <a href="">Ver todos</a> -->
                         </div>
                     </div>
                     <hr>
@@ -76,17 +76,23 @@
                         </ng-template>
                         <ng-template pTemplate="body" let-product>
                             <tr>
-                                <td><i *ngIf="product.explicit0x10 === 'n'" class="bi bi-exclamation-triangle" pTooltip="Este servicio esta marcado como explicito." tooltipPosition="top"></i> {{product.name0x3}}</td>
+                                <td>
+                                    <i *ngIf="product.explicit0x10 === 'n'" class="bi bi-exclamation-triangle" pTooltip="Este servicio esta marcado como explicito." tooltipPosition="top"></i>
+                                     {{product.name0x3}} 
+                                    <a class="text-dark opacity-75" routerLink="/services/{{product.uuid0x0}}" target="_blank">
+                                        <i class="bi bi-box-arrow-up-right"></i>
+                                    </a>
+                                </td>
                                 <td>{{product.price0x5 | currency:'MXN'}}</td>
                                 <td>{{product.category0x2}}</td>
-                                <td><p-tag class="user-select-none" [value]="product.status0x8" [severity]="getSeverity(product.status0x8)" pTooltip="Fecha de publicación: {{product.date0x7}}" tooltipPosition="top"></p-tag></td>
+                                <td><p-tag class="user-select-none" [style]="{'border-radius': '0'}" [value]="product.status0x8" [severity]="getSeverity(product.status0x8)" pTooltip="Fecha de publicación: {{product.date0x7}}" tooltipPosition="top"></p-tag></td>
                                 <td class="d-flex">
                                     <!-- <div pTooltip="No puedes editar una solicitud sin ser aprobada." tooltipPosition="top" [tooltipDisabled]="product.status0x8 !== 'EN REVISION'">
                                         <button class="btn btn-outline-purple" type="button" [disabled]="product.status0x8 === 'EN REVISION'">
                                             <i class="bi bi-pencil"></i>
                                         </button>
                                     </div> -->
-                                    <button class="btn btn-purple ms-2" type="button" (click)="openDeleteDialog(product.uuid0x0, product.name0x3, product.status0x8)">
+                                    <button class="btn btn-purple ms-2 rounded-0" type="button" (click)="openDeleteDialog(product.uuid0x0, product.name0x3, product.status0x8)">
                                         <i class="bi bi-x-circle"></i>
                                     </button>
                                 </td>
@@ -95,7 +101,7 @@
                     </p-table>
                 </div>
     
-                <div class="container-fluid p-0 bg-white mt-4 p-3 rounded-2 border">
+                <!-- <div class="container-fluid p-0 bg-white mt-4 p-3 border">
                     <h5 class="mt-1"><i class="bi bi-fire" style="color: #a95eff;"></i> Tu top 5 servicios mas comprados:</h5>
                     <hr>
     
@@ -119,7 +125,7 @@
                     </p-table>
                 </div>
     
-                <div class="container-fluid p-0 bg-white mt-4 p-3 rounded-2 border">
+                <div class="container-fluid p-0 bg-white mt-4 p-3 border">
                     <h5 class="mt-1"><i class="bi bi-graph-down-arrow" style="color: #a95eff;"></i> Tu top 5 servicios menos comprados:</h5>
                     <hr>
     
@@ -141,23 +147,17 @@
                             </tr>
                         </ng-template>
                     </p-table>
-                </div>
+                </div> -->
 
                 <div class="row">
                     <div class="col">
-                        <div class="container-fluid p-0 bg-white mt-4 p-3 rounded-2 border">
+                        <div class="container-fluid p-0 bg-white mt-4 p-3 border">
                             <h5 class="mt-1"><i class="bi bi-person-raised-hand" style="color: #a95eff;"></i> Servicios pendientes:</h5>
                             <hr>
                             <div class="d-flex justify-content-center align-items-center" *ngIf="stats2 === 0">
                                 <div class="container-fluid mt-5">
                                     <div class="d-flex justify-content-center" style="opacity: .7;">
-                                        <lord-icon
-                                            src="https://cdn.lordicon.com/jjoolpwc.json"
-                                            trigger="loop"
-                                            delay="2000"
-                                            colors="primary:#121331,secondary:#a95eff"
-                                            style="width:70px;height:70px">
-                                        </lord-icon>
+                                        <img src="../assets/svg/hs_completed.svg" alt="Error SVG" style="width: auto; height: 25vh;">
                                     </div>
                                     <div class="d-flex justify-content-center mt-4 mb-0 text-center" style="opacity: .7;">
                                         <p class="mb-2">No tienes actividades pendientes, si tienes pedidos completados puedes reclamar el dinero. ¿Vamos por hamburguesas?</p>

@@ -3,10 +3,90 @@
 <p-toast></p-toast>
 
 
-<div class="container mt-4 rounded-2 user-select-none p-0">
-    <div class="container-fluid p-0">
+<div class="container-fluid mt-4 rounded-2 user-select-none">
+    <div class="row">
+        <div class="col-3">
+            <h5 class="font-b">Información del presta-servicios:</h5>
+            <hr class="w-25">
+            <div class="row w-auto">
+                <div class="col-auto text-center pe-0">
+                    <p-avatar size="large" label="{{servicerLetter}}" styleClass=" mb-0 rounded-3" [style]="{ 'background-color': '#000', color: '#ffffff', 'border-radius': '0px' }" *ngIf="!ifservicerImage"></p-avatar>
+                    <p-avatar size="large" image="{{servicerImage}}" styleClass="mb-0 rounded-3" [style]="{ 'background-color': '#000', color: '#ffffff', 'border-radius': '0px' }" *ngIf="ifservicerImage"></p-avatar>
+                </div>
+                <div class="col-auto">
+                    <div class="row w-auto">
+                        <a routerLink="/profile/{{servicerUUID}}" pTooltip="Ver perfil" tooltipPosition="bottom" class="text-decoration-none text-truncate w-auto text-dark fs-6">{{servicerName}}</a>
+                        <p [ngClass]="servicerKlass" style="font-size: 12px;">{{servicerStatus}}</p>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <p class="mb-1 fs-6 font-b">Valoración de atención:</p>
+                    <p-rating [readonly]="true" [cancel]="false" [(ngModel)]="reputationValueAttention"></p-rating>
+                </div>
+                <div class="mt-1">
+                    <p class="mb-1 fs-6 font-b">Valoración de ventas:</p>
+                    <p-rating [readonly]="true" [cancel]="false" [(ngModel)]="reputationValueQuality"></p-rating>
+                </div>
+                <div class="mt-1">
+                    <p class="mb-1 fs-6 font-b">Valoración general:</p>
+                    <p-rating [readonly]="true" [cancel]="false" [(ngModel)]="reputationValue"></p-rating>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h4 class="text-truncate">Servicios de {{categoryShowed}}</h4>
+            <h1 class="text-truncate font-b">{{nameShowed}}</h1>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <h5 class="font-b">Descripción del servicio:</h5>
+                    <p style="opacity: .7; text-align: justify;">
+                        {{descriptionShowed}}
+                    </p>
+                    <h5 class="mt-3 font-b">Fotografías del servicio:</h5>
+                    <div class="d-flex flex-wrap">
+                        <p-image class="m-1" *ngFor="let img of imagesBlob" src="{{img.blob}}" alt="Image" width="225vh" height="150vh" [preview]="true"></p-image>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="container-fluid p-0 m-0 mb-2">
+                        <div class="row" *ngIf="priceShowed_Boolean">
+                            <div class="col">
+                                <h4>${{priceShowed}}MXN</h4>
+                            </div>
+                            <div class="col-auto">
+                                <h6 class="mt-1">{{priceBShowed}}</h6>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div>
+                        <div class="row mb-3">
+                            <div class="col-auto d-flex align-items-center">
+                                <h6 class="mb-0">¿Cuantas horas necesitas?</h6>
+                            </div>
+                            <div class="col d-flex justify-content-end">
+                                <select class="form-select w-100 rounded-0" [(ngModel)]="multipleTime">
+                                    <option value="1">1 hora</option>
+                                    <option value="2">2 horas</option>
+                                    <option value="3">3 horas</option>
+                                    <option value="4">4 horas</option>
+                                    <option value="5">5 horas</option>
+                                    <option value="6">6 horas</option>
+                                    <option value="7">7 horas</option>
+                                    <option value="8">8 horas</option>
+                                </select>
+                            </div>
+                        </div>
+        
+                        <button type="button" class="btn btn-purple p-2 mb-3 rounded-0 dropped-shadow-tiny w-100" (click)="shop()"><i class="bi bi-bag"></i> Contratar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="container-fluid p-0">
         <div class="container-fluid p-0 primarysize theme-b rounded-3 position-relative">
-            <!-- <img src="https://cdn.pixabay.com/photo/2016/01/02/00/40/green-1117267_1280.jpg" alt="Background Image" width="100%" style="opacity: .5;"> -->
             <div class="row p-0 position-absolute bottom-0 ms-3 mb-4 w-100">
                 <h4 class="text-truncate">Servicios de {{categoryShowed}}</h4>
                 <h1 class="text-truncate">{{nameShowed}}</h1>
@@ -27,7 +107,6 @@
                 <h4 class="mt-4"><i class="bi bi-image"></i> Imágenes sobre el servicio:</h4>
                 <hr>
                 <div class="d-flex flex-wrap">
-                    <!-- <img *ngFor="let img of imagesBlob" src="{{img.blob}}" width="250" alt="Image"> -->
                     <p-image class="m-1" *ngFor="let img of imagesBlob" src="{{img.blob}}" alt="Image" width="auto" height="auto" [preview]="true"></p-image>
                 </div>
             </div>
@@ -74,7 +153,7 @@
 
                 <button type="button" class="btn btn-purple p-2 mb-3 rounded-4 dropped-shadow-tiny w-100" (click)="shop()"><i class="bi bi-bag"></i> Contratar</button>
 
-                <!-- <p class="d-flex justify-content-center w-100" style="opacity: .5; font-size: 13px;">¿Lo necesitas mas adelante?</p>
+                <p class="d-flex justify-content-center w-100" style="opacity: .5; font-size: 13px;">¿Lo necesitas mas adelante?</p>
                 <button type="button" class="btn btn-outline-purple-var-2 p-2 mb-3 rounded-4 dropped-shadow-tiny w-100"><i class="bi bi-bag"></i> Programar contrato</button> -->
                 <!-- <button type="button" class="btn btn-outline-purple-var-2 p-2 rounded-4 mb-3 dropped-shadow-tiny w-100" (click)="generateNewRoom()">
                     <div class="opacity-75" *ngIf="spinner">
@@ -86,7 +165,7 @@
                     <div *ngIf="!spinner">
                         <i class="bi bi-send"></i> Enviar mensaje
                     </div>
-                </button> -->
+                </button>
                 <button type="button" class="btn btn-outline-danger p-2 w-100 rounded-4 border-0 dropped-shadow-tiny"><i class="bi bi-flag"></i> Reportar</button>
             </div>
 
@@ -95,11 +174,8 @@
                 <hr>
                 <div class="row">
                     <div class="col-lg-2 text-center">
-                        <!-- Mode no pic -->
                         <p-avatar size="large" label="{{servicerLetter}}" styleClass="mr-2 mb-0 rounded-3" [style]="{ 'background-color': '#943afb', color: '#ffffff' }" *ngIf="!ifservicerImage"></p-avatar>
-                        <!-- Mode pic URL -->
                         <p-avatar size="large" image="{{servicerImage}}" styleClass="mr-2 mb-0 rounded-3" [style]="{ 'background-color': '#fff', color: '#ffffff' }" *ngIf="ifservicerImage"></p-avatar>
-                        <!-- <p-avatar size="large" label="I"></p-avatar> -->
                     </div>
                     <div class="col">
                         <div class="row">
@@ -122,7 +198,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
-
 <app-footer></app-footer>

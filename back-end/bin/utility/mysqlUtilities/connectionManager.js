@@ -26,4 +26,21 @@ async function Connection(){
     }
 }
 
-module.exports = { Connection };
+async function ConnectionAdmins(){
+    try{
+        const CNx0 = await mysql.createConnection({
+            host: process.env.HOSTSQL,
+            port: process.env.DBPORT,
+            user: process.env.USERSQL,
+            password: process.env.PASSWORDSQL,
+            database: process.env.DBADMINSSQL
+        })
+        return CNx0;
+    }
+    catch(err){
+        console.log("[ERR] Utility mysql DBx0 throw error: " + err);
+        throw err;
+    }
+}
+
+module.exports = { Connection, ConnectionAdmins };

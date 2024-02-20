@@ -24,6 +24,7 @@ const paymentsRouter = require('./bin/api/routers/payments.routes');
 const messageRouter = require('./bin/api/routers/messages.routes')
 const commentaryRouter = require('./bin/api/routers/comentary.routes')
 const tfaRouter = require('./bin/api/routers/2fa.routes');
+const developersRouter = require('./bin/api/routers/developers.routes');
 
 //Express app
 const app = express();
@@ -73,6 +74,7 @@ const { studioLoggerHandle } = require('./bin/utility/middlewares');
 app.use(studioLoggerHandle)
 
 //Use router
+app.use(developersRouter);
 app.use(mainRouter);
 app.use(usersRouter);
 app.use(verifyRouter);

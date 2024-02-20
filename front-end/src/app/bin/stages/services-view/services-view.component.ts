@@ -68,15 +68,15 @@ export class ServicesViewComponent implements OnInit{
 
         if(result.result.verify0x3 == 1){
           this.servicerStatus = 'Vendedor seguro de HomeServices®️'
-          this.servicerKlass = 'mb-0 text-dark'
+          this.servicerKlass = 'mb-0 text-dark font-b'
         }
         else if(result.result.verify0x3 == 2){
           this.servicerStatus = 'Vendedor oficial de HomeServices®️'
-          this.servicerKlass = 'mb-0 text-success'
+          this.servicerKlass = 'mb-0 text-success font-b'
         }
         else{
           this.servicerStatus = 'Vendedor no verificado de HomeServices®️'
-          this.servicerKlass = 'mb-0 text-danger'
+          this.servicerKlass = 'mb-0 text-danger font-b'
         }
         
       },

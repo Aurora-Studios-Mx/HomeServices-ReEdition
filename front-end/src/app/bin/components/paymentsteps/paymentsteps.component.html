@@ -4,7 +4,7 @@
     </div>
 </div>
 
-<div class="container" *ngIf="active && steps == 1">
+<div class="container-fluid p-0" *ngIf="active && steps == 1">
     <ngx-paypal [config]="payPalConfig"></ngx-paypal>
     <div class="hr-container opacity-50" style="position: relative; text-align: center; margin: 20px 0;">
         <hr style="border: none; border-top: 1px solid #000;">
@@ -47,7 +47,7 @@
     </div>
 </div>
 
-<div class="container" *ngIf="active && steps == 0">
+<div class="container-fluid p-0" *ngIf="active && steps == 0">
     <form [formGroup]="formCurrent" (submit)="onSubmit()">
         <!-- 1 -->
         <div class="container-fluid p-0 mb-3">
