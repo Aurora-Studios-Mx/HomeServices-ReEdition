@@ -79,7 +79,7 @@
                                 <td>
                                     <i *ngIf="product.explicit0x10 === 'n'" class="bi bi-exclamation-triangle" pTooltip="Este servicio esta marcado como explicito." tooltipPosition="top"></i>
                                      {{product.name0x3}} 
-                                    <a class="text-dark opacity-75" routerLink="/services/{{product.uuid0x0}}" target="_blank">
+                                    <a *ngIf="getRedirectIcon(product.status0x8)" class="opacity-75" routerLink="/services/{{product.uuid0x0}}" target="_blank">
                                         <i class="bi bi-box-arrow-up-right"></i>
                                     </a>
                                 </td>

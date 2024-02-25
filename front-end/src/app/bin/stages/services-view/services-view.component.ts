@@ -50,6 +50,8 @@ export class ServicesViewComponent implements OnInit{
   protected reputationValueAttention: number = 0;
   protected reputationValueQuality: number = 0;
 
+  protected itsMyService: boolean = false;
+
   constructor(private readonly _categories: CategoryGestorService, private readonly _servicesManager: ServicesGestorService, private readonly AR: ActivatedRoute, private NG_MSG: MessageService, private readonly userManager: UsersgestorService, private title: Title, private DialogS: DialogService, private ManagerChats: ApiManagerService, private rt: Router){}
 
   findInfoSeller(uuid: string){
@@ -131,10 +133,6 @@ export class ServicesViewComponent implements OnInit{
     }
   }
 
-  isPaymentsofTimes(){
-
-  }
-
   getCategories(): Promise<any>{
     return new Promise((res, rej) => {
       this._categories.getCategories().subscribe(
@@ -170,7 +168,7 @@ export class ServicesViewComponent implements OnInit{
     const uuid = this.AR.snapshot.params['uuid'];
 
     this.activeID = uuid;
-
+    
     const packet = {
       _uuid0x: uuid
     }
@@ -204,8 +202,14 @@ export class ServicesViewComponent implements OnInit{
   
           this.servicerUUID = result.result[0].owner0x1;
 
-          const reviews = await this.getReviews();
+          const Current = this.whatUUID();
 
+          if(this.servicerUUID === Current){
+            this.itsMyService = true;
+          }
+
+          const reviews = await this.getReviews();
+          
           if(reviews === true){
             this.reputationValueQuality = await this.formatReputationBValue();
             this.reputationValueAttention = await this.formatReputationCValue();

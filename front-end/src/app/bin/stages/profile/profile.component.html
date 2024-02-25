@@ -73,19 +73,18 @@
 
         @for (item of services; track item) {
             <div class="card sfx">
-                <img class="card-img-top" src="" alt="Image"/>
                 <div class="card-body">
                     <h4 class="card-title">{{item.data2}}</h4>
                     <p class="card-text fade-out">{{item.data3}}</p>
                     <div class="row">
                         <div class="col">
-                            <button type="button" class="btn btn-purple w-100 rounded-0">
+                            <button type="button" class="btn btn-purple w-100 rounded-0" (click)="routerWithParams(1, item.data0)">
                                 <i class="bi bi-cart"></i>
                                 Comprar ahora - {{item.data4 | currency: 'MXN'}}
                             </button>
                         </div>
                         <div class="col">
-                            <button type="button" class="btn btn-dark-2 w-100 rounded-0">
+                            <button type="button" class="btn btn-dark-2 w-100 rounded-0" routerLink="/services/{{item.data0}}">
                                 <i class="bi bi-card-text"></i>
                                 Ver publicación
                             </button>

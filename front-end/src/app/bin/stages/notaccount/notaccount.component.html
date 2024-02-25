@@ -1,6 +1,17 @@
 <app-navbar-tiny></app-navbar-tiny>
 
-<div class="container-fluid" style="background-color: #ededed;">
+<div class="container w-25 text-center" style="margin-top: 2.4rem;">
+    <img src="../../../../assets/svg/hs_login_lost.svg" alt="Error SVG" style="width: auto; height: 25vh;">
+    <h1 class="mb-0 mt-3 font-b">¡Hola!</h1>
+    <h5 class="mb-4 font-b">Para continuar con la acción ingresa tu cuenta de HomeServices®️</h5>
+
+    <button type="button" class="btn btn-purple rounded-0 w-100 p-2 mb-2" routerLink="/login">Iniciar sesión</button>
+    <button type="button" class="btn btn-dark-2 rounded-0 w-100 p-2 mb-3" routerLink="/start">No tengo cuenta</button>
+
+    <p class="font-a">¿Volvemos? <a (click)="this._back.back()" class="text-decoration-none" style="cursor: pointer;">Pulse aqui</a></p>
+</div>
+
+<!-- <div class="container-fluid" style="background-color: #ededed;">
     <a href="" class="invisible">👻</a>
     <div class="container bg-white border-start border-top border-end text-center ps-5 pt-5 pe-5 pb-2" style="margin-top: 5rem; width: 30rem;">
         <h1 class="mb-0">¡Hola!</h1>
@@ -14,8 +25,6 @@
         <button type="button" class="btn btn-purple w-100 p-2 mb-2" routerLink="/login">Iniciar sesión</button>
         <button type="button" class="btn btn-outline-purple w-100 p-2 mb-3" routerLink="/start">No tengo cuenta</button>
 
-        <p class="font-a">¿Volvemos? <a (click)="this._back.back()" class="text-decoration-none">Pulse aqui</a></p>
+        <p class="font-a">¿Volvemos? <a (click)="this._back.back()" class="text-decoration-none" style="cursor: pointer;">Pulse aqui</a></p>
     </div>
-</div>
-
-<app-footer></app-footer>
+</div> -->

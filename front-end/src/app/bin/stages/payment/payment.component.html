@@ -3,13 +3,13 @@
 <p-toast></p-toast>
 
 <div class="position-fixed w-100 h-100 overflow-scroll" style="background-color: #ededed;">
-    <div class="container mt-4 user-select-none">
+    <div class="container user-select-none">
         <div class="row">
             <div class="col">
                 <div class="container-fluid mt-4 p-3 bg-white border">
                     <h4 class="font-b mt-2">Rellena para continuar:</h4>
                     <hr>
-                    <app-paymentsteps [price]="(priceA * multiple) + priceB + priceC" [uuid]="id" [shopper]="shopper" [owner]="ownerBySend" [multiple]="multiple"></app-paymentsteps>
+                    <app-paymentsteps [price]="(priceA * multiple) + priceB + priceC" [uuid]="id" [shopper]="shopper" [owner]="ownerBySend" class="mb-4" [multiple]="multiple"></app-paymentsteps>
                 </div>
             </div>
             <div class="col">

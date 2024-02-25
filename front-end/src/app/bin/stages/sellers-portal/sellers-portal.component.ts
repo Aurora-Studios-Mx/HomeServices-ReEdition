@@ -85,6 +85,19 @@ export class SellersPortalComponent implements OnInit{
     }
   }
 
+  getRedirectIcon(status: string) {
+    switch (status) {
+      case 'ACTIVO':
+        return true;
+      case 'EN REVISION':
+        return false;
+      case 'INACTIVO':
+        return false;
+      default: 
+        return false;
+    }
+  }
+
   getSeverity_Text(status: number): Promise<string>{
     return new Promise((resolve, reject) => {
       switch (status) {

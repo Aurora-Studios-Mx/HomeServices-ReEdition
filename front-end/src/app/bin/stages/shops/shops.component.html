@@ -2,26 +2,9 @@
 
 <p-toast></p-toast>
 
-<div class="container-fluid" style="background-color: #ededed;">
-    <a href="" class="invisible">👻</a>
-    <div class="container" style="margin-top: 3rem;">
-        <div class="row p-0">
-            <div class="col p-1 d-flex align-items-end">
-                <h1 class="font-b border-text"><i class="bi bi-cart"></i> Mis servicios contratados</h1>
-            </div>
-            <!-- <div class="col ms-5 d-flex justify-content-end">
-                <div class="row p-3">
-                    <div class="col d-flex align-items-end">
-                        <button type="button" pTooltip="Reportar un error" tooltipPosition="top" class="btn btn-outline-purple"><i class="bi bi-bug"></i></button>
-                    </div>
-                </div>
-            </div> -->
-        </div>
-    </div>
-</div>
-
-
-<div class="container-fluid w-75 mt-5 p-0" *ngIf="anything">
+<div class="container-fluid w-75 mt-5 p-0 user-select-none" *ngIf="anything">
+    <h1 class="font-b"><i class="bi bi-cart"></i> Mis servicios contratados</h1>
+    <hr class="w-25 mb-5">
     <!-- <div class="row mb-4">
         <div class="col d-flex align-items-end">
             <p-menubar [model]="items" [style]="{'background-color':'transparent', 'border-color':'transparent', 'padding':'0px'}"></p-menubar> -->
@@ -35,26 +18,26 @@
     <h3>En curso:</h3>
 
     <div class="container-fluid">
-        <div class="row mt-4 border p-3 rounded-2" *ngFor="let packet of pendingPurchases">
+        <div class="row mt-4 border p-3" *ngFor="let packet of pendingPurchases">
             <div class="col d-flex align-items-center" style="max-width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
                 <div class="row">
-                    <div class="d-flex gap-2 align-items-center">
-                        <p-tag class="user-select-none" [value]="getSmallMessage(packet.data11)" [severity]="getSeverity(packet.data11)" pTooltip="ID: {{packet.data3}}" tooltipPosition="top"></p-tag>
-                        <h3 style="max-width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                    <div class="d-flex gap-3 align-items-center">
+                        <p-tag class="user-select-none mb-1" [value]="getSmallMessage(packet.data11)" [severity]="getSeverity(packet.data11)" [style]="{'border-radius': '0'}" pTooltip="Matricula: {{packet.data3}}" tooltipPosition="top"></p-tag>
+                        <h3 class="font-b" style="max-width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
                             {{getNameFromUUID(packet.data1)}}
                         </h3>
                     </div>
-                    <h6>{{getCurrentMessage(packet.data11)}}</h6>
+                    <h6 class="font-b">{{getCurrentMessage(packet.data11)}}</h6>
                     <p class="mb-0">Ofrecido por: {{packet.data0}}</p>
                     <p class="mb-0 opacity-50">{{transformData(packet.data10)}}</p>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-3 mt-2">
                 <div class="row d-flex align-items-center">
                     <button type="button" class="btn btn-purple p-2 w-100 mb-2" *ngIf="packet.data11 === 2 || packet.data11 === 7" (click)="confirmInvitation(packet.data3)"><i class="bi bi-check"></i> Confirmar asistencia</button>
-                    <button type="button" class="btn btn-purple p-2 w-100 mb-2" routerLink="/services/{{packet.data1}}"><i class="bi bi-card-list"></i> Ver publicación</button>
-                    <button type="button" class="btn btn-outline-purple p-2 w-100 mb-2" (click)="openDetails(packet)"><i class="bi bi-journal-text"></i> Ver detalles</button>
-                    <button type="button" class="btn btn-outline-danger border-0 p-2 w-100" *ngIf="packet.data11 == 0" (click)="openDialogCancel(packet.data3)"><i class="bi bi-cart-x"></i> Cancelar</button>
+                    <button type="button" class="btn btn-purple rounded-0 p-2 w-100 mb-2" routerLink="/services/{{packet.data1}}"><i class="bi bi-card-list"></i> Ver publicación</button>
+                    <button type="button" class="btn btn-outline-purple rounded-0 p-2 w-100 mb-2" (click)="openDetails(packet)"><i class="bi bi-journal-text"></i> Ver detalles</button>
+                    <button type="button" class="btn btn-outline-danger rounded-0 border-0 p-2 w-100" *ngIf="packet.data11 == 0" (click)="openDialogCancel(packet.data3)"><i class="bi bi-cart-x"></i> Cancelar</button>
                 </div>
             </div>
         </div>
@@ -92,7 +75,7 @@
             <div class="col d-flex align-items-center" style="max-width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
                 <div class="row">
                     <div class="d-flex gap-2 align-items-center">
-                        <p-tag class="user-select-none" [value]="getSmallMessage(packet.data11)" [severity]="getSeverity(packet.data11)"></p-tag>
+                        <p-tag [style]="{'border-radius': '0'}" class="user-select-none mb-1" [value]="getSmallMessage(packet.data11)" [severity]="getSeverity(packet.data11)"></p-tag>
                         <h3 style="max-width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
                             {{getNameFromUUID(packet.data1)}}
                         </h3>
@@ -103,7 +86,7 @@
                 </div>
             </div>
             <div class="col-3 d-flex align-items-center">
-                <button type="button" class="btn btn-purple p-2 w-100" routerLink="/services/{{packet.data1}}"><i class="bi bi-card-list"></i> Ver publicación</button>
+                <button type="button" class="btn btn-purple p-2 w-100 rounded-0" routerLink="/services/{{packet.data1}}"><i class="bi bi-card-list"></i> Ver publicación</button>
             </div>
         </div>
     </div>
@@ -112,15 +95,9 @@
 <div style="height: 100%; width: 100%;" *ngIf="!anything">
     <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); text-align: center; opacity: .5;">
         <div class="mt-5">
-            <lord-icon
-                src="https://cdn.lordicon.com/odavpkmb.json"
-                trigger="loop"
-                delay="2000"
-                colors="primary:#121331,secondary:#a95eff"
-                style="width:70px;height:70px">
-            </lord-icon>
+            <img src="../../../../assets/svg/hs_empty.svg" alt="Error SVG" style="width: auto; height: 25vh;">
         </div>
-        <h6 class="mt-4">¿Porque no haz comprado nada? Vamos...todos necesitamos un servicio.</h6>
+        <h6 class="mt-4">No tienes compras actualmente.</h6>
     </div>
     <app-footer style="position: absolute; bottom: 0%; width: 100%;"></app-footer>
 </div>

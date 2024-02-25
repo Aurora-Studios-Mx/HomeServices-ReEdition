@@ -246,6 +246,11 @@ export class NavbarComponent implements OnInit{
       sessionStorage.removeItem('_token');
     }
 
-    this.rt.navigateByUrl('/')
+    if(this.rt.url !== '/'){
+      this.rt.navigateByUrl('/')
+    }
+    else{
+      window.location.reload();
+    }
   }
 }

@@ -43,7 +43,7 @@ export class NotifysComponent implements OnInit{
 
     const packet = {
       u0x: this.uuid,
-      t0x: this.TFA_FORM.get('token')?.value,
+      t0x: this.TFA_FORM.get('token')?.value.trim(),
     }
 
     this.TFA_SETUP.verify_login(packet).subscribe((data) => {

@@ -1,13 +1,13 @@
 <div class="container-fluid p-0">
-    <h5>¿Estas seguro de eliminar {{name}}?</h5>
-    <p class="opacity-75">Actualmente el servicio tiene un estado {{status}}, pero eliminarlo significa perderlo para siempre...para siempre.</p>
+    <h5 class="font-b">¿Estas seguro de eliminar {{name}}?</h5>
+    <p class="opacity-75">El estado actual del servicio es:  {{status}}, por lo tanto, eliminarlo significa perderlo para siempre.</p>
 
     <div class="row">
         <div class="col d-flex justify-content-end">
-            <button class="btn btn-purple" type="button" (click)="deleteService()"><i class="bi bi-trash"></i> Entiendo los riesgos, borrar</button>
+            <button class="btn btn-purple rounded-0" type="button" (click)="deleteService()"><i class="bi bi-trash"></i> Entiendo los riesgos, borrar</button>
         </div>
         <div class="col-auto">
-            <button class="btn btn-outline-purple-var-2" (click)="this._dynamic.close({deleted: false});">Cancelar</button>
+            <button class="btn btn-outline-purple-var-2 rounded-0" (click)="this._dynamic.close({deleted: false});">Cancelar</button>
         </div>
     </div>
 </div>

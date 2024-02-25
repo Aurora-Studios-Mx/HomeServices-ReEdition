@@ -99,6 +99,10 @@ export class ProfileComponent implements OnInit{
     }
   }
 
+  routerWithParams(multiple?: number, uuid?: string){
+    this.router.navigate(['/services/buy/payment/' + uuid], {queryParams: {multiple: multiple}})
+  }
+
   getStylesMessage(verification: number):string{
     switch(verification){
       case 1:

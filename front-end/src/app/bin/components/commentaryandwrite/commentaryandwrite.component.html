@@ -1,13 +1,7 @@
 <div class="container-fluid p-0">
     <div class="container-fluid text-center" *ngIf="!isLog">
-        <lord-icon
-            src="https://cdn.lordicon.com/wzrwaorf.json"
-            trigger="loop"
-            delay="2000"
-            colors="primary:#121331,secondary:#a95eff"
-            style="width:100px;height:100px">
-        </lord-icon>
-        <h6 class="mb-0 opacity-50">¿Quieres publicar opiniones? ¡Únete a la comunidad de HomeServices® en la parte superior!</h6>
+        <img src="../../../../assets/svg/hs_comments.svg" class="mt-3" alt="Error SVG" style="width: auto; height: 20vh;">
+        <h6 class="mb-0 mt-3 font-b opacity-50">¿Quieres publicar un comentario? ¡Únete a la comunidad de HomeServices®!</h6>
     </div>
 
     <div class="row" *ngIf="isLog">
@@ -15,17 +9,17 @@
             <p-avatar size="large" label="{{nameLetter}}" styleClass="mr-2 mb-0 mt-1 mb-1 me-2" [style]="{ 'background-color': '#943afb', color: '#ffffff' }"></p-avatar>
         </div> -->
         <div class="col">
-            <input pInputText pTooltip="Recuerda seguir las normativas de convivencia de HomeServices®" tooltipPosition="bottom" type="text" [placeholder]="'Envía una pregunta'" [style]="{'width':'100%'}" [(ngModel)]="content"/>
+            <input pInputText pTooltip="Recuerda seguir las normativas de convivencia de HomeServices®" tooltipPosition="bottom" type="text" [placeholder]="'Envía una pregunta'" [style]="{'width':'100%', 'border-radius': '0'}" [(ngModel)]="content"/>
         </div>
         <div class="col-auto">
-            <p-button sesión="Comentar" icon="bi bi-send" styleClass="p-button-help mb-0 rounded-2" (onClick)="onSubmit()"></p-button>
+            <p-button sesión="Comentar" icon="bi bi-send" styleClass="p-button-help mb-0 rounded-0" (onClick)="onSubmit()"></p-button>
         </div>
     </div>
     
-    <hr>
+    <hr class="w-25">
 
     <div class="container-fluid p-0 mt-4">
-        <h5 class="mb-4"><i class="bi bi-chat"></i> Anteriores:</h5>
+        <h5 class="mb-4 font-b"><i class="bi bi-chat"></i> Anteriores:</h5>
         <div class="row mb-1" *ngFor="let packet of commentarys">
             <div class="col-auto ms-2 mt-2">
                 <p-avatar size="large" label="{{packet.label}}" styleClass="mb-0 mb-1 me-2" [style]="{ 'background-color': '#943afb', color: '#ffffff' }"></p-avatar>

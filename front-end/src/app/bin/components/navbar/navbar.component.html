@@ -16,6 +16,7 @@
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
             <img src="../../../../assets/icon.png" alt="HomeServices®️ Logo" style="height: 40px; width: auto;">
+            <span style="font-size: 12px;" class="ms-1">MX</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -25,7 +26,7 @@
                 <li class="nav-item" *ngIf="extended">
                     <a class="nav-link active nsfx" aria-current="page" href="/">Inicio</a>
                 </li>
-                <li class="nav-item" *ngIf="extended">
+                <!-- <li class="nav-item" *ngIf="extended">
                     <a class="nav-link nsfx" aria-current="page" href="/">Categorías</a>
                 </li>
                 <li class="nav-item" *ngIf="extended">
@@ -33,7 +34,7 @@
                 </li>
                 <li class="nav-item" *ngIf="extended">
                     <a class="nav-link nsfx" aria-current="page" href="/">Favoritos</a>
-                </li>
+                </li> -->
             </ul>
             <a class="btn ntf-btn border-0 me-2" pTooltip="Mis notificaciones" tooltipPosition="bottom" type="submit" (click)="show()" *ngIf="extended && isCurrentSign">
                 <i class="bi bi-bell fs-5"></i>
