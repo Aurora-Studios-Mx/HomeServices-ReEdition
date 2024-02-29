@@ -250,7 +250,6 @@ async function compareUserCredentials(req, res) {
                     const userData = rows[i];
                     const token = await createToken(userData);
                     const TFAValidators = await Verify2FA(userData.uuid0x0);
-
                     if(TFAValidators === true){
                         res.status(200).json({
                             result:
@@ -262,7 +261,8 @@ async function compareUserCredentials(req, res) {
                             uuid: userData.uuid0x0,
                             token: token,
                             allowed: true,
-                            tfa: true
+                            tfa: true,
+                            guard: userData.type0x7
                         });
                     }
                     else{
@@ -276,7 +276,8 @@ async function compareUserCredentials(req, res) {
                             uuid: userData.uuid0x0,
                             token: token,
                             allowed: true,
-                            tfa: false
+                            tfa: false,
+                            guard: userData.type0x7
                         });
                     }
 

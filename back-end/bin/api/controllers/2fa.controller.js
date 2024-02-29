@@ -185,8 +185,72 @@ async function tfaVerificationHandle2(req, res){
     }
 }
 
+async function tfaActive(req, res){
+    let cn;
+    
+    try{
+        const body = req.body;
+        
+        cn = await Connection();
+
+        const sql = `SELECT * FROM tfa0x WHERE owner0x0 = ?`;
+        const values = [body.u0x];
+
+        const [rows] = await cn.query(sql, values);
+
+        if(rows.length > 0){
+            res.status(200).json({completed: true});
+        }
+        else{
+            res.status(200).json({completed: false});
+        }
+    }
+    catch(e){
+        console.log("[ERR-2FA] Error while 'tfaActive' try to verify 2FA state.");
+        res.status(503).json({completed: false, message: 'Error al intentar verificar el estado del 2FA. Inténtalo de nuevo.'});
+    }
+    finally{
+        if(cn){
+            cn.end();
+        }
+    }
+}
+
+async function tfaDisable(req, res){
+    let cn;
+    
+    try{
+        const body = req.body;
+        
+        cn = await Connection();
+
+        const sql = `DELETE FROM tfa0x WHERE owner0x0 = ?`;
+        const values = [body.u0x];
+
+        const [rows] = await cn.query(sql, values);
+
+        if(rows.affectedRows === 1){
+            res.status(200).json({completed: true});
+        }
+        else{
+            res.status(200).json({completed: false});
+        }
+    }
+    catch(e){
+        console.log("[ERR-2FA] Error while 'tfaDisable' try to verify 2FA state.");
+        res.status(503).json({completed: false, message: 'Error al deshabilitar el 2FA. Inténtalo de nuevo.'});
+    }
+    finally{
+        if(cn){
+            cn.end();
+        }
+    }
+}
+
 module.exports = {
     tfaSetupHandle: tfaSetupHandle,
     tfaVerificationHandle: tfaVerificationHandle,
-    tfaVerificationHandle2: tfaVerificationHandle2
+    tfaVerificationHandle2: tfaVerificationHandle2,
+    tfaActive: tfaActive,
+    tfaDisable: tfaDisable
 }

@@ -37,58 +37,58 @@ export class StripeComponent implements OnInit{
     if(this.usage === 'success'){
       this.message = 'Verificando integridad del pago en Stripe...';
 
-      this.PaymentsService.stripeConfirmation(packet).subscribe(
-        result => {
-          if(result.authorized === true){
-            this.waiting('/payment/success')
-          }
-          else{
-            Notiflix.Notify.failure(result.message, {
-              position: 'center-bottom'
-            })
-            this.waiting('/payment/failed')
-          }
-        },
-        error => {
-          Notiflix.Notify.failure(error.message, {
-            position: 'center-bottom'
-          })
-          this.message = 'Ha habido un error al verificar el pago en Stripe.'
-          this.error = error.message;
-          this.waiting('/payment/failed')
-        }
-      )
+      // this.PaymentsService.stripeConfirmation(packet).subscribe(
+      //   result => {
+      //     if(result.authorized === true){
+      //       this.waiting('/payment/success')
+      //     }
+      //     else{
+      //       Notiflix.Notify.failure(result.message, {
+      //         position: 'center-bottom'
+      //       })
+      //       this.waiting('/payment/failed')
+      //     }
+      //   },
+      //   error => {
+      //     Notiflix.Notify.failure(error.message, {
+      //       position: 'center-bottom'
+      //     })
+      //     this.message = 'Ha habido un error al verificar el pago en Stripe.'
+      //     this.error = error.message;
+      //     this.waiting('/payment/failed')
+      //   }
+      // )
     }
     else if (this.usage === 'cancel'){
       this.message = 'Cancelando pago con Stripe...';
 
-      this.PaymentsService.stripeDelete(packet).subscribe(
-        result => {
-          if(result.delete === true){
-            this.waiting('/payment/cancel')
-          }
-          else{
-            Notiflix.Notify.failure(result.message, {
-              position: 'center-bottom'
-            })
-            this.waiting('/payment/failed')
-          }
-        },
-        error => {
-          Notiflix.Notify.failure(error.message, {
-            position: 'center-bottom'
-          })
-          this.message = 'Ha habido un error al eliminar el pago en Stripe.'
-          this.error = error.message;
-          this.waiting('/payment/failed')
-        }
-      )
+      // this.PaymentsService.stripeDelete(packet).subscribe(
+      //   result => {
+      //     if(result.delete === true){
+      //       this.waiting('/payment/cancel')
+      //     }
+      //     else{
+      //       Notiflix.Notify.failure(result.message, {
+      //         position: 'center-bottom'
+      //       })
+      //       this.waiting('/payment/failed')
+      //     }
+      //   },
+      //   error => {
+      //     Notiflix.Notify.failure(error.message, {
+      //       position: 'center-bottom'
+      //     })
+      //     this.message = 'Ha habido un error al eliminar el pago en Stripe.'
+      //     this.error = error.message;
+      //     this.waiting('/payment/failed')
+      //   }
+      // )
     }
     else{
-      Notiflix.Notify.failure('Ruta de verificación invalida.', {
-        position: 'center-bottom'
-      })
-      this.waiting('/payment/failed')
+      // Notiflix.Notify.failure('Ruta de callback del servidor invalida.', {
+      //   position: 'center-bottom'
+      // })
+      // this.waiting('/payment/failed')
     }
   }
 }

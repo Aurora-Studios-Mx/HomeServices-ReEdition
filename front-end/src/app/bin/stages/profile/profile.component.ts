@@ -406,7 +406,7 @@ export class ProfileComponent implements OnInit{
   public messageVisible: boolean = true;
 
   async ngOnInit(){
-    this.securityPopupHandle()
+    // this.securityPopupHandle()
     const reviewsGet = await this.getReviews();
 
     if(this.UUIDactive === this.whatUUID()){

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 
@@ -10,7 +11,7 @@ import { MenuItem } from 'primeng/api';
 export class ProductViewComponent implements OnInit{
 
   protected usage: string | undefined;
-  protected klass: string | undefined;
+  protected klass: number | undefined;
   protected message: string | undefined;
 
   constructor(private AR: ActivatedRoute){
@@ -18,17 +19,22 @@ export class ProductViewComponent implements OnInit{
   }
 
   ngOnInit(): void {
+
     if(this.usage === 'success'){
-      this.klass = 'bi bi-check-circle text-success';
+      this.klass = 0;
       this.message = 'Tu orden fue creada con éxito! Puedes cerrar la ventana.';
     }
     else if(this.usage === 'failed'){
-      this.klass = 'bi bi-x-circle text-danger';
-      this.message = 'Al parecer hubo un error. Prueba cerrar la ventana.';
+      this.klass = 1;
+      this.message = 'Al parecer hubo un error, contacta con soporte. Puedes cerrar la ventana.';
     }
     else if(this.usage === 'cancel'){
-      this.klass = 'bi bi-x-circle text-danger';
+      this.klass = 2;
       this.message = 'Tu orden fue cancelada.';
+    }
+    else{
+      this.klass = 3;
+      this.message = 'Callback del servidor fallido. Puedes cerrar la ventana.';
     }
   }
 

@@ -128,6 +128,9 @@ export class WelcomeComponent implements OnInit{
     this.usrServices.createSubCredentials(json).subscribe(result => {
       if(result.already === true){
         Notiflix.Loading.remove();
+      
+        localStorage.setItem('g0x', '0')
+
         if(this.interests === "2"){
           this.rt.navigateByUrl('/sellers');
         }

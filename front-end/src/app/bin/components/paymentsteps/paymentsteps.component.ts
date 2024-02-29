@@ -83,7 +83,8 @@ export class PaymentstepsComponent implements OnInit{
                 label: 'paypal',
                 tagline: false,
                 layout: 'horizontal',
-                fundingicons: true
+                fundingicons: true,
+                shape: 'rect'
             },
             onClientAuthorization: async (data) => {
                 const dataAuth = await this.sendAllData();

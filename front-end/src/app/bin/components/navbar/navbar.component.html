@@ -4,7 +4,7 @@
     <ul class="custom-list-group">
         <li class="custom-list-group-item"
             *ngFor="let match of matches"
-            [class.active]="typeaheadTemplateMethods.isActive(match)"
+            [class.custom-list-group-itemactive]="typeaheadTemplateMethods.isActive(match)"
             (click)="typeaheadTemplateMethods.selectMatch(match, $event)"
             (mouseenter)="typeaheadTemplateMethods.selectActive(match)">
             {{ match.item }}
@@ -36,7 +36,15 @@
                     <a class="nav-link nsfx" aria-current="page" href="/">Favoritos</a>
                 </li> -->
             </ul>
-            <a class="btn ntf-btn border-0 me-2" pTooltip="Mis notificaciones" tooltipPosition="bottom" type="submit" (click)="show()" *ngIf="extended && isCurrentSign">
+            <form class="d-flex" role="search" style="width: 25rem;" *ngIf="extended">
+                <div class="input-group">
+                    <input class="form-control ms-2 rounded-0" type="search" placeholder="¿Que servicio necesitas?" aria-label="Search" [typeahead]="suggests" [optionsListTemplate]="customListTemplate" [isAnimated]="true" [(ngModel)]="searchValue" name="searchValue">
+                    <button class="btn btn-dark-2 rounded-0" type="button" (click)="tpSearch()">
+                        <i class="bi bi-search fs-5"></i>
+                    </button>
+                </div>
+            </form>
+            <a class="btn ntf-btn border-0 me-2 ms-2" pTooltip="Mis notificaciones" tooltipPosition="bottom" type="submit" (click)="show()" *ngIf="extended && isCurrentSign">
                 <i class="bi bi-bell fs-5"></i>
             </a>
             <div *ngIf="!isCurrentSign">
@@ -108,26 +116,6 @@
         </div>
     </div>
 </nav> -->
-
-<nav class="navbar navbar-expand-lg p-2 dropped-shadow-tiny user-select-none z-0" style="overflow: visible; background-color: white" *ngIf="extended">
-    <div class="container-fluid p-0">
-        <div class="container-fluid d-flex align-items-center">
-            <h6 class="opacity-75 font-b">Hola! {{welcomeMsg}}</h6>
-        </div>
-        <div class="container-fluid d-flex justify-content-end">
-            <form class="d-flex" role="search" style="width: 25rem;" *ngIf="extended">
-                <div class="input-group">
-                    <input class="form-control ms-2 rounded-0" type="search" placeholder="¿Que servicio necesitas?" aria-label="Search" [typeahead]="suggests" [optionsListTemplate]="customListTemplate" [isAnimated]="true" [(ngModel)]="searchValue" name="searchValue">
-                    <button class="btn btn-dark-2 rounded-0" type="button" (click)="tpSearch()">
-                        <i class="bi bi-search fs-5"></i>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-</nav>
-
-
 
 
 

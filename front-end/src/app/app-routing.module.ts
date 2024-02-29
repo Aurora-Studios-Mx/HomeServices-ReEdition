@@ -7,11 +7,9 @@ import { InsideHomeComponent } from './bin/stages/inside-home/inside-home.compon
 import { TermsComponent } from './bin/stages/terms/terms.component';
 import { LoginComponent } from './bin/stages/login/login.component';
 import { ProfileComponent } from './bin/stages/profile/profile.component';
-import { Homestep2Component } from './bin/stages/homestep2/homestep2.component';
 import { Homestep3Component } from './bin/stages/homestep3/homestep3.component';
 import { Homestep4Component } from './bin/stages/homestep4/homestep4.component';
 import { ServicesViewComponent } from './bin/stages/services-view/services-view.component';
-import { ConfigComponent } from './bin/stages/config/config.component';
 import { ShopsComponent } from './bin/stages/shops/shops.component';
 import { NotifysComponent } from './bin/stages/notifys/notifys.component';
 import { PrivacyComponent } from './bin/stages/privacy/privacy.component';
@@ -25,32 +23,37 @@ import { WelcomeComponent } from './bin/stages/welcome/welcome.component';
 import { SellersPortalComponent } from './bin/stages/sellers-portal/sellers-portal.component';
 import { SearchComponent } from './bin/stages/search/search.component';
 import { MobileUsageComponent } from './bin/stages/mobile-usage/mobile-usage.component';
+import { NotsellerComponent } from './bin/stages/notseller/notseller.component';
+
+//Guards
+import { guard, guard_mobiles, guard_seller, guard_welcome } from './bin/guards/routes.guard';
 
 const routes: Routes = [
-  {path: '', pathMatch: 'prefix', component: InsideHomeComponent},
+  {path: '', pathMatch: 'prefix', component: InsideHomeComponent, canActivate: [guard_mobiles]},
   {path: 'start', component: HomeComponent},
-  {path: 'myservices/publish', component: Homestep2Component},
-  {path: 'sellers', component: Homestep3Component},
-  {path: 'sellers/register', component: Homestep4Component},
-  {path: 'terms', component: TermsComponent},
-  {path: 'privacy', component: PrivacyComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'profile/:uuid', component: ProfileComponent},
-  {path: 'payment/:status', component: ProductViewComponent },
-  {path: 'services/:uuid', component: ServicesViewComponent},
+  // {path: 'myservices/publish', component: Homestep2Component},
+  {path: 'sellers', component: Homestep3Component, canActivate: [guard, guard_mobiles]},
+  {path: 'sellers/register', component: Homestep4Component, canActivate: [guard, guard_mobiles]},
+  {path: 'terms', component: TermsComponent, canActivate: [guard_mobiles]},
+  {path: 'privacy', component: PrivacyComponent, canActivate: [guard_mobiles]},
+  {path: 'login', component: LoginComponent, canActivate: [guard_mobiles]},
+  {path: 'profile/:uuid', component: ProfileComponent, canActivate: [guard_mobiles]},
+  {path: 'payment/:status', component: ProductViewComponent, canActivate: [guard_mobiles]},
+  {path: 'services/:uuid', component: ServicesViewComponent, canActivate: [guard_mobiles]},
   // {path: 'myaccount/configuration', component: ConfigComponent},
-  {path: 'myaccount/s/owned', component: ShopsComponent},
-  {path: 'myaccount/notifications', component: NotifysComponent},
-  {path: 'services/buy/payment/:id', component: PaymentComponent},
-  {path: 'notaccount', component: NotaccountComponent},
-  {path: 'categories', component: CategoriesComponent},
-  {path: 'welcome', component: WelcomeComponent},
-  {path: 'myaccount/seller/dashboard', component: SellersPortalComponent},
-  {path: 'search', component: SearchComponent},
-  {path: 'verification', component: NotifysComponent},
+  {path: 'myaccount/s/owned', component: ShopsComponent, canActivate: [guard_mobiles]},
+  // {path: 'myaccount/notifications', component: NotifysComponent, canActivate: [guard_mobiles]},
+  {path: 'services/buy/payment/:id', component: PaymentComponent, canActivate: [guard_mobiles]},
+  {path: 'notaccount', component: NotaccountComponent, canActivate: [guard_mobiles]},
+  {path: 'notseller', component: NotsellerComponent, canActivate: [guard_mobiles]},
+  // {path: 'categories', component: CategoriesComponent, canActivate: [guard_mobiles]},
+  {path: 'welcome', component: WelcomeComponent, canActivate: [guard_welcome, guard_mobiles] },
+  {path: 'myaccount/seller/dashboard', component: SellersPortalComponent, canActivate: [guard_seller, guard_mobiles]},
+  {path: 'search', component: SearchComponent, canActivate: [guard_mobiles]},
+  {path: 'verification', component: NotifysComponent, canActivate: [guard_mobiles]},
 
   //Redirects for payments
-  {path: 'api/v1/payments/stripe/:activity', component: StripeComponent},
+  {path: 'api/v2/payments/stripe/:activity', component: StripeComponent},
   // {path: 'api/v1/payments/mercadopago/:activity', component: MercadopagoComponent},
 
   {path: 'mobile', component: MobileUsageComponent},

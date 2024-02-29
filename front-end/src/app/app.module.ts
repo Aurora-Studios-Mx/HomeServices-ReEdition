@@ -121,6 +121,7 @@ import { NgChartsModule } from 'ng2-charts';
 //Adsense
 import { AdsenseModule } from 'ng2-adsense';
 import { SecurityComponent } from './bin/components/security/security.component';
+import { NotsellerComponent } from './bin/stages/notseller/notseller.component';
 
 //Azure Method - Microsoft Token Gen
 export function MSALInstanceFactory(): IPublicClientApplication {
@@ -179,7 +180,8 @@ export function MSALInstanceFactory(): IPublicClientApplication {
     DetailsCancelComponent,
     SearchComponent,
     MobileUsageComponent,
-    SecurityComponent
+    SecurityComponent,
+    NotsellerComponent
   ],
   imports: [
     BrowserModule,

@@ -92,7 +92,7 @@
     background-color: #fff;
 }
 
-.custom-list-group-item.active {
+.custom-list-group-itemactive {
     z-index: 2;
     color: #fff;
     background-color: #933bf8;

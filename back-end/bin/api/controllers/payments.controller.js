@@ -304,8 +304,8 @@ async function createPaymentStripe(req, res){
                     }
                 ],
                 mode: 'payment',
-                success_url: 'http://localhost:4200/api/v1/payments/stripe/success?payloader='+body._item,
-                cancel_url: 'http://localhost:4200/api/v1/payments/stripe/cancel?payloader='+body._item,
+                success_url: 'http://localhost:10/api/v2/payments/stripe/success?payloader='+body._item,
+                cancel_url: 'http://localhost:10/api/v2/payments/stripe/cancel?payloader='+body._item,
             })
 
             if(session){

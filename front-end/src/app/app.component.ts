@@ -26,13 +26,7 @@ export class AppComponent implements OnInit{
   protected animations: string = '';
 
   constructor(@Inject('window') private window: Window, private router: Router, private Guardian: ServersguardianService, private dialog: DialogService, private usersManager: UsersgestorService) {
-    const isMobileDevice = (): boolean => {
-      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(this.window.navigator.userAgent);
-    };
 
-    if(isMobileDevice()){
-      this.router.navigate(['/mobile']);
-    }
   }
 
   runTimer() {

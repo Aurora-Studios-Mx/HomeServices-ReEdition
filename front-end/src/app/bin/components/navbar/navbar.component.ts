@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
 import * as Notiflix from 'notiflix';
 import { ServicesGestorService } from '../../services/api/services-gestor.service';
 import { SearchService } from '../../services/navbars/customization/search.service';
-import { getHours } from 'date-fns';
 
 @Component({
   selector: 'app-navbar',
@@ -26,7 +25,6 @@ export class NavbarComponent implements OnInit{
   drop?: boolean = true;
 
   private ref: DynamicDialogRef | undefined;
-  protected welcomeMsg: string | undefined = this.generateWelcome();
   protected notifications: number = 0;
 
   protected isCurrentSign: boolean = false;
@@ -46,7 +44,7 @@ export class NavbarComponent implements OnInit{
 
   protected searchValue: string = '';
 
-  protected somebodyClass = 'navbar navbar-expand-lg p-2 user-select-none z-1';
+  protected somebodyClass = 'navbar navbar-expand-lg p-2 user-select-none z-1 dropped-shadow-tiny';
 
   constructor(private _logService: LoggedService, private readonly userAPI: UsersgestorService, public dialogService: DialogService, private rt: Router, private _serv: ServicesGestorService, private obs: SearchService) {
   }
@@ -220,25 +218,12 @@ export class NavbarComponent implements OnInit{
     }, 1000);
   }
 
-  generateWelcome(): string{
-    const date = getHours(new Date());
-
-    if(date >= 0 && date <= 12){
-      return 'Buenos días';
-    }
-    else if (date >= 13 && date <= 18){
-      return 'Buenas tardes';
-    }
-    else{
-      return 'Buenas noches';
-    }
-  }
-
   deleteCurrentSesion(): void{
     if(localStorage.getItem('uu0x0')){
       localStorage.removeItem('uu0x0');
       localStorage.removeItem('ac0x1');
       localStorage.removeItem('_token');
+      localStorage.removeItem('g0x')
     }
     else{
       sessionStorage.removeItem('uu0x0');

@@ -5,12 +5,30 @@
         </div>
     </div>
     <div *ngIf="statement === 0">
-        <h4 class="font-b"><i class="bi bi-lock"></i> Seguridad</h4>
-        <p style="font-size: small;">Vincule Google Authentication App a HomeServices® para habilitar la verificación en dos pasos.</p>
-        <button type="button" class="btn btn-outline-dark rounded-0" (click)="createSecretKey()">
-            <i class="bi bi-google fs-5"></i>
-            Habilitar verificación en dos pasos
-        </button>
+        <div *ngIf="TFA_STATE === 0">
+            <h4 class="font-b"><i class="bi bi-lock"></i> Seguridad</h4>
+            <p style="font-size: small;">Vincule Google Authentication App a HomeServices® para habilitar la verificación en dos pasos.</p>
+            <button type="button" class="btn btn-outline-dark rounded-0" (click)="createSecretKey()">
+                <i class="bi bi-google fs-5"></i>
+                Habilitar verificación en dos pasos
+            </button>
+        </div>
+        <div *ngIf="TFA_STATE === 2">
+            <h4 class="font-b"><i class="bi bi-lock"></i> Seguridad</h4>
+            <p style="font-size: small;">Error obteniendo el estado del 2FA.</p>
+            <button type="button" class="btn btn-outline-dark rounded-0" [disabled]="true">
+                <i class="bi bi-google fs-5"></i>
+                Habilitar verificación en dos pasos
+            </button>
+        </div>
+        <div *ngIf="TFA_STATE === 1">
+            <h4 class="font-b"><i class="bi bi-lock"></i> Seguridad</h4>
+            <p style="font-size: small;">Desvincule Google Authentication de tu cuenta con HomeServices®.</p>
+            <button type="button" class="btn btn-outline-dark rounded-0" (click)="disable2FA()">
+                <i class="bi bi-unlock fs-5"></i>
+                Desvincular verificación en dos pasos
+            </button>
+        </div>
         <h4 class="mt-4 font-b"><i class="bi bi-person"></i> Cuenta</h4>
         <p style="font-size: small;">Solicitar eliminación de la cuenta actual</p>
         <button type="button" class="btn btn-outline-danger rounded-0">

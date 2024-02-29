@@ -2,23 +2,17 @@
     <app-navbar-tiny></app-navbar-tiny>
     <div style="position: absolute; left: 50%; top: 48%; transform: translate(-48%, -50%); text-align: center;">
         <div class="col border-start">
-            <div class="container-fluid mt-5" style="opacity: .5;">
-                <div class="d-flex justify-content-center">
-                    <div class="waveform">
-                        <div class="waveform__bar"></div>
-                        <div class="waveform__bar"></div>
-                        <div class="waveform__bar"></div>
-                        <div class="waveform__bar"></div>
-                    </div>
-                </div>
+            <div class="container-fluid mt-5">
+                <img src="../../../../assets/svg/hs_confirmed.svg" alt="Error SVG" style="width: auto; height: 25vh;">
                 <div class="d-flex justify-content-center mt-4 mb-0">
-                    <p class="mb-2">{{message}}</p>
+                    <!-- <p class="mb-2">{{message}}</p> -->
+                    <h4 class="mb-2 font-b">{{message}}</h4>
                 </div>
                 <p>{{error}}</p>
 
-                <p class="mt-5">Espere 10 segundos para ser redirigido...</p>
+                <p class="mt-5 opacity-50 font-b">Espere 10 segundos para ser redirigido...</p>
             </div>
         </div>
     </div>
-    <app-footer style="position: absolute; bottom: 0%; width: 100%;"></app-footer>
+    <!-- <app-footer style="position: absolute; bottom: 0%; width: 100%;"></app-footer> -->
 </div>

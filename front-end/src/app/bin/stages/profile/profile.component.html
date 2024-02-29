@@ -2,7 +2,7 @@
 
 <p-toast></p-toast>
 
-<div class="row w-100">
+<div class="row w-100 mt-4">
     <div class="col" >
         <div class="alert alert-danger border-0 bg-transparent rounded-0" *ngIf="messageVisible" role="alert">
             <strong>¡Cuidado!</strong> {{alertA}}
@@ -19,12 +19,12 @@
 <div class="container-fluid d-flex justify-content-center mt-5">
     <div class="row text-center">
         <p-avatar label="{{nameLetter}}" shape="circle" styleClass="mr-2" [style]="{'width':'150px', 'height':'150px', 'background-color': '#000', 'color': '#fff', 'font-size': '45px'}" *ngIf="!isURLPic"></p-avatar>
-        <p-avatar image="{{URLimage}}" shape="circle" styleClass="mr-2" [style]="{'width':'150px', 'height':'150px', 'background-color': '#fff'}" class="rounded-2" *ngIf="isURLPic"></p-avatar>
+        <p-avatar image="{{URLimage}}" shape="circle" styleClass="mr-2" [style]="{'width':'150px', 'height':'150px'}" class="rounded-2" *ngIf="isURLPic"></p-avatar>
         <h2 class="text-break font-b">
             {{name}}
             <span *ngIf="verify === 2" pTooltip="Este presta-servicios esta verificado por HomeServices®"><i class="bi bi-patch-check text-success"></i></span>
             <br>
-            <span class="opacity-50" style="font-size: 18px;">#{{UUIDactive[0]}}{{UUIDactive[1]}}{{UUIDactive[2]}}{{UUIDactive[3]}}{{UUIDactive[4]}}</span>
+            <span class="opacity-50 user-select-none" pTooltip="Identificador Único de HomeServices®" style="font-size: 18px;">#{{UUIDactive[0]}}{{UUIDactive[1]}}{{UUIDactive[2]}}{{UUIDactive[3]}}{{UUIDactive[4]}}</span>
         </h2>
     </div>
 </div>
@@ -40,7 +40,7 @@
     </div>
 </div> -->
 
-<div class="container-fluid d-flex justify-content-center mt-3">
+<div class="container-fluid d-flex justify-content-center mt-3 user-select-none">
     <div class="row w-auto ms-4">
         <div class="col opacity-75 text-center">
             <p-rating [readonly]="true" [cancel]="false" [(ngModel)]="reputationValue"></p-rating>

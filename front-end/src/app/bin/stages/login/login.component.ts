@@ -103,6 +103,8 @@ export class LoginComponent implements OnInit{
             localStorage.setItem('uu0x0', result.uuid)
             localStorage.setItem('ac0x1', 'true')
             localStorage.setItem('_token', result.token)
+            localStorage.setItem('g0x', '1')
+            localStorage.setItem('g1x', result.guard)
             
             this.router.navigate(["/welcome"]);
           }
@@ -111,6 +113,8 @@ export class LoginComponent implements OnInit{
               localStorage.setItem('uu0x0', result.uuid)
               localStorage.setItem('ac0x1', 'true')
               localStorage.setItem('_token', result.token)
+              localStorage.setItem('g0x', '0')
+              localStorage.setItem('g1x', result.guard)
               
               this.router.navigate(["/"]);
             }
@@ -118,7 +122,8 @@ export class LoginComponent implements OnInit{
               this.router.navigate(["/verification"], {
                 queryParams: {
                   uuid: result.uuid,
-                  token: result.token
+                  token: result.token,
+                  guard: result.guard
                 }
               });
             }

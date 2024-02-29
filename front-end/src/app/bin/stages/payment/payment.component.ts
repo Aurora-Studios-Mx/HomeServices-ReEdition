@@ -71,7 +71,7 @@ export class PaymentComponent implements OnInit{
                 this.priceB = res.extras[0].priceB0x9;
             }
 
-            this.priceC = ((res.extras[0].price0x5 * this.multiple) * 0.30)
+            this.priceC = ((res.extras[0].price0x5 * this.multiple) * 0.15)
             
         }, error => {
             console.error(error);

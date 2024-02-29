@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { UsersgestorService } from '../../services/api/usersgestor.service';
 import { Title } from '@angular/platform-browser';
 import { ServicesGestorService } from '../../services/api/services-gestor.service';
+import * as Notiflix from 'notiflix';
+import { getHours } from 'date-fns';
 
 @Component({
   selector: 'app-inside-home',
@@ -16,6 +18,8 @@ export class InsideHomeComponent implements OnInit{
   protected City: string = '';
   protected Region: string = '';
 
+  protected welcomeLabel: string = this.generateWelcome();
+
   protected locationItems = [];
 
   protected topSells = [];
@@ -26,7 +30,7 @@ export class InsideHomeComponent implements OnInit{
 
   protected news = [];
 
-  constructor(private route: ActivatedRoute, private _API_: UsersgestorService, private title: Title, private NG_MSG: MessageService, private _services: ServicesGestorService){}
+  constructor(private rt: Router, private route: ActivatedRoute, private _API_: UsersgestorService, private title: Title, private NG_MSG: MessageService, private _services: ServicesGestorService){}
 
   whatUUID(): string {
     if(localStorage.getItem('uu0x0')){
@@ -61,6 +65,20 @@ export class InsideHomeComponent implements OnInit{
         reject(false);
       })
     })
+  }
+
+  generateWelcome(): string{
+    const date = getHours(new Date());
+
+    if(date >= 0 && date <= 12){
+      return 'Buenos días';
+    }
+    else if (date >= 13 && date <= 18){
+      return 'Buenas tardes';
+    }
+    else{
+      return 'Buenas noches';
+    }
   }
 
   getLocation(): Promise<boolean>{
@@ -157,6 +175,15 @@ export class InsideHomeComponent implements OnInit{
     this.title.setTitle('Inicio | HomeServices®️');
 
     const uid = this.whatUUID();
+
+    const guard0 = localStorage.getItem('g0x');
+
+    if(guard0 === '1'){
+      Notiflix.Notify.warning('No puedes continuar sin terminar tu registro.', {
+        position: 'center-bottom'
+      })
+      this.rt.navigate(['/welcome'])
+    }
     
     if(uid !== 'undefined'){
       const location = await this.getLocation();

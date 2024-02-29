@@ -15,6 +15,7 @@ export class NotifysComponent implements OnInit{
   protected TFA_FORM: FormGroup;
   private uuid: string = '';
   private token: string = '';
+  private guard: any;
   
   constructor(private router: ActivatedRoute, private TFA_SETUP: TfaManagerService, private _builder: FormBuilder, private rt: Router, private Title: Title){
     this.TFA_FORM = this._builder.group({
@@ -61,6 +62,7 @@ export class NotifysComponent implements OnInit{
         localStorage.setItem('uu0x0', this.uuid)
         localStorage.setItem('ac0x1', 'true')
         localStorage.setItem('_token', this.token)
+        localStorage.setItem('g0x', this.guard)
 
         this.rt.navigate(["/"]);
       }
@@ -68,6 +70,7 @@ export class NotifysComponent implements OnInit{
       Notiflix.Notify.failure('[ERROR 0x14] Hubo un problema mientras validábamos el código de verificación.', {
         position: 'center-bottom'
       });
+      console.error(error);
     });
   }
 
@@ -76,6 +79,7 @@ export class NotifysComponent implements OnInit{
     this.router.queryParams.subscribe(params => {
       this.uuid = params['uuid'];
       this.token = params['token'];
+      this.guard = params['guard'];
     })
   }
 
