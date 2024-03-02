@@ -114,14 +114,15 @@ import { DetailsCancelComponent } from './bin/components/details-cancel/details-
 import { SearchComponent } from './bin/stages/search/search.component';
 import { SellersPortalComponent } from './bin/stages/sellers-portal/sellers-portal.component';
 import { MobileUsageComponent } from './bin/stages/mobile-usage/mobile-usage.component';
+import { UpperinputsDirective } from './bin/directives/customization/upperinputs.directive';
+import { SecurityComponent } from './bin/components/security/security.component';
+import { NotsellerComponent } from './bin/stages/notseller/notseller.component';
 
 //Charts
 import { NgChartsModule } from 'ng2-charts';
 
 //Adsense
 import { AdsenseModule } from 'ng2-adsense';
-import { SecurityComponent } from './bin/components/security/security.component';
-import { NotsellerComponent } from './bin/stages/notseller/notseller.component';
 
 //Azure Method - Microsoft Token Gen
 export function MSALInstanceFactory(): IPublicClientApplication {
@@ -181,7 +182,8 @@ export function MSALInstanceFactory(): IPublicClientApplication {
     SearchComponent,
     MobileUsageComponent,
     SecurityComponent,
-    NotsellerComponent
+    NotsellerComponent,
+    UpperinputsDirective
   ],
   imports: [
     BrowserModule,

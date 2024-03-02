@@ -194,7 +194,7 @@ export class SecurityComponent implements OnInit{
 
         this.statement = 1;
 
-        Notiflix.Notify.success('Desvinculado con éxito.', {
+        Notiflix.Notify.success('Desvinculado con éxito. Puede eliminarse de la app de Google.', {
           position: 'center-bottom'
         });
 

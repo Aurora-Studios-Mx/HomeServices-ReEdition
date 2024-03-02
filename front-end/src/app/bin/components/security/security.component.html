@@ -1,4 +1,4 @@
-<div class="container-fluid p-0 text-center">
+<div class="container-fluid p-0">
     <div class="h-100" *ngIf="statement === 2">
         <div class="spinner-border" role="status">
             <span class="visually-hidden">Loading...</span>
@@ -29,12 +29,12 @@
                 Desvincular verificación en dos pasos
             </button>
         </div>
-        <h4 class="mt-4 font-b"><i class="bi bi-person"></i> Cuenta</h4>
+        <!-- <h4 class="mt-4 font-b"><i class="bi bi-person"></i> Cuenta</h4>
         <p style="font-size: small;">Solicitar eliminación de la cuenta actual</p>
         <button type="button" class="btn btn-outline-danger rounded-0">
             <i class="bi bi-x-circle fs-5"></i>
             Eliminar cuenta
-        </button>
+        </button> -->
     </div>
     <div *ngIf="statement === 1">
         <h4 class="font-b"><i class="bi bi-qr-code-scan"></i> Escanea el código QR e ingresa el código de verificación</h4>

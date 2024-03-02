@@ -261,6 +261,11 @@ async function insertCode(req, res){
 function verificationInformation(req, res){
     const body = req.body;
 
+    if(body.c0x === undefined || body.r0x === undefined){
+        res.status(200).json({result: false, message: 'Faltan datos para realizar la verificación.', payload: 'UD'})
+        return;
+    }
+
     const ValidatorA = X01.validar(body.c0x);
     const ValidatorB = X02(body.r0x)
 
@@ -269,12 +274,12 @@ function verificationInformation(req, res){
             res.status(200).json({result: true})
         }
         else{
-            res.status(200).json({result: false, message: 'El RFC no coincide con los datos proporcionados.'})
+            res.status(200).json({result: false, message: 'El RFC no coincide con los datos proporcionados.', payload: 'RC'})
             return;
         }
     }
     else{
-        res.status(200).json({result: false, message: 'La CURP no coincide con los datos proporcionados.'})
+        res.status(200).json({result: false, message: 'La CURP no coincide con los datos proporcionados.', payload: 'CRP'})
         return;
     }
 }

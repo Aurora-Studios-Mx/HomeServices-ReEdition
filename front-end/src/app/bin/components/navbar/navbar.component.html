@@ -127,13 +127,13 @@
         <div class="user-select-none">
             <button class="btn canvas-item rounded-0 w-100 mb-1" type="button" routerLink="/profile/{{userProfile}}"><i class="bi bi-person"></i> Ir a mi perfil</button>
             <button class="btn canvas-item rounded-0 w-100 mb-1" type="button" routerLink="/myaccount/s/owned"><i class="bi bi-cart-check"></i> Servicios contratados</button>
-            <button class="btn canvas-item rounded-0 w-100 mb-1" type="button"><i class="bi bi-gem"></i> HomeServices® Prime</button>
             <button *ngIf="isSeller" class="btn canvas-item rounded-0 w-100 mb-1" type="button" (click)="transportWeb()"><i class="bi bi-person-raised-hand"></i> Mis ventas</button>
             <button *ngIf="isShopper" class="btn canvas-item rounded-0 w-100 mb-1" type="button" routerLink="/sellers"><i class="bi bi-basket"></i> Convertirme en vendedor</button>
             <button *ngIf="isOrganizer" class="btn canvas-item rounded-0 w-100 mb-1" type="button"><i class="bi bi-building"></i> Organizaciones</button>
         </div>
     </ng-template>
     <ng-template pTemplate="footer">
+        <button class="btn canvas-item rounded-0 w-100 mb-1" type="button"><i class="bi bi-question-circle"></i> ¿Quienes somos?</button>
         <button class="btn rounded-0 w-100 red mb-1" type="button" (click)="deleteCurrentSesion()"><i class="bi bi-door-open"></i> Cerrar sesión</button>
     </ng-template>
 </p-sidebar>

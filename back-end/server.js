@@ -2,7 +2,6 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const morgan = require('morgan');
 
 //Clear
 console.clear();
@@ -68,9 +67,11 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({extended: true, limit: '50mb'}));
 
-//Set Morgan Dev for development
-const { studioLoggerHandle } = require('./bin/utility/middlewares');
-// app.use(morgan('dev'));
+//Set middlewares for development
+const { studioLoggerHandle, FalconSQLInyector, FalconIPBanned } = require('./bin/utility/middlewares');
+
+app.use(FalconSQLInyector)
+app.use(FalconIPBanned)
 app.use(studioLoggerHandle)
 
 //Use router

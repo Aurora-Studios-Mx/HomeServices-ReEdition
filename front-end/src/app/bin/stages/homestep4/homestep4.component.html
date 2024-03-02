@@ -198,7 +198,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <span class="p-float-label w-100 mt-4">
-                                            <input pInputText id="crp" type="text" autocomplete="off" class="w-100 rounded-0" formControlName="crp" maxlength="18"/>
+                                            <input pInputText id="crp" type="text" autocomplete="off" class="w-100 rounded-0" formControlName="crp" maxlength="18" appUpperinputs/>
                                             <label htmlFor="email">CURP</label>
                                         </span>
                                         <p class="mb-0 mt-1" style="font-size: 12px; opacity: .7;">¿No tienes tu CURP? Solicítala en linea <a target="_blank" href="https://www.gob.mx/curp/">aquí.</a>.</p>
@@ -215,7 +215,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <span class="p-float-label w-100 mt-4">
-                                            <input [disabled]="R_2Validators" autocomplete="off" pInputText id="rc" type="text" class="w-100 rounded-0" formControlName="rc" maxlength="13"/>
+                                            <input autocomplete="off" pInputText id="rc" type="text" class="w-100 rounded-0" formControlName="rc" appUpperinputs maxlength="13"/>
                                             <label htmlFor="email">RFC</label>
                                         </span>
                                     </div>
@@ -232,21 +232,15 @@
                             <hr class="mt-4">
                             <div class="d-flex justify-content-end">
                                 <p-confirmPopup></p-confirmPopup>
-                                <button type="button" *ngIf="validated" class="btn btn-purple rounded-0" (click)="confirm($event)">Siguiente <i class="bi-arrow-right"></i></button>
-                                <button type="button" *ngIf="!validated" class="btn btn-purple rounded-0" (click)="confirm($event)">Validar fiscales</button>
+                                <button type="button" *ngIf="validated" class="btn btn-dark-2 rounded-0" (click)="confirm($event)">Siguiente <i class="bi-arrow-right"></i></button>
+                                <button type="button" *ngIf="!validated" class="btn btn-dark-2 rounded-0" (click)="verifyFiscals()">Validar fiscales</button>
                             </div>
                         </p-tabPanel>
                         <p-tabPanel header="Contratos" [disabled]="disabled2">
                             
                         </p-tabPanel>
-                        <p-tabPanel header="Archivos" [disabled]="disabled3">
+                        <p-tabPanel header="HomeServices®" [disabled]="disabled3">
                             
-                        </p-tabPanel>
-                        <p-tabPanel header="HomeServices®" [disabled]="disabled4">
-                            <p>
-                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim
-                                ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.
-                            </p>
                         </p-tabPanel>
                     </p-tabView>
                 </form>

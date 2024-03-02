@@ -83,4 +83,8 @@ export class UsersgestorService {
   public getLocation_2(data: any): Observable<any>{
     return this._http.post<any>(this.API_URL + '/api/v1/post/user/info/smart/location', data);
   }
+
+  public verifyFiscals(data: any): Observable<any>{
+    return this._http.post<any>(this.API_URL + '/api/v2/post/security/verification/fiscals', data);
+  }
 }

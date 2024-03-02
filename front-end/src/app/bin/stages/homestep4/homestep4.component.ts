@@ -91,13 +91,10 @@ export class Homestep4Component implements OnInit{
   protected disabled1: boolean = false;
   protected disabled2: boolean = true;
   protected disabled3: boolean = true;
-  protected disabled4: boolean = true;
   protected activeTab: number = 0;
 
   protected CValidators: boolean = false;
-  protected C_2Validators: boolean = false;
   protected RValidators: boolean = false;
-  protected R_2Validators: boolean = false;
 
   protected texts: string = '';
   protected validated: boolean = false;
@@ -182,6 +179,64 @@ export class Homestep4Component implements OnInit{
     this.title.setTitle('Formulario de registro | HomeServices®️')
   }
 
+  onChangeTab(value: number): void{
+    if(value === 1){
+      this.disabled1 = true;
+      this.disabled2 = false;
+    }
+    else{
+      this.disabled2 = true;
+      this.disabled3 = false;
+    }
+  }
+
+  verifyFiscals(): void{
+    Notiflix.Loading.dots('Verificando tus datos fiscales...', {
+      clickToClose: false,
+      svgColor: '#a95eff',
+      className: 'font-b',
+      backgroundColor: '#fff',
+      messageColor: '#000'
+    });
+
+    const crp = this.formCurrentStage.value.crp;
+    const rc = this.formCurrentStage.value.rc;
+
+    const packet = {
+      "c0x": crp,
+      "r0x": rc
+    }
+
+    this._users.verifyFiscals(packet).subscribe((data: any) => {
+      if(data.result === true){
+        this.CValidators = true;
+        this.RValidators = true;
+        this.validated = true;
+      }
+      else{
+        if(data.payload === 'CRP'){
+          this.RValidators = true;
+          this.CValidators = false;
+        }
+        else if (data.payload === 'RC') {
+          this.CValidators = true;
+          this.RValidators = false;
+        }
+        else{
+          this.CValidators = false;
+          this.RValidators = false;
+        }
+
+        this.NG_MSG.add({severity: 'error', summary: 'Error', detail: data.message});
+      }
+    }, (error: any) => {
+      console.error(error);
+      this.NG_MSG.add({severity: 'error', summary: 'Error', detail: 'Error verificando la información fiscal. Reason: ' + error});
+    });
+
+    Notiflix.Loading.remove();
+  }
+
   confirm(event: Event) {
     this.confirmationService.confirm({
       target: event.target || undefined,
@@ -190,15 +245,11 @@ export class Homestep4Component implements OnInit{
       rejectButtonStyleClass: 'p-button-help p-button-text rounded-0',
       icon: 'bi bi-exclamation-triangle',
       accept: () => {
-        
-      },
-      reject: () => {
-        
+        this.activeTab += 1;
+        this.onChangeTab(this.activeTab);
       }
     });
   }
-
-  async ValidateCURPandRFC(){}
 
   async uploadImages() {
     if(this._fileA_length > 2){

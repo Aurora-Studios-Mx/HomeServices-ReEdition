@@ -38,7 +38,7 @@ async function ConnectionAdmins(){
         return CNx0;
     }
     catch(err){
-        console.log("[ERR] Utility mysql DBx0 throw error: " + err);
+        console.log("[ERR] Utility mysql DBx0-Admins throw error: " + err);
         throw err;
     }
 }
