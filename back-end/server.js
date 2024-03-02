@@ -7,10 +7,10 @@ const bodyParser = require('body-parser');
 console.clear();
 
 //.env
-require('dotenv').config({ path: './.env'})
+// require('dotenv').config({ path: './.env'})
 const origins = ['http://localhost:10'];
 const port = process.env.PORT || 3001;
-const host = process.env.HOST;
+// const host = process.env.HOST;
 
 //Routers
 const mainRouter = require('./bin/api/routers/init.routes');
@@ -87,7 +87,7 @@ app.use(messageRouter);
 app.use(commentaryRouter);
 app.use(tfaRouter);
 
-server.listen(port, host, () => {
+server.listen(port, () => {
     console.log('-------------------------------------------')
     console.log(`| [*] Express: HS-Backend services up! 🚀 |`);
     console.log('-------------------------------------------')
