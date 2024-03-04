@@ -34,7 +34,6 @@ export class HomeComponent implements OnInit{
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]],
       password: ['', [Validators.required, Validators.minLength(6), Validators.pattern(/[a-zA-Z0-9!@#$%^&*()-_+=<>?]/)]],
-      session: ['']
     })
 
     this.Title.setTitle('Crear cuenta | HomeServices®️')
@@ -119,21 +118,17 @@ export class HomeComponent implements OnInit{
               this.userAPI.compareCredentials(json2).subscribe(result2 => {
                 Notiflix.Loading.remove();
                 
-                if(this.formLogin.controls['session'].value === true){
-                  localStorage.setItem('uu0x0', json.u0x)
-                  localStorage.setItem('ac0x1', 'true')
-                  localStorage.setItem('_token', result2.token)
-                }
-                else{
-                  sessionStorage.setItem('uu0x0', json.u0x)
-                  sessionStorage.setItem('ac0x1', 'true')
-                  sessionStorage.setItem('_token', result2.token)
-                }
-                  
+                localStorage.setItem('uu0x0', json.u0x)
+                localStorage.setItem('ac0x1', 'true')
+                localStorage.setItem('_token', result2.token)
+                localStorage.setItem('g1x', result.guard)
+                
                 if(result2.isnew === 1){
+                  localStorage.setItem('g0x', '1')
                   this.router.navigate(["/welcome"]);
                 }
                 else{
+                  localStorage.setItem('g0x', '0')
                   this.router.navigate(["/"]);
                 }
               }, error => {

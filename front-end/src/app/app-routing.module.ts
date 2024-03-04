@@ -27,6 +27,7 @@ import { NotsellerComponent } from './bin/stages/notseller/notseller.component';
 
 //Guards
 import { guard, guard_mobiles, guard_seller, guard_welcome } from './bin/guards/routes.guard';
+import { AboutComponent } from './bin/stages/about/about.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'prefix', component: InsideHomeComponent, canActivate: [guard_mobiles]},
@@ -51,6 +52,7 @@ const routes: Routes = [
   {path: 'myaccount/seller/dashboard', component: SellersPortalComponent, canActivate: [guard_seller, guard_mobiles]},
   {path: 'search', component: SearchComponent, canActivate: [guard_mobiles]},
   {path: 'verification', component: NotifysComponent, canActivate: [guard_mobiles]},
+  {path: 'about-homeservices', component: AboutComponent, canActivate: [guard_mobiles]},
 
   //Redirects for payments
   {path: 'api/v2/payments/stripe/:activity', component: StripeComponent},

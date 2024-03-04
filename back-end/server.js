@@ -7,10 +7,10 @@ const bodyParser = require('body-parser');
 console.clear();
 
 //.env
-// require('dotenv').config({ path: './.env'})
+require('dotenv').config({ path: './.env'})
 const origins = ['http://localhost:10'];
 const port = process.env.PORT || 3001;
-// const host = process.env.HOST;
+const host = process.env.HOST;
 
 //Routers
 const mainRouter = require('./bin/api/routers/init.routes');
@@ -68,8 +68,10 @@ app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({extended: true, limit: '50mb'}));
 
 //Set middlewares for development
+const helmet = require('helmet');
 const { studioLoggerHandle, FalconSQLInyector, FalconIPBanned } = require('./bin/utility/middlewares');
 
+app.use(helmet())
 app.use(FalconSQLInyector)
 app.use(FalconIPBanned)
 app.use(studioLoggerHandle)
@@ -87,7 +89,7 @@ app.use(messageRouter);
 app.use(commentaryRouter);
 app.use(tfaRouter);
 
-server.listen(port, () => {
+server.listen(port, host, () => {
     console.log('-------------------------------------------')
     console.log(`| [*] Express: HS-Backend services up! 🚀 |`);
     console.log('-------------------------------------------')

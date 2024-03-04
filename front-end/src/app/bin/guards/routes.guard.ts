@@ -29,7 +29,7 @@ export const guard_welcome = () => {
 export const guard_seller = () => {
     const router = inject(Router)
 
-    if(localStorage.getItem('g1x') === '2'){
+    if(localStorage.getItem('g1x') === '1'){
         return true;
     }
     else{

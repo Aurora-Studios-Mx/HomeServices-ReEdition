@@ -276,7 +276,8 @@ function convertToCents(amount) {
             reject(new Error('Amount must be a number'));
         }
         
-        const cents = amount * 100;
+        const rounded = Math.round(amount * 100) / 100;
+        const cents = rounded * 100;
         resolve(cents);
     });
 }
@@ -284,11 +285,12 @@ function convertToCents(amount) {
 //Stripe payments
 async function createPaymentStripe(req, res){
     const body = req.body;
-
+    
     if(body){
         try{
             const price_unit = await convertToCents(body._price);
-
+            const rounded_price_unit = Math.round(price_unit);
+            
             const session = await stp.checkout.sessions.create({
                 line_items: [
                     {
@@ -298,7 +300,7 @@ async function createPaymentStripe(req, res){
                                 description: 'HOMESERVICES-AURORAMX'
                             },
                             currency: 'mxn',
-                            unit_amount: price_unit,
+                            unit_amount: rounded_price_unit,
                         },
                         quantity: body._qual
                     }
@@ -335,7 +337,6 @@ async function createPaymentStripe(req, res){
             })
         }
     }
-
 }
 
 async function UpdateInformationTicketStripe(req, res){

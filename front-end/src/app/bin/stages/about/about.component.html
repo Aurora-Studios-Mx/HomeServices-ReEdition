@@ -1,0 +1,111 @@
+<app-navbar [drop]="false" [extended]="false" [blured]="true" class="position-fixed w-100 sticky-top"></app-navbar>
+
+<div class="info d-flex dropped-shadow overflow-hidden" style="background: url('../../../../assets/a_us_2.png'); height:100vh; background-size: cover;">
+    <div class="container" style="margin-top: 10rem;">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 text-center user-select-none">
+                <h1 class="font-b" style="color: #1f1f1f; font-size: 58px;">Nosotros somos HomeServices®</h1>
+                <p style="color: #1f1f1f;">Una plataforma enfocada al apoyo de trabajadores informales, potenciada con la tecnología Athenas de Aurora Studios.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container w-100 p-0 user-select-none" style="margin-top: 6rem;">
+    <div class="row">
+        <div class="col d-flex align-items-center">
+            <div class="row">
+                <h1 class="font-b">Con HomeServices®</h1>
+                <p class="m-0">
+                    Los usuarios acceden a un activo ecosistema de servicios, los trabajadores informales pueden hacer crecer sus negocios y las personas pueden convertir su tiempo libre en ingresos extra.
+                </p>
+            </div>
+        </div>
+        <div class="col-5 d-flex align-items-center justify-content-center">
+            <img src="../../../../assets/svg/hs_delivery.svg" alt="Questions SVG" style="width: auto; height: 30vh;">
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 9rem;">
+        <div class="col-5 d-flex align-items-center justify-content-center">
+            <img src="../../../../assets/svg/hs_athenas.svg" alt="Info SVG" style="width: auto; height: 30vh;">
+        </div>
+        <div class="col d-flex align-items-center">
+            <div class="row">
+                <h1 class="font-b">Potenciado por la tecnología Athenas</h1>
+                <p class="m-0">
+                    Aurora Studios lanza su kit de desarrollo Athenas-V3 para conseguir una infraestructura concreta desde el servidor para gestionar cada transaccion de datos entre el cliente-servidor. Potencia la seguridad de las micro-transacciones y estimula la seguridad de peticiones ante posibles ataques.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="text-center" style="margin-top: 9rem;">
+        <h1 class="font-b border-text">Conoce a nuestros fundadores</h1>
+        <div class="d-flex gap-3 flex-wrap mt-5 justify-content-center">
+            <p-card class="w-25 sfx" header="Zair Leon">
+                <ng-template pTemplate="header">
+                    <img alt="Card" src="https://primefaces.org/cdn/primeng/images/usercard.png" />
+                </ng-template>
+                Desarrollador y Fundador de HomeServices®
+            </p-card>
+            <p-card class="w-25 sfx" header="Irvin Pereda">
+                <ng-template pTemplate="header">
+                    <img alt="Card" src="https://primefaces.org/cdn/primeng/images/usercard.png" />
+                </ng-template>
+                Co-Fundador de HomeServices®
+            </p-card>
+            <p-card class="w-25 sfx" header="Felix Rincon">
+                <ng-template pTemplate="header">
+                    <img alt="Card" src="https://primefaces.org/cdn/primeng/images/usercard.png" />
+                </ng-template>
+                Co-Fundador de HomeServices®
+            </p-card>
+        </div>
+    </div>
+</div>
+
+<div class="container text-center" style="margin-top: 9rem;">
+    <h1 class="font-b">Algunas tecnologías implementadas:</h1>
+    <div class="d-flex gap-5 mt-5 justify-content-center align-items-center">
+        <img class="sfx2" src="../../../../assets/devicons/agradient.png" style="width: auto; height: 70px;" alt="Angular Logo">
+        <img class="sfx2" src="../../../../assets/devicons/blogo.png" style="width:auto; height: 70px; " alt="Bootstrap Logo">
+        <img class="sfx2" src="../../../../assets/devicons/png.png" style="width: auto; height: 70px;" alt="PrimeNg Logo">
+        <img class="sfx2" src="../../../../assets/devicons/pp.png" style="width: auto; height: 70px;" alt="PayPal Logo">
+        <img class="sfx2" src="../../../../assets/devicons/mercadopago_icon.png" style="width: auto; height: 70px;" alt="MP Logo">
+        <img class="sfx2" src="../../../../assets/devicons/gg.png" style="width:auto; height: 70px; " alt="Google Logo">
+        <img class="sfx2" src="../../../../assets/devicons/aws.png" style="width: auto; height: 60px;" alt="Stripe Logo">
+        <img class="sfx2" src="../../../../assets/devicons/recap.png" style="width: auto; height: 70px;" alt="Recaptcha Logo">
+    </div>
+</div>
+
+<div class="container w-100 p-0 user-select-none" style="margin-top: 10rem;">
+    <h1 class="font-b text-center mb-5">Nuestro modelo de negocios:</h1>
+    <p-timeline [value]="events" align="alternate" styleClass="customized-timeline">
+        <ng-template pTemplate="marker" let-event>
+            <span class="custom-marker text-white pt-1 pb-1 pe-2 ps-2 shadow-2" [style.backgroundColor]="event.color" style="border-radius: 50%;">
+                <i [ngClass]="event.icon"></i>
+            </span>
+        </ng-template>
+        <ng-template pTemplate="content" let-event>
+            <p-card [header]="event.status" class="text-center">
+                <img *ngIf="event.image" [src]="'../../../../assets/svg/' + event.image" [alt]="'Model Icon'" width="200" class="mb-3" />
+                <p>
+                    {{event.description}}
+                </p>
+            </p-card>
+        </ng-template>
+    </p-timeline>
+</div>
+
+
+<!-- <div class="container-fluid p-0 primarysize theme-b rounded-3 position-relative user-select-none" style="margin-top: 9rem;">
+    <img src="../../../../assets/custom_header_1.png" alt="Background Image" width="100%">
+    <div class="row d-flex p-0 position-absolute justify-content-center bottom-0 ms-5 w-50" style="margin-bottom: 8rem;">
+        <h1 class="font-b" style="color: #1f1f1f; font-size: 48px;">¿Que esperas? Únete al portal de vendedores en <span class="sfx-text">HomeServices®️</span></h1>
+        <h6>Creemos juntos experiencias laborales únicas.</h6>
+        <button type="button" class="btn btn-dark p-3 ms-4 mt-3 rounded-0" (click)="transportWeb()">Convertirme en vendedor <i class="bi-arrow-right"></i></button>
+    </div>
+</div> -->
+
+<app-footer></app-footer>
