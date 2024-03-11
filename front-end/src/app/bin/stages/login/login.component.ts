@@ -123,7 +123,8 @@ export class LoginComponent implements OnInit{
                 queryParams: {
                   uuid: result.uuid,
                   token: result.token,
-                  guard: result.guard
+                  guard: result.guard,
+                  guard2: result.isnew
                 }
               });
             }

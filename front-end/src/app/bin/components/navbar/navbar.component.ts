@@ -219,17 +219,11 @@ export class NavbarComponent implements OnInit{
   }
 
   deleteCurrentSesion(): void{
-    if(localStorage.getItem('uu0x0')){
-      localStorage.removeItem('uu0x0');
-      localStorage.removeItem('ac0x1');
-      localStorage.removeItem('_token');
-      localStorage.removeItem('g0x')
-    }
-    else{
-      sessionStorage.removeItem('uu0x0');
-      sessionStorage.removeItem('ac0x1');
-      sessionStorage.removeItem('_token');
-    }
+    localStorage.removeItem('uu0x0');
+    localStorage.removeItem('ac0x1');
+    localStorage.removeItem('_token');
+    localStorage.removeItem('g0x')
+    localStorage.removeItem('g1x')
 
     if(this.rt.url !== '/'){
       this.rt.navigateByUrl('/')

@@ -105,10 +105,10 @@ export class WelcomeComponent implements OnInit{
       return;
     }
 
-    if(this.image === undefined){
-      this.NG_MSG.add({severity: 'error', summary: 'Espera, faltan campos...', detail: 'Necesitamos una foto de perfil.', closable: true});
-      return;
-    }
+    // if(this.image === undefined){
+    //   this.NG_MSG.add({severity: 'error', summary: 'Espera, faltan campos...', detail: 'Necesitamos una foto de perfil.', closable: true});
+    //   return;
+    // }
 
     Notiflix.Loading.dots('Actualizando información...', {
       clickToClose: false,
