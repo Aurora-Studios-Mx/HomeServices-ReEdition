@@ -17,7 +17,6 @@ export class Homestep3Component implements OnInit{
     constructor(private NG_MSG: MessageService, private title: Title, private _router: Router){}
 
     ngOnInit(): void{
-
         this.title.setTitle('Portal para vendedores | HomeServices®')
 
         const documentStyle = getComputedStyle(document.documentElement);

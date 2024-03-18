@@ -25,5 +25,8 @@ router.post('/api/v1/post/payments/paypal/create-order', controller.PPAdd)
 
 router.post('/api/v1/post/payments/verify', controller.Check)
 
+//Aurora Payments
+router.post('/api/v2/post/payments/aurora/create-order', controller.Generate)
+
 //Export
 module.exports = router;

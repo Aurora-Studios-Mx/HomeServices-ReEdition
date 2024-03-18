@@ -16,50 +16,149 @@
 
     <div class="container-fluid p-0 mt-3 mb-5">
         <div class="row">
-            <div class="col-4">
-                <p-timeline [value]="events" align="alternate" styleClass="customized-timeline">
-                    <ng-template pTemplate="marker" let-event>
-                        <span class="custom-marker dropped-shadow-tiny" [style.backgroundColor]="event.color">
-                            <i [ngClass]="event.icon"></i>
-                        </span>
-                    </ng-template>
-                    <ng-template pTemplate="content" let-event>
-                        {{ event.status }}
-                    </ng-template>
-                </p-timeline>
-            </div>
-            <div class="col d-flex align-items-center">
-                <div class="row">
-                    <h6>Información para el vendedor:</h6>
-                <hr class="w-25">
-                <h3>{{getMessage(servicePacket.completed0x12)}}</h3>
-                <p>{{getSubMessage(servicePacket.completed0x12)}}</p>
-
-                <div class="row mt-3">
-                    <div class="col">
-                        <button type="button" class="btn btn-outline-purple" (click)="bugDetected()"><i class="bi bi-bug"></i> Notificar un error</button>
-                    </div>
-                    <div class="col-auto">
-                        <div class="d-flex gap-3" *ngIf="servicePacket.completed0x12 === 0">
-                            <button type="button" class="btn btn-outline-danger" (click)="cancel()"><i class="bi bi-x"></i> Cancelar</button>
-                            <button type="button" class="btn btn-purple" (click)="next()"><i class="bi bi-arrow-right"></i> Siguiente paso</button>
-                        </div>
-                        <button type="button" class="btn btn-purple" *ngIf="servicePacket.completed0x12 !== 0 && servicePacket.completed0x12 !== 2 && servicePacket.completed0x12 !== 7 && servicePacket.completed0x12 !== 8" (click)="next()"><i class="bi bi-arrow-right"></i> Siguiente paso</button>
-                        <div pTooltip="Indicaste que tu asistencia se concreto, pero aun necesitamos la confirmación del comprador." [tooltipDisabled]="laststep">
-                            <button type="button" class="btn btn-purple" *ngIf="servicePacket.completed0x12 === 2 || servicePacket.completed0x12 === 7 || servicePacket.completed0x12 === 8" (click)="confirmInvitation()" [disabled]="!laststep">
-                                <div *ngIf="laststep">
-                                    <i class="bi bi-check"></i> <span>Confirmar asistencia</span>
-                                </div>
-                                <div *ngIf="!laststep">
-                                    <div class="spinner-border spinner-border-sm" role="status">
-                                        <span class="visually-hidden">Loading...</span>
+            <div class="col-5">
+                <div class="d-flex justify-content-around flex-column">
+                    <h6 class="font-b">Información para el vendedor:</h6>
+                    <hr class="w-25">
+                    <h3 class="font-b">{{getMessage(servicePacket.completed0x12)}}</h3>
+                    <p>{{getSubMessage(servicePacket.completed0x12)}}</p>
+        
+                    <div class="row mt-3">
+                        <!-- <div class="col">
+                            <button type="button" class="btn btn-outline-purple rounded-0" (click)="bugDetected()"><i class="bi bi-bug"></i> Notificar un error</button>
+                        </div> -->
+                        <div class="col-auto">
+                            <div class="d-flex gap-3" *ngIf="servicePacket.completed0x12 === 0">
+                                <button type="button" class="btn btn-outline-danger rounded-0" (click)="cancel()"><i class="bi bi-x"></i> Cancelar</button>
+                                <button type="button" class="btn btn-dark-2 rounded-0" (click)="next()"><i class="bi bi-arrow-right"></i> Siguiente paso</button>
+                            </div>
+                            <button type="button" class="btn btn-purple rounded-0" *ngIf="servicePacket.completed0x12 !== 0 && servicePacket.completed0x12 !== 2 && servicePacket.completed0x12 !== 7 && servicePacket.completed0x12 !== 8" (click)="next()"><i class="bi bi-arrow-right"></i> Siguiente paso</button>
+                            <div pTooltip="Indicaste que tu asistencia se concreto, pero aun necesitamos la confirmación del comprador." [tooltipDisabled]="laststep">
+                                <button type="button" class="btn btn-purple rounded-0" *ngIf="servicePacket.completed0x12 === 2 || servicePacket.completed0x12 === 7 || servicePacket.completed0x12 === 8" (click)="confirmInvitation()" [disabled]="!laststep">
+                                    <div *ngIf="laststep">
+                                        <i class="bi bi-check"></i> <span>Confirmar asistencia</span>
                                     </div>
-                                    Esperando al comprador
-                                </div>
-                            </button>
+                                    <div *ngIf="!laststep">
+                                        <div class="spinner-border spinner-border-sm" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        Esperando al comprador
+                                    </div>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div>
+                    <h6 class="font-b mt-4">Linea del tiempo del servicio: </h6>
+                    <p-timeline [value]="events" align="alternate" styleClass="customized-timeline" layout="horizontal">
+                    <!--<ng-template pTemplate="marker" let-event>
+                            <span class="custom-marker dropped-shadow-tiny" [style.backgroundColor]="event.color">
+                                <i [ngClass]="event.icon"></i>
+                            </span>
+                        </ng-template> -->
+                        <ng-template pTemplate="content" let-event>
+                            {{ event.status }}
+                        </ng-template>
+                    </p-timeline>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <div class="d-flex align-items-center gap-2">
+                            <img src="../../../../../assets/logo_invoices.png" alt="HomeServices® Logo" style="height: 60px; width: auto;">
+                            <h3 class="mt-3">HomeServices®</h3>
+                        </div>
+                    </div>
+                    <div class="col d-flex align-items-center justify-content-end">
+                        <h3 class="mt-4" style="letter-spacing: 1.7px; margin-bottom: 5rem;">Orden de pago</h3>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-auto">
+                                <p class="fw-bold">Titulo:</p>
+                            </div>
+                            <div class="col">
+                                <p>Compra de servicio en HomeServices®</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto">
+                                <p class="fw-bold">Fecha de compra/expedición:</p>
+                            </div>
+                            <div class="col">
+                                <p>{{formatDate(servicePacket.date0x11)}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-auto">
+                                <p class="fw-bold">ID de la compra:</p>
+                            </div>
+                            <div class="col">
+                                <p>{{servicePacket.id_shop0x4}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col text-end">
+                        <p class="mb-0">{{servicePacket.formA0x5}}</p>
+                        <p class="mb-0">{{servicePacket.formC0x7}}</p>
+                        <p class="mb-0">{{servicePacket.formB0x6}}</p>
+                        <p class="mb-0">{{subs.c0x1}}, {{subs.s0x0}}</p>
+                        <p class="mb-0">{{servicePacket.formE0x9}}</p>
+                    </div>
+                </div>
+                
+                <div class="mt-5">
+                    <table class="table rounded-3">
+                        <thead>
+                            <tr>
+                                <th class="table-secondary" scope="col">Nombre del servicio</th>
+                                <th class="table-secondary" scope="col">Identificador</th>
+                                <th class="table-secondary" scope="col">Precio Unitario</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>{{invoice.info[0].name0x3}}</th>
+                                <td class="w-auto">{{servicePacket.article0x0}}</td>
+                                <td>{{invoice.info[0].price0x5 | currency: 'MXN'}}</td>
+                            </tr>
+                            <tr>
+                                <th class="border-0"></th>
+                                <td class="border-0"></td>
+                                <td class="border-0"></td>
+                            </tr>
+                            <tr>
+                                <th class="border-0"></th>
+                                <td class="border-0"></td>
+                                <td class="border-0"></td>
+                            </tr>
+                            <tr *ngIf="servicePacket.multiple0x13 > 1">
+                                <th class="border-0"></th>
+                                <td>Servicios por tiempo ({{servicePacket.multiple0x13}} pagos):</td>
+                                <td>{{invoice.info[0].price0x5 * servicePacket.multiple0x13 | currency: 'MXN'}}</td>
+                            </tr>
+                            <tr>
+                                <th class="border-0"></th>
+                                <td>Costos de traslado:</td>
+                                <td>{{invoice.info[0].priceB0x9 | currency: 'MXN'}}</td>
+                            </tr>
+                            <tr>
+                                <th class="border-0"></th>
+                                <td>Comisión de HomeServices®:</td>
+                                <td>{{servicePacket.subprice0x3 - (invoice.info[0].priceB0x9 + (invoice.info[0].price0x5 * servicePacket.multiple0x13)) | currency: 'MXN'}}</td>
+                            </tr>
+                            <tr>
+                                <th class="border-0"></th>
+                                <td class="fw-bold border-0">Subtotal:</td>
+                                <td class="border-0">{{servicePacket.subprice0x3 | currency: 'MXN'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -67,100 +166,5 @@
 
     <hr>
 
-    <div class="row">
-        <div class="col">
-            <div class="d-flex align-items-center gap-2">
-                <img src="../../../../../assets/logo_invoices.png" alt="HomeServices® Logo" style="height: 60px; width: auto;">
-                <h3 class="mt-3">HomeServices®</h3>
-            </div>
-        </div>
-        <div class="col d-flex align-items-center justify-content-end">
-            <h3 class="mt-4" style="letter-spacing: 1.7px; margin-bottom: 5rem;">Orden de pago</h3>
-        </div>
-    </div>
     
-    <div class="row">
-        <div class="col">
-            <div class="row">
-                <div class="col-auto">
-                    <p class="fw-bold">Titulo:</p>
-                </div>
-                <div class="col">
-                    <p>Compra de servicio en HomeServices®</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-auto">
-                    <p class="fw-bold">Fecha de compra/expedición:</p>
-                </div>
-                <div class="col">
-                    <p>{{formatDate(servicePacket.date0x11)}}</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-auto">
-                    <p class="fw-bold">ID de la compra:</p>
-                </div>
-                <div class="col">
-                    <p>{{servicePacket.id_shop0x4}}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col text-end">
-            <p class="mb-0">{{servicePacket.formA0x5}}</p>
-            <p class="mb-0">{{servicePacket.formC0x7}}</p>
-            <p class="mb-0">{{servicePacket.formB0x6}}</p>
-            <p class="mb-0">{{subs.c0x1}}, {{subs.s0x0}}</p>
-            <p class="mb-0">{{servicePacket.formE0x9}}</p>
-        </div>
-    </div>
-
-    <div class="mt-5">
-        <table class="table rounded-3">
-            <thead>
-                <tr>
-                    <th class="table-secondary" scope="col">Nombre del servicio</th>
-                    <th class="table-secondary" scope="col">Identificador</th>
-                    <th class="table-secondary" scope="col">Precio Unitario</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th>{{invoice.info[0].name0x3}}</th>
-                    <td class="w-auto">{{servicePacket.article0x0}}</td>
-                    <td>{{invoice.info[0].price0x5 | currency: 'MXN'}}</td>
-                </tr>
-                <tr>
-                    <th class="border-0"></th>
-                    <td class="border-0"></td>
-                    <td class="border-0"></td>
-                </tr>
-                <tr>
-                    <th class="border-0"></th>
-                    <td class="border-0"></td>
-                    <td class="border-0"></td>
-                </tr>
-                <tr *ngIf="servicePacket.multiple0x13 > 1">
-                    <th class="border-0"></th>
-                    <td>Servicios por tiempo ({{servicePacket.multiple0x13}} pagos):</td>
-                    <td>{{invoice.info[0].price0x5 * servicePacket.multiple0x13 | currency: 'MXN'}}</td>
-                </tr>
-                <tr>
-                    <th class="border-0"></th>
-                    <td>Costos de traslado:</td>
-                    <td>{{invoice.info[0].priceB0x9 | currency: 'MXN'}}</td>
-                </tr>
-                <tr>
-                    <th class="border-0"></th>
-                    <td>Comisión de HomeServices®:</td>
-                    <td>{{servicePacket.subprice0x3 - (invoice.info[0].priceB0x9 + (invoice.info[0].price0x5 * servicePacket.multiple0x13)) | currency: 'MXN'}}</td>
-                </tr>
-                <tr>
-                    <th class="border-0"></th>
-                    <td class="fw-bold border-0">Subtotal:</td>
-                    <td class="border-0">{{servicePacket.subprice0x3 | currency: 'MXN'}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
 </div>

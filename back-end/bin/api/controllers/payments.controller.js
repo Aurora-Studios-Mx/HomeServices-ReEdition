@@ -5,8 +5,9 @@
 //Requires
 const mpAPI = require('mercadopago')
 require('dotenv').config({path: '../../../.env'})
-const { Connection } = require('../../utility/mysqlUtilities/connectionManager')
+const { Connection, ConnectionAdmins } = require('../../utility/mysqlUtilities/connectionManager')
 const stripeAPI = require('stripe')
+const MailerUtility = require('../../utility/mailerUtilities/mailerManager')
 
 //Mercado Pago payments
 function getTransitionID(preference_id){
@@ -459,6 +460,49 @@ async function createOrderSuccessPaypal(req, res){
     }
 }
 
+async function generateOrder(req, res){
+    const body = req.body;
+
+    if(body){
+        let cn; 
+
+        try{
+            cn = await ConnectionAdmins();
+
+            const sql = "INSERT INTO o0x (owner, name, clabe) VALUES (?,?,?)";
+            const values = [body._owner, body._name, body._c0x]
+
+            const [result] = await cn.execute(sql, values);
+
+            if(result.affectedRows > 0){
+                res.status(200).json({
+                    success: true,
+                    message: 'La orden ha sido generada con exito.'
+                })
+            }
+            else{
+                res.status(500).json({
+                    success: false,
+                    message: 'No hemos conseguido generar la orden. Intente mas tarde.'
+                })
+            
+            }
+        }
+        catch (err){
+            res.status(500).json({
+                success: false,
+                message: 'Ha ocurrido un error al intentar generar la orden. Intente mas tarde.',
+                error: err.message
+            })
+        }
+        finally{
+            if(cn){
+                cn.end();
+            }
+        }
+    }
+}
+
 module.exports = {
     MPcreate: createPayment,
     MPhook: webHookMP,
@@ -467,5 +511,6 @@ module.exports = {
     SPcreate: createPaymentStripe,
     SPupdate: UpdateInformationTicketStripe,
     SPdelete: DeleteInformationTicketStripe,
-    PPAdd: createOrderSuccessPaypal
+    PPAdd: createOrderSuccessPaypal,
+    Generate: generateOrder
 }

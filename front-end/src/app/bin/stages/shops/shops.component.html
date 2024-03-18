@@ -34,7 +34,7 @@
             </div>
             <div class="col-3 mt-2">
                 <div class="row d-flex align-items-center">
-                    <button type="button" class="btn btn-purple p-2 w-100 mb-2" *ngIf="packet.data11 === 2 || packet.data11 === 7" (click)="confirmInvitation(packet.data3)"><i class="bi bi-check"></i> Confirmar asistencia</button>
+                    <button type="button" class="btn btn-purple p-2 w-100 mb-2 rounded-0" *ngIf="packet.data11 === 2 || packet.data11 === 7" (click)="confirmInvitation(packet.data3)"><i class="bi bi-check"></i> Confirmar asistencia</button>
                     <button type="button" class="btn btn-purple rounded-0 p-2 w-100 mb-2" routerLink="/services/{{packet.data1}}"><i class="bi bi-card-list"></i> Ver publicación</button>
                     <button type="button" class="btn btn-outline-purple rounded-0 p-2 w-100 mb-2" (click)="openDetails(packet)"><i class="bi bi-journal-text"></i> Ver detalles</button>
                     <button type="button" class="btn btn-outline-danger rounded-0 border-0 p-2 w-100" *ngIf="packet.data11 == 0" (click)="openDialogCancel(packet.data3)"><i class="bi bi-cart-x"></i> Cancelar</button>
@@ -49,7 +49,7 @@
             <div class="col d-flex align-items-center" style="max-width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
                 <div class="row">
                     <div class="d-flex gap-2 align-items-center">
-                        <p-tag class="user-select-none" [value]="getSmallMessage(packet.data11)" [severity]="getSeverity(packet.data11)" pTooltip="ID: {{packet.data3}}" tooltipPosition="top"></p-tag>
+                        <p-tag class="user-select-none mb-1" [style]="{'border-radius': '0'}" [value]="getSmallMessage(packet.data11)" [severity]="getSeverity(packet.data11)" pTooltip="ID: {{packet.data3}}" tooltipPosition="top"></p-tag>
                         <h3 style="max-width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
                             {{getNameFromUUID(packet.data1)}}
                         </h3>
@@ -61,9 +61,9 @@
             </div>
             <div class="col-3">
                 <div class="row d-flex align-items-center">
-                    <button type="button" class="btn btn-purple p-2 w-100 mb-2" [disabled]="packet.data11 === 5" (click)="openReputation(packet.data1, packet.data3, packet.data0)"><i class="bi bi-star"></i> Calificar</button>
-                    <button type="button" class="btn btn-outline-purple p-2 w-100 mb-2" routerLink="/services/{{packet.data1}}"><i class="bi bi-card-list"></i> Ver publicación</button>
-                    <button type="button" class="btn btn-outline-danger border-0 p-2 w-100" *ngIf="secureServices(packet.data10)" (click)="openDialogCancel(packet.data3)" pTooltip="Si tu servicio presentó problemas pulse aquí (esta opción durará 7 días)"><i class="bi bi-cart-x"></i> Reportar servicio</button>
+                    <button type="button" class="btn btn-purple p-2 w-100 mb-2 rounded-0" [disabled]="packet.data11 === 5" (click)="openReputation(packet.data1, packet.data3, packet.data0)"><i class="bi bi-star"></i> Calificar</button>
+                    <button type="button" class="btn btn-outline-purple p-2 w-100 mb-2 rounded-0" routerLink="/services/{{packet.data1}}"><i class="bi bi-card-list"></i> Ver publicación</button>
+                    <button type="button" class="btn btn-outline-danger border-0 p-2 w-100 rounded-0" *ngIf="secureServices(packet.data10)" (click)="openDialogCancel(packet.data3)" pTooltip="Si tu servicio presentó problemas pulse aquí (esta opción durará 7 días)"><i class="bi bi-cart-x"></i> Reportar servicio</button>
                 </div>
             </div>
         </div>

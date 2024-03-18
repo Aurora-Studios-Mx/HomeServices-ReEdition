@@ -26,32 +26,32 @@ import { MobileUsageComponent } from './bin/stages/mobile-usage/mobile-usage.com
 import { NotsellerComponent } from './bin/stages/notseller/notseller.component';
 
 //Guards
-import { guard, guard_mobiles, guard_seller, guard_welcome } from './bin/guards/routes.guard';
+import { guard, guard_alreadylogged, guard_mobiles, guard_seller, guard_verification, guard_welcome } from './bin/guards/routes.guard';
 import { AboutComponent } from './bin/stages/about/about.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'prefix', component: InsideHomeComponent, canActivate: [guard_mobiles]},
-  {path: 'start', component: HomeComponent},
+  {path: 'start', component: HomeComponent, canActivate: [guard_alreadylogged, guard_mobiles]},
   // {path: 'myservices/publish', component: Homestep2Component},
   {path: 'sellers', component: Homestep3Component, canActivate: [guard, guard_mobiles]},
   {path: 'sellers/register', component: Homestep4Component, canActivate: [guard, guard_mobiles]},
   {path: 'terms', component: TermsComponent, canActivate: [guard_mobiles]},
   {path: 'privacy', component: PrivacyComponent, canActivate: [guard_mobiles]},
-  {path: 'login', component: LoginComponent, canActivate: [guard_mobiles]},
+  {path: 'login', component: LoginComponent, canActivate: [guard_mobiles, guard_alreadylogged]},
   {path: 'profile/:uuid', component: ProfileComponent, canActivate: [guard_mobiles]},
   {path: 'payment/:status', component: ProductViewComponent, canActivate: [guard_mobiles]},
   {path: 'services/:uuid', component: ServicesViewComponent, canActivate: [guard_mobiles]},
   // {path: 'myaccount/configuration', component: ConfigComponent},
   {path: 'myaccount/s/owned', component: ShopsComponent, canActivate: [guard_mobiles]},
   // {path: 'myaccount/notifications', component: NotifysComponent, canActivate: [guard_mobiles]},
-  {path: 'services/buy/payment/:id', component: PaymentComponent, canActivate: [guard_mobiles]},
+  {path: 'services/buy/payment/:id', component: PaymentComponent, canActivate: [guard_mobiles, guard]},
   {path: 'notaccount', component: NotaccountComponent, canActivate: [guard_mobiles]},
   {path: 'notseller', component: NotsellerComponent, canActivate: [guard_mobiles]},
   // {path: 'categories', component: CategoriesComponent, canActivate: [guard_mobiles]},
   {path: 'welcome', component: WelcomeComponent, canActivate: [guard_welcome, guard_mobiles] },
   {path: 'myaccount/seller/dashboard', component: SellersPortalComponent, canActivate: [guard_seller, guard_mobiles]},
   {path: 'search', component: SearchComponent, canActivate: [guard_mobiles]},
-  {path: 'verification', component: NotifysComponent, canActivate: [guard_mobiles]},
+  {path: 'verification', component: NotifysComponent, canActivate: [guard_mobiles, guard_alreadylogged, guard_verification]},
   {path: 'about-homeservices', component: AboutComponent, canActivate: [guard_mobiles]},
 
   //Redirects for payments

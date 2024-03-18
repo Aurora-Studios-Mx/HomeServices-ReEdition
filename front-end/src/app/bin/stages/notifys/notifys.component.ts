@@ -60,6 +60,8 @@ export class NotifysComponent implements OnInit{
       else{
         Notiflix.Loading.remove();
 
+        sessionStorage.removeItem('verification')
+
         localStorage.setItem('uu0x0', this.uuid)
         localStorage.setItem('ac0x1', 'true')
         localStorage.setItem('_token', this.token)

@@ -125,6 +125,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { AdsenseModule } from 'ng2-adsense';
 import { AboutComponent } from './bin/stages/about/about.component';
 import { ForgetComponent } from './bin/stages/forget/forget.component';
+import { WalletComponent } from './bin/components/sellersportal/wallet/wallet.component';
 
 //Azure Method - Microsoft Token Gen
 export function MSALInstanceFactory(): IPublicClientApplication {
@@ -187,7 +188,8 @@ export function MSALInstanceFactory(): IPublicClientApplication {
     NotsellerComponent,
     UpperinputsDirective,
     AboutComponent,
-    ForgetComponent
+    ForgetComponent,
+    WalletComponent
   ],
   imports: [
     BrowserModule,

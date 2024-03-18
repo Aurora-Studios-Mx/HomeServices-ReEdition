@@ -99,6 +99,14 @@ export class Homestep4Component implements OnInit{
   protected texts: string = '';
   protected validated: boolean = false;
 
+  protected currentDate: Date = new Date();
+  protected documentAccepted: boolean = false;
+
+  test(): void{
+    console.log(this.formCurrentStage.value);
+    console.log(this._fileA_length);
+  }
+
   changeTexts(){
     let texts: any[] = [
       "¿Temes por tu privacidad? No te preocupes, en Aurora Studios entendemos que tu privacidad es importante, por eso no compartimos tus datos con nadie.",
@@ -247,6 +255,33 @@ export class Homestep4Component implements OnInit{
       accept: () => {
         this.activeTab += 1;
         this.onChangeTab(this.activeTab);
+      }
+    });
+  }
+
+  confirm2(event: Event) {
+    this.confirmationService.confirm({
+      target: event.target || undefined,
+      message: '¿Ha leído el contrato? Es importante haber leído todo el contrato de vendedores.',
+      acceptButtonStyleClass: 'p-button-help rounded-0',
+      rejectButtonStyleClass: 'p-button-help p-button-text rounded-0',
+      icon: 'bi bi-exclamation-triangle',
+      accept: () => {
+        this.activeTab += 1;
+        this.onChangeTab(this.activeTab);
+      }
+    });
+  }
+
+  confirm3(event: Event) {
+    this.confirmationService.confirm({
+      target: event.target || undefined,
+      message: '¿Estamos listos? Confirma el envio de solicitud a HomeServices® for Sellers.',
+      acceptButtonStyleClass: 'p-button-help rounded-0',
+      rejectButtonStyleClass: 'p-button-help p-button-text rounded-0',
+      icon: 'bi bi-exclamation-triangle',
+      accept: () => {
+        this.onSubmit();
       }
     });
   }

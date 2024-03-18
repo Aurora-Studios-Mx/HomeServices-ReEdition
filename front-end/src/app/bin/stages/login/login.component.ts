@@ -119,6 +119,8 @@ export class LoginComponent implements OnInit{
               this.router.navigate(["/"]);
             }
             else{              
+              sessionStorage.setItem('verification', 'true')
+              
               this.router.navigate(["/verification"], {
                 queryParams: {
                   uuid: result.uuid,

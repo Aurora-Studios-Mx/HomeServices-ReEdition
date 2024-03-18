@@ -8,6 +8,7 @@ import { CategoryGestorService } from '../../services/api/category-gestor.servic
 import * as Notiflix from 'notiflix';
 import { DeletePopupComponent } from '../../components/sellersportal/delete-popup/delete-popup.component';
 import { DetailsPopupComponent } from '../../components/sellersportal/details-popup/details-popup.component';
+import { WalletComponent } from '../../components/sellersportal/wallet/wallet.component';
 
 @Component({
   selector: 'app-sellers-portal',
@@ -20,6 +21,7 @@ export class SellersPortalComponent implements OnInit{
   private ref: DynamicDialogRef | undefined;
   private ref2: DynamicDialogRef | undefined;
   private ref3: DynamicDialogRef | undefined;
+  private ref4: DynamicDialogRef | undefined;
 
   protected stats1: number = 0;
   protected stats2: number = 0;
@@ -67,6 +69,20 @@ export class SellersPortalComponent implements OnInit{
 
     this.ref.onClose.subscribe((data: any) => {
       if(data.upload === true){
+        window.location.reload();
+      }
+    })
+  }
+
+  openGetWallet() {
+    this.ref4 = this._dialog.open(WalletComponent, {
+      header: 'Crear orden de pago',
+      width: '75%',
+      height: '100%',
+    });
+
+    this.ref4.onClose.subscribe((data: any) => {
+      if (data.upload === true) {
         window.location.reload();
       }
     })
@@ -381,5 +397,6 @@ export class SellersPortalComponent implements OnInit{
         this.NG_MSG.add({severity: 'warn', summary: 'Advertencia', detail: 'Tienes servicios sin completar, por favor, completa los servicios para que puedas recibir pagos.'})
       }
     }
+
   }
 }

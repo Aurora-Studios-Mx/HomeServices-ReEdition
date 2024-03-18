@@ -53,3 +53,27 @@ export const guard_mobiles = () => {
         return true;
     }
 }
+
+export const guard_alreadylogged = () => {
+    const router = inject(Router)
+
+    if (localStorage.getItem('uu0x0')) {
+        router.navigate(['/'])
+        return false;
+    }
+    else{
+        return true;
+    }
+}
+
+export const guard_verification = () => {
+    const router = inject(Router)
+
+    if (sessionStorage.getItem('verification')) {
+        return true;
+    }
+    else{
+        router.navigate(['/'])
+        return false;
+    }
+}

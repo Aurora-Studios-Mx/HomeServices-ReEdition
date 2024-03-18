@@ -218,6 +218,17 @@ export class NavbarComponent implements OnInit{
     }, 1000);
   }
 
+  profileReload(uuid: string): void{
+    const route = this.rt.url;
+
+    if(route.includes('/profile')){
+      window.location.reload();
+    }
+    else{
+      this.rt.navigateByUrl('/profile/' + uuid);
+    }
+  }
+
   deleteCurrentSesion(): void{
     localStorage.removeItem('uu0x0');
     localStorage.removeItem('ac0x1');

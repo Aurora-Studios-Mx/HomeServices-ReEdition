@@ -32,6 +32,11 @@
     color:#a95eff
 }
 
+.canvas-item:disabled {
+    border: 0;
+    color: gray;
+}
+
 .btn-noti{
     user-select: none;
     padding: 1%;

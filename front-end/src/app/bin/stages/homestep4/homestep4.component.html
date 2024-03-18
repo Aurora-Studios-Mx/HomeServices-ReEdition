@@ -195,6 +195,13 @@
                             </div>
                             <div class="container-fluid p-0">
                                 <h5 class="mt-4 font-b">Información fiscal</h5>
+
+                                <div class="container-fluid p-0">
+                                    <h5 class="mt-4 font-b">Agrega tu identificación personal por ambas partes:</h5>
+                                    <p-fileUpload mode="advanced" chooseStyleClass="p-button-help rounded-0" chooseLabel="Cargar" [maxFileSize]="3e+6" [showCancelButton]="false" removeStyleClass="p-button-help" [showUploadButton]="false" name="demo[]" [multiple]="true" accept="image/*" (onSelect)="countFileSelected($event)" (onRemove)="deleteFileSelected($event)"></p-fileUpload>
+                                    <p class="mb-0 mt-1" style="font-size: 12px; opacity: .7;">Intenta que las fotografías sean visibles y los datos claros. Nada de esta información sera compartida.</p>
+                                </div>
+
                                 <div class="row">
                                     <div class="col">
                                         <span class="p-float-label w-100 mt-4">
@@ -236,11 +243,106 @@
                                 <button type="button" *ngIf="!validated" class="btn btn-dark-2 rounded-0" (click)="verifyFiscals()">Validar fiscales</button>
                             </div>
                         </p-tabPanel>
-                        <p-tabPanel header="Contratos" [disabled]="disabled2">
-                            
+                        <p-tabPanel header="Contrato de HomeServices®" [disabled]="disabled2">
+                            <h4 class="font-b">Contrato de Afiliación para el Portal de Vendedores de HomeServices®</h4>
+                            <p style="text-align: justify;">
+                                Este Contrato de Afiliación (en adelante, el "Contrato") se celebra entre HomeServices® for Sellers (en adelante, el "Portal de Vendedores"), y usted (en adelante, el "Vendedor"), en la fecha {{currentDate | date: 'd-MM-YYYY'}}.
+                            </p>
+
+                            <h5 class="font-b">1. Objeto del Contrato</h5>
+                            <p style="text-align: justify;">
+                                El Portal de Vendedores y el Vendedor acuerdan establecer una relación contractual en virtud de la cual el Vendedor ofrecerá sus servicios a través del Portal de Vendedores, dedicado a la venta y compra de servicios a domicilio (en adelante, los "Servicios").
+                            </p>
+
+                            <h5 class="font-b">2. Obligaciones del Portal de Vendedores</h5>
+                            <p style="text-align: justify;">
+                                2.1. Proporcionar al Vendedor acceso al Portal de Vendedores, donde podrá ofrecer, promocionar y vender sus Servicios. <br>
+                                
+                                2.2. Procesar los pagos realizados por los clientes del Vendedor a través del Portal de Vendedores, reteniendo una comisión acordada previamente por cada transacción exitosa (ver sección Comisiones y pagos). <br>
+                                
+                                2.3. Brindar soporte técnico y atención al cliente relacionados con la plataforma del Portal de Vendedores.
+                            </p>
+
+                            <h5 class="font-b">3. Obligaciones del Vendedor</h5>
+                            <p style="text-align: justify;">
+                                3.1. Registrar una cuenta en el Portal de Vendedores y proporcionar información verídica y actualizada sobre sus Servicios, precios, disponibilidad, y cualquier otra información relevante. <br>
+                                
+                                3.2. Cumplir con los estándares de calidad y profesionalismo en la prestación de sus Servicios, asegurando la satisfacción del cliente. <br>
+                                
+                                3.3. Respetar los términos y condiciones establecidos por el Portal de Vendedores, incluyendo políticas de privacidad, términos de pago y políticas de uso de la plataforma.
+                            </p>
+
+                            <h5 class="font-b">4. Comisiones y Pagos</h5>
+                            <p style="text-align: justify;">
+                                4.1. El Vendedor acuerda que el Portal de Vendedores retendrá una comisión del 15% sobre el monto total de cada transacción realizada a través de la plataforma. <br>
+                                
+                                4.2. Los pagos al Vendedor se realizarán semanalmente a través del método de pago especificado por el Vendedor en su cuenta del Portal de Vendedores.
+                            </p>
+
+                            <h5 class="font-b">5. Duración y Terminación</h5>
+                            <p style="text-align: justify;">
+                                5.1. Este Contrato tendrá una duración indefinida a menos que sea terminado por cualquiera de las partes mediante notificación por escrito con 7 días de antelación. <br>
+                                
+                                5.2. El incumplimiento grave de cualquiera de las partes dará derecho a la otra parte a rescindir este Contrato de inmediato.
+                            </p>
+
+                            <h5 class="font-b">6. Confidencialidad</h5>
+                            <p style="text-align: justify;">
+                                Ambas partes se comprometen a mantener la confidencialidad de cualquier información confidencial intercambiada durante la vigencia de este Contrato.
+                            </p>
+
+                            <h5 class="font-b">7. Ley Aplicable y Jurisdicción</h5>
+                            <p style="text-align: justify;">
+                                Este Contrato se regirá e interpretará de acuerdo con las leyes del país sin tener en cuenta sus conflictos de disposiciones legales. Cualquier disputa derivada de este Contrato estará sujeta a la jurisdicción exclusiva de los tribunales de Mexico.
+                            </p>
+
+                            <div class="mt-2 d-flex justify-content-center">
+                                <div class="row p-0">
+                                    <div class="col-auto">
+                                        <input class="form-check-input ms-0 border-dark-subtle" type="checkbox" [(ngModel)]="documentAccepted" [ngModelOptions]="{standalone: true}">
+                                    </div>
+                                    <div class="col d-flex align-items-center">
+                                        <p class="mb-0 m-0" style="font-size: 12px; color: gray">He leído, comprendido y aceptado todas las disposiciones de este Contrato.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex mt-3 justify-content-end">
+                                <button type="button" [disabled]="!documentAccepted" class="btn btn-dark-2 rounded-0" (click)="confirm2($event)">Siguiente <i class="bi-arrow-right"></i></button>
+                            </div>
                         </p-tabPanel>
                         <p-tabPanel header="HomeServices®" [disabled]="disabled3">
+                            <p style="font-size: small; text-align: justify; user-select: none;">Rellena los datos con información que ayudara a HomeServices® a tomar una decision optima para tu desempeño en el Portal de Vendedores de HomeServices®</p>
                             
+                            <div class="container-fluid p-0">
+                                <h5 class="mt-3 font-b">¿Cuales son tus mejores habilidades?</h5>
+                                <textarea formControlName="hsA" rows="3" cols="30" pInputTextarea style="width: 100%; border-radius: 0;"
+                                    formControlName="hsA"></textarea>
+                                <p class="mb-0 mt-1" style="font-size: 12px; opacity: .7;">Intenta ser lo mejor detallado.</p>
+                            </div>
+                            
+                            <div class="container-fluid p-0">
+                                <h5 class="mt-3 font-b">¿Cuanta experiencia laboral posees?</h5>
+                                <p-multiSelect formControlName="hsB" [options]="exp" optionLabel="name" [selectionLimit]="1" [style]="{'width':'100%', 'margin-top': '.43rem', 'border-radius': '0px'}" [showHeader]="false"></p-multiSelect>
+
+                                <h5 class="mt-3 font-b">¿Cual es tu disponibilidad laboral?</h5>
+                                <p-multiSelect formControlName="hsC" [options]="times" optionLabel="name" [selectionLimit]="1" [style]="{'width':'100%', 'margin-top': '.43rem', 'border-radius': '0px'}" [showHeader]="false"></p-multiSelect>
+                                <p class="mb-0 mt-1" style="font-size: 12px; opacity: .7;">HomeServices® ofrece la posibilidad de pausar publicaciones para no afectar tu disponibilidad.</p>
+                            </div>
+
+                            <hr class="mt-4">
+                            <div class="d-flex justify-content-center">
+                                <p-confirmPopup></p-confirmPopup>
+                                <div class="d-flex flex-column text-center">
+                                    <div class="d-flex justify-content-center mb-3 align-items-center gap-2">
+                                        <input formControlName="required" class="form-check-input ms-0 border-dark-subtle" type="checkbox">
+                                        <p class="mb-0 mt-1" style="font-size: 12px; color: gray">Acepto el uso de mi información para la validación de datos en HomeServices®️ for Sellers</p>
+                                    </div>
+                                    <button type="button" class="btn btn-dark-2 rounded-0" (click)="confirm3($event)" [disabled]="!formCurrentStage.valid || this._fileA_length === 0">Siguiente <i class="bi-arrow-right"></i></button>
+                                    <p class="opacity-50" style="font-size: small;">Las revisiones pueden tardar entre 24 a 72 hrs dependiendo de la demanda del servicio.</p>
+                                    <p class="text-danger" *ngIf="!formCurrentStage.valid && this._fileA_length === 0">Aun tienes datos vacíos o inválidos.</p>
+                                </div>
+                            </div>
                         </p-tabPanel>
                     </p-tabView>
                 </form>

@@ -1,1 +1,11 @@
-<p>explicit-module works!</p>
+<div class="d-flex justify-content-center p-5 text-center">
+    <div class="w-50">
+        <img src="../../../../assets/svg/hs_explicit.svg" alt="Explicit SVG" style="width: auto; height: 25vh;">
+        <h5 class="mt-3">HomeServices® es seguro para todos, es por eso que informamos que la publicación esta específicamente
+            apta para adultos (filtro explicito activo), ¿Quieres continuar?</h5>
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-purple rounded-0 m-2" (click)="this._dialog.close()">Continuar</button>
+            <button class="btn btn-dark-2 rounded-0 m-2" (click)="this._dialog.close({close: true})">Cancelar</button>
+        </div>
+    </div>
+</div>

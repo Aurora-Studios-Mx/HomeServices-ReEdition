@@ -45,7 +45,12 @@
                 </div>
             </form>
             <a class="btn ntf-btn border-0 me-2 ms-2" pTooltip="Mis notificaciones" tooltipPosition="bottom" type="submit" (click)="show()" *ngIf="extended && isCurrentSign">
-                <i class="bi bi-bell fs-5"></i>
+                @if (notifications > 0) {
+                    <i class="bi bi-bell fs-5" pBadge severity="danger" value="{{notifications}}"></i>
+                }
+                @else{
+                    <i class="bi bi-bell fs-5"></i>
+                }
             </a>
             <div *ngIf="!isCurrentSign">
                 <a class="btn btn-outline-dark ms-2 rounded-0" type="submit" routerLink="/login">
@@ -125,7 +130,7 @@
     </ng-template>
     <ng-template pTemplate="content">
         <div class="user-select-none">
-            <button class="btn canvas-item rounded-0 w-100 mb-1" type="button" routerLink="/profile/{{userProfile}}"><i class="bi bi-person"></i> Ir a mi perfil</button>
+            <button class="btn canvas-item rounded-0 w-100 mb-1" type="button" (click)="profileReload(userProfile)"><i class="bi bi-person"></i> Ir a mi perfil</button>
             <button class="btn canvas-item rounded-0 w-100 mb-1" type="button" routerLink="/myaccount/s/owned"><i class="bi bi-cart-check"></i> Servicios contratados</button>
             <button *ngIf="isSeller" class="btn canvas-item rounded-0 w-100 mb-1" type="button" (click)="transportWeb()"><i class="bi bi-person-raised-hand"></i> Mis ventas</button>
             <button *ngIf="isShopper" class="btn canvas-item rounded-0 w-100 mb-1" type="button" routerLink="/sellers"><i class="bi bi-basket"></i> Convertirme en vendedor</button>

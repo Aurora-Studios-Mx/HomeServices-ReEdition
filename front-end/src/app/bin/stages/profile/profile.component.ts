@@ -44,6 +44,8 @@ export class ProfileComponent implements OnInit{
 
   protected services: any[] = [];
 
+  protected isSeller: boolean = false;
+
   private ref: DynamicDialogRef | undefined;
 
   constructor(public dialogService: DialogService, private title: Title, private ar: ActivatedRoute, private _API_:UsersgestorService, private NG_MSG: MessageService, private router: Router, private _services: ServicesGestorService) {
@@ -236,6 +238,10 @@ export class ProfileComponent implements OnInit{
           else{
             this.isURLPic = true;
             this.URLimage = result.result.pp0x5;
+          }
+
+          if(result.result._t0x3 === '2'){
+            this.isSeller = true;
           }
 
           this.transformData(result.result.date0x6)

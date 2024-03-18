@@ -177,6 +177,10 @@ export class InsideHomeComponent implements OnInit{
     const uid = this.whatUUID();
 
     const guard0 = localStorage.getItem('g0x');
+    
+    const top = await this.getTop();
+    const news = await this.getNews();
+    const today = await this.getToday();
 
     if(guard0 === '1'){
       Notiflix.Notify.warning('No puedes continuar sin terminar tu registro.', {
@@ -187,9 +191,6 @@ export class InsideHomeComponent implements OnInit{
     
     if(uid !== 'undefined'){
       const location = await this.getLocation();
-      const top = await this.getTop();
-      const news = await this.getNews();
-      const today = await this.getToday();
 
       if(top === false){
         this.NG_MSG.add({severity: 'warn', summary: 'No hay servicios', detail: 'No hay servicios para mostrar un top.'});

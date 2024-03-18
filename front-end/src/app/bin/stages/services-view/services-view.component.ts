@@ -41,6 +41,7 @@ export class ServicesViewComponent implements OnInit{
   protected multipleTime: number = 1;
 
   private ref: DynamicDialogRef | undefined;
+  private ref2: DynamicDialogRef | undefined;
 
   protected activeID: string | undefined;
 
@@ -192,8 +193,20 @@ export class ServicesViewComponent implements OnInit{
             this.priceBShowed = 'Pago / ' + result.result[0].ttp0x6;
           }
   
-          if(result.result[0].explicit0x10 == 'y'){
-  
+          if(result.result[0].explicit0x10 == 'n'){
+            this.ref2 = this.DialogS.open(ExplicitModuleComponent,{
+              header: 'Contenido explicito',
+              width: '100%',
+              height: '100%',
+              contentStyle: { overflow: 'auto' },
+              baseZIndex: 10000,
+            })
+
+            this.ref2.onClose.subscribe((data: any) => {
+              if(data.close === true){
+                this.rt.navigateByUrl('/')
+              }
+            })
           }
   
           if(Array.isArray(this.categories)) {

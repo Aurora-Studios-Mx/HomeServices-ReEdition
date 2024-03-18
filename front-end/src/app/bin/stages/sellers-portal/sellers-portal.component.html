@@ -15,7 +15,8 @@
                 <button class="btn canvas-item rounded-3 w-100 mb-3" type="button"><i class="bi bi-gem"></i> HomeServices® Prime</button> -->
                 <h6 class="ms-2 border-text">Utilidades:</h6>
                 <!-- <button class="btn canvas-item rounded-0 w-100 mb-1" type="button"><i class="bi bi-journal-text"></i> Crear factura de venta</button> -->
-                <button class="btn canvas-item rounded-0 w-100 mb-3" type="button" routerLink="/myaccount/sell"><i class="bi bi-person-raised-hand"></i> Soporte y asistencia</button>
+                <button class="btn canvas-item rounded-0 w-100 mb-1" type="button" (click)="openGetWallet()" [disabled]="this.stats3 === 0"><i class="bi bi-wallet"></i> Crear orden de pago</button>
+                <!-- <button class="btn canvas-item rounded-0 w-100 mb-3" type="button" routerLink="/myaccount/sell"><i class="bi bi-person-raised-hand"></i> Soporte y asistencia</button> -->
             </div>
         </div>
         <div class="col-2"></div>
@@ -23,29 +24,29 @@
             <div class="d-flex gap-2">
                 <div class="card w-100 sfx rounded-0 border-0">
                     <div class="card-body">
-                        <h5>Ventas totales:</h5>
+                        <h5 class="font-b">Ventas totales:</h5>
                         <div class="d-flex gap-5 align-items-end justify-content-end">
                             <i class="bi bi-cart-check fs-1" style="color: #a95eff;"></i>
-                            <h2 class="text-end">{{stats1}}</h2>
+                            <h2 class="text-end font-b">{{stats1}}</h2>
                         </div>
                         <p class="mb-0 opacity-50" style="font-size: small;">Este costo solo toma actividades completadas.</p>
                     </div>
                 </div>
                 <div class="card w-100 sfx rounded-0 border-0">
                     <div class="card-body">
-                        <h5>Servicios pendientes:</h5>
+                        <h5 class="font-b">Servicios pendientes:</h5>
                         <div class="d-flex gap-5 align-items-end justify-content-end">
                             <i class="bi bi-person-raised-hand fs-1" style="color: #a95eff;"></i>
-                            <h2 class="text-end">{{stats2}}</h2>
+                            <h2 class="text-end font-b">{{stats2}}</h2>
                         </div>
                     </div>
                 </div>
                 <div class="card w-100 sfx rounded-0 border-0">
                     <div class="card-body">
-                        <h5>Ingresos totales:</h5>
+                        <h5 class="font-b">Ingresos en billetera:</h5>
                         <div class="d-flex gap-5 align-items-end justify-content-end">
                             <i class="bi bi-cash fs-1" style="color: #a95eff;"></i>
-                            <h2 class="text-end">{{stats3 | currency: 'MXN'}}</h2>
+                            <h2 class="text-end font-b">{{stats3 | currency: 'MXN'}}</h2>
                         </div>
                         <p class="mb-0 opacity-50" style="font-size: small;">Este costo solo toma actividades completadas.</p>
                     </div>
@@ -56,7 +57,7 @@
                 <div class="container-fluid p-0 bg-white mt-4 p-3 border">
                     <div class="row">
                         <div class="col">
-                            <h5 class="mt-1"><i class="bi bi-cart" style="color: #a95eff;"></i> Tus servicios:</h5>
+                            <h5 class="mt-1 font-b"><i class="bi bi-cart" style="color: #a95eff;"></i> Tus servicios:</h5>
                         </div>
                         <div class="col d-flex justify-content-end align-items-center">
                             <!-- <a href="">Ver todos</a> -->
@@ -152,7 +153,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="container-fluid p-0 bg-white mt-4 p-3 border">
-                            <h5 class="mt-1"><i class="bi bi-person-raised-hand" style="color: #a95eff;"></i> Servicios pendientes:</h5>
+                            <h5 class="mt-1 font-b"><i class="bi bi-person-raised-hand" style="color: #a95eff;"></i> Servicios pendientes:</h5>
                             <hr>
                             <div class="d-flex justify-content-center align-items-center" *ngIf="stats2 === 0">
                                 <div class="container-fluid mt-5">
@@ -175,7 +176,7 @@
                                             </div>
                                             <div class="col" style="width: 80%;">
                                                 <div class="row text-start" style="width: 100%;">
-                                                    <h5 class="text-dark text-truncate">Nueva compra!</h5>
+                                                    <h5 class="text-dark text-truncate font-b">Nueva compra!</h5>
                                                     <p class="text-dark mb-0 opacity-75 text-truncate">Adquirido: {{formatDate(packet.date0x11)}}</p>
                                                     <p class="text-dark mb-0 opacity-50">Clic para mas información</p>
                                                 </div>

@@ -34,4 +34,8 @@ export class PaymentsManagerService {
   public paypalConfirmation(data: any): Observable<any>{
     return this._http.post<any>(this.API_URL + '/api/v1/post/payments/paypal/create-order', data)
   }
+
+  public generateAuroraPayment(data: any): Observable<any>{
+    return this._http.post<any>(this.API_URL + '/api/v2/post/payments/aurora/create-order', data)
+  }
 }

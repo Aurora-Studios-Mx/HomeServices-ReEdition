@@ -6,6 +6,7 @@
 const { Connection } = require('../../utility/mysqlUtilities/connectionManager')
 const { DateTime } = require('luxon')
 const Cipher = require('../../utility/cesarCipherUtilities/cryptHelper').start('services')
+const NotifyMe = require('../../utility/notificationsUtilities/notifyMeManager')
 
 async function addNewService(req, res){
     let cn;
@@ -506,9 +507,13 @@ async function shopStepA(req, res){
         const [result] = await cn.execute(sql, values);
 
         if(result.affectedRows > 0){
-            res.status(200).json({
-                success: true
-            })
+            const notify = await NotifyMe.create(body.o0x, '¡Tienes una nueva solicitud de compra!', '¡Tienes una nueva solicitud de compra! Revisa en el portal de vendedores para ver los detalles.', 2, '/myaccount/seller/dashboard')
+
+            if(notify === true){
+                res.status(200).json({
+                    success: true
+                })
+            }
         }
         else{
             res.status(500).json({
@@ -756,6 +761,33 @@ async function MyOwnServices(req, res){
 
 }
 
+function NotifyMe_SellerHandle(idshop) {
+    return new Promise(async (resolve, reject) => {
+        let cn;
+
+        try {
+            cn = await Connection()
+
+            const sql = 'SELECT owner0x1 FROM q0x WHERE id_shop0x4 = ?'
+            const values = [idshop]
+
+            const [res] = await cn.execute(sql, values);
+
+            if (res.length > 0) {
+                resolve(res[0].owner0x1)
+            }
+        }
+        catch (err) {
+            reject(err)
+        }
+        finally {
+            if (cn) {
+                cn.end()
+            }
+        }
+    });
+}
+
 async function cancelPurchase(req, res){
     let cn;
 
@@ -770,9 +802,16 @@ async function cancelPurchase(req, res){
         const [result] = await cn.execute(sql, values);
 
         if(result.affectedRows === 1){
-            res.status(200).json({
-                canceled: true
-            })
+            const uuid = await NotifyMe_SellerHandle(body._id)
+            if (uuid) {
+                const notify = await NotifyMe.create(uuid, '¡Tu solicitud ha sido cancelada!', 'El comprador ha cancelado la compra.', 2, '/myaccount/seller/dashboard')
+
+                if (notify === true) {
+                    res.status(200).json({
+                        canceled: true
+                    })
+                }
+            }
         }
         else{
             res.status(403).json({
@@ -797,6 +836,33 @@ async function cancelPurchase(req, res){
 
 }
 
+function NotifyMe_ShopperHandle(idshop){
+    return new Promise(async (resolve, reject) => {
+        let cn;
+        
+        try{
+            cn = await Connection()            
+
+            const sql = 'SELECT shopper0x2 FROM q0x WHERE id_shop0x4 = ?'
+            const values = [idshop]
+
+            const [res] = await cn.execute(sql, values);
+
+            if(res.length > 0){
+                resolve(res[0].shopper0x2)
+            }
+        }
+        catch (err){
+            reject(err)
+        }
+        finally{
+            if(cn){
+                cn.end()
+            }
+        }
+    });
+}
+
 async function cancelPurchase2(req, res){
     let cn;
 
@@ -811,9 +877,17 @@ async function cancelPurchase2(req, res){
         const [result] = await cn.execute(sql, values);
 
         if(result.affectedRows === 1){
-            res.status(200).json({
-                canceled: true
-            })
+            const uuid = await NotifyMe_ShopperHandle(body._id)
+            if(uuid){
+                const notify = await NotifyMe.create(uuid, '¡Tu solicitud de compra ha sido cancelada!', 'El presta-servicios ha cancelado la compra, tu rembolso estará listo en unos minutos.', 2, '/myaccount/s/owned')
+
+                if(notify === true){
+                    res.status(200).json({
+                        canceled: true
+                    })
+                }
+            }
+
         }
         else{
             res.status(403).json({
