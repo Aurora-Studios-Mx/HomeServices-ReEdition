@@ -7,8 +7,8 @@ const bodyParser = require('body-parser');
 console.clear();
 
 //.env
-require('dotenv').config({ path: './.env'})
-const origins = ['http://localhost:10'];
+// require('dotenv').config({ path: './.env'})
+const origins = ['http://home-services.store'];
 const port = process.env.PORT || 3001;
 const host = process.env.HOST;
 
@@ -89,7 +89,7 @@ app.use(messageRouter);
 app.use(commentaryRouter);
 app.use(tfaRouter);
 
-server.listen(port, host, () => {
+server.listen(port, () => {
     console.log('-------------------------------------------')
     console.log(`| [*] Express: HS-Backend services up! 🚀 |`);
     console.log('-------------------------------------------')
