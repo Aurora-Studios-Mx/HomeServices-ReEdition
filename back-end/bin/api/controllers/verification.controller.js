@@ -11,7 +11,7 @@ const mailerUtility = require('../../utility/mailerUtilities/mailerManager')
 const Cipher = require('../../utility/cesarCipherUtilities/cryptHelper').start('verification-controller')
 
 //Bcrypt
-const bcrypt = require('bcrypt')
+// const bcrypt = require('bcrypt')
 
 //Fiscals Managers
 const X01 = require('curp')
@@ -163,9 +163,9 @@ async function evaluateEmail(req, res){
 
         if(rows.length > 0){
             for(let i = 0; i < rows.length; i++){
-                const compareEmail = await bcrypt.compare(body._e0x1, rows[i].email0x2.toString('utf-8'))
+                const compareEmail = rows[i].email0x2.toString('utf-8')
 
-                if(compareEmail){
+                if(compareEmail == body._e0x1){
                     res.status(200).json({result: true})
                 }
                 else{
