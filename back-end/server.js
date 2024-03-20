@@ -8,7 +8,7 @@ console.clear();
 
 //.env
 // require('dotenv').config({ path: './.env'})
-const origins = ['http://home-services.store'];
+const origins = ['http://www.home-services.store'];
 const port = process.env.PORT || 3001;
 const host = process.env.HOST;
 
