@@ -3,7 +3,7 @@
 // @ZairDeLuque - The creator
 
 //Requires
-const bcrypt = require('bcrypt')
+// const bcrypt = require('bcrypt')
 const { Connection } = require('../../utility/mysqlUtilities/connectionManager')
 const Cipher = require('../../utility/cesarCipherUtilities/cryptHelper').start('users.data')
 const jwt = require('jsonwebtoken')
