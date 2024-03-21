@@ -3,7 +3,7 @@
 // @ZairDeLuque - The creator
 
 //Requires
-// const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt')
 const { Connection } = require('../../utility/mysqlUtilities/connectionManager')
 const Cipher = require('../../utility/cesarCipherUtilities/cryptHelper').start('users.data')
 const jwt = require('jsonwebtoken')
@@ -94,14 +94,14 @@ async function createUserCredentials(req, res){
         }
         else{
             //Crypt information
-            // const hashEmail = await bcrypt.hash(body.e2x, 12);
-            // const hashPassword = await bcrypt.hash(body.p3x, 12);
+            const hashEmail = await bcrypt.hash(body.e2x, 12);
+            const hashPassword = await bcrypt.hash(body.p3x, 12);
             const cryptFN = await Cipher.createNewChallenge(body.fn4x)
     
             //Prepare query
             const dateFormated = DateTime.now().setZone('America/Mexico_City').toFormat('yyyy-MM-dd HH:mm:ss');
             const SQL = 'INSERT INTO ud0x (uuid0x0, power0x1, email0x2, pass0x3, fullname0x4, verify0x5, pp0x6, date0x8, new0x9) VALUES (?,?,?,?,?,?,?,?,?)';
-            const values = [body.u0x, body.pw1x, body.e2x, body.p3x, cryptFN, '0', body.pp5x, dateFormated, 1];
+            const values = [body.u0x, body.pw1x, hashEmail, hashPassword, cryptFN, '0', body.pp5x, dateFormated, 1];
     
             const [result] = await cn.execute(SQL, values);
     
@@ -237,10 +237,16 @@ async function compareUserCredentials(req, res) {
         // Results?
         if (rows.length > 0) {
             for (let i = 0; i < rows.length; i++) {
-                const compareEmail = rows[i].email0x2.toString('utf-8')
-                const comparePass =  rows[i].pass0x3.toString('utf-8')
+                const compareEmail = await bcrypt.compare(
+                    body.e0x,
+                    rows[i].email0x2.toString('utf-8')
+                );
+                const comparePass = await bcrypt.compare(
+                    body.p1x,
+                    rows[i].pass0x3.toString('utf-8')
+                );
 
-                if (compareEmail == body.e0x && comparePass == body.p1x) {
+                if (compareEmail && comparePass) {
                     const userData = rows[i];
                     const token = await createToken(userData);
                     const TFAValidators = await Verify2FA(userData.uuid0x0);
